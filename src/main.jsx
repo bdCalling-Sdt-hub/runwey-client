@@ -7,8 +7,8 @@ import { Store } from "./Store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={Store}>
+    {/* <Provider store={Store}> */}
       <App />
-    </Provider>
+    {/* </Provider> */}
   </React.StrictMode>
 );

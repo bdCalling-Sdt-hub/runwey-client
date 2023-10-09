@@ -5,6 +5,7 @@ import DashboardHome from "./Pages/Dashboard/DashboardHome/DashboardHome";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import PrivateRoute from "./Components/PrivateRoute";
 import Signin from "./Pages/Signin/Signin";
+import Notification from "./Pages/Dashboard/Notification/Notification";
 
 function App() {
   return (
@@ -12,18 +13,17 @@ function App() {
       <Router>
         <Routes>
           <Route
-            exact
             path="/"
             element={
               <PrivateRoute>
+                {" "}
                 <Dashboard />
               </PrivateRoute>
             }
           >
             <Route path="/" element={<DashboardHome />} />
-            {/* here Dashboard code */}
+            <Route path="/notification" element={<Notification />} />
           </Route>
-
           <Route path="/signin" element={<Signin />} />
           {/* <Route path="/forget-password" element={<ForgetPassword />} /> */}
           {/* <Route path="/otp/:email" element={<Otp />} /> */}
