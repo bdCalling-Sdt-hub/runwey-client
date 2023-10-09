@@ -1,10 +1,15 @@
+
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { LinkOutlined } from "@ant-design/icons";
 import { TiMessages } from "react-icons/ti";
+import { RiDashboardLine } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
+import { BiWallet } from "react-icons/bi";
+import { IoSettingsOutline } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
-import { Divider, Menu, Switch } from "antd";
+import {  Menu } from "antd";
+import Header from "../../Components/Header/Header";
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -44,7 +49,7 @@ const items = [
   getItem(
     <p className="text-[22px] leading-normal">Income</p>,
     "sub2",
-    <FaUsers style={{ fontSize: "18px" }} />,
+    <BiWallet style={{ fontSize: "18px" }} />,
     [
       getItem(<li className="text-[22px] leading-normal">Daily</li>, "6"),
       getItem(<li className="text-[22px] leading-normal">Weekly</li>, "7"),
@@ -72,7 +77,7 @@ const items = [
     <p className="text-[22px] leading-normal">Occasions</p>,
     "13",
 
-    <TiMessages style={{ fontSize: "18px" }} />
+    <RiDashboardLine style={{ fontSize: "18px" }} />
   ),
   getItem(
     <p className="text-[22px] leading-normal">Settings</p>,
@@ -110,7 +115,9 @@ const Dashboard = () => {
         </div>
       </div>
       <div>
-        <div>Header</div>
+        <div>
+          <Header />
+        </div>
         <div>
           <Outlet />
         </div>

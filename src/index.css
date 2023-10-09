@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.test{
+    width: 0px I !important;
+}
+/* .ant-layout-sider.ant-layout-sider-dark.ant-layout-sider-has-trigger {
+    max-width: 500px !important;
+    width: 500px I !important;
+    overflow-y: auto;
+    overflow-x: unset;
+} */

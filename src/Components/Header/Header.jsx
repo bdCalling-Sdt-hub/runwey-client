@@ -1,7 +1,56 @@
-import React from 'react'
+import { Badge } from "antd";
+import React from "react";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
-export const Header = () => {
+const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <div className="flex  mt-9">
+      <div>
+        <div className="relative w-full">
+          <div className="flex absolute inset-y-0 left-0  items-center pl-3 pointer-events-none">
+            <svg
+              className="w-5 h-5 text-secondary  "
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="voice-search"
+            className="bg-red border w-[900px] border-gray-300 focus:ring-0 outline-none py-3 text-gray-900 text-sm rounded-2xl block pl-10 p-2.5 "
+            placeholder="Search names/ products/ videos"
+            required
+          />
+        </div>
+      </div>
+      <div class="w-[300px] h-[45px] p-4 bg-primary rounded-[10px] justify-center items-center gap-2.5 inline-flex ml-3">
+        <div class="text-white text-[22px] font-normal font-['Montserrat']">
+          01 October 2023
+        </div>
+      </div>
+      <div className="bg-primary">
+        {" "}
+        <Badge
+          count={5}
+          color="red"
+        >
+          <IoIosNotificationsOutline
+            style={{ cursor: "pointer" }}
+            fontSize={35}
+            color="white"
+          />
+        </Badge>
+      </div>
+      <div></div>
+    </div>
+  );
+};
+
+export default Header;
