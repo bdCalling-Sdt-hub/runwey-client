@@ -1,4 +1,3 @@
-
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { LinkOutlined } from "@ant-design/icons";
@@ -8,7 +7,7 @@ import { RxDashboard } from "react-icons/rx";
 import { BiWallet } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
-import {  Menu } from "antd";
+import { Menu } from "antd";
 import Header from "../../Components/Header/Header";
 function getItem(label, key, icon, children) {
   return {
@@ -83,7 +82,7 @@ const items = [
     <p className="text-[22px] leading-normal">Settings</p>,
     "14",
 
-    <TiMessages style={{ fontSize: "18px" }} />
+    <IoSettingsOutline style={{ fontSize: "18px" }} />
   ),
 ];
 const Dashboard = () => {
@@ -91,16 +90,13 @@ const Dashboard = () => {
   const [theme, setTheme] = useState("light");
 
   return (
-    <div className="flex" style={{height:"100vh"}}>
-
-
-
-      <div className=" m-8 rounded-xl bg-primary relative" >
+    <div className="flex" style={{ height: "100vh" }}>
+      <div className=" m-8 rounded-xl bg-primary relative">
         <>
           <h1 className="text-[30px] text-center py-4 text-white">Logo</h1>
           <Menu
-             style={{overflowY:"auto",height:"80vh"}}
-            className="w-[332px] p-[30px]  bg-primary text-white  rounded-b-xl "
+            style={{ overflowY: "auto", height: "80vh" }}
+            className="w-[352px] p-[30px]  bg-primary text-white  rounded-b-xl "
             defaultSelectedKeys={["1"]}
             // defaultOpenKeys={["sub1"]}
             mode={mode}
@@ -109,13 +105,15 @@ const Dashboard = () => {
           />
         </>
 
-        <div className="bottom-0 left-0 w-full p-4">
+        <div className="">
+        <div className="absolute bottom-0 left-0 w-full p-4 bg-primary border-t-[1px] border-secondary">
           <div className="flex items-center bg-white text-center w-[240px] py-[6px] mx-auto rounded-md">
             <div className="flex mx-auto">
               <LinkOutlined className="text-[20px] text-primary" />
               <p className=" text-primary text-[20px] pl-2">Logout</p>
             </div>
           </div>
+        </div>
         </div>
       </div>
       <div>
@@ -131,4 +129,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
