@@ -86,12 +86,16 @@ const Dashboard = () => {
   const [theme, setTheme] = useState("light");
 
   return (
-    <div className="flex">
-      <div className=" m-8 rounded-xl bg-primary relative">
+    <div className="flex" style={{height:"100vh"}}>
+
+
+
+      <div className=" m-8 rounded-xl bg-primary relative" >
         <>
           <h1 className="text-[30px] text-center py-4 text-white">Logo</h1>
           <Menu
-            className="w-[332px] p-[30px]  bg-primary text-white h-[800px] rounded-b-xl "
+             style={{overflowY:"auto",height:"80vh"}}
+            className="w-[332px] p-[30px]  bg-primary text-white  rounded-b-xl "
             defaultSelectedKeys={["1"]}
             // defaultOpenKeys={["sub1"]}
             mode={mode}
@@ -100,7 +104,7 @@ const Dashboard = () => {
           />
         </>
 
-        <div className="absolute bottom-0 left-0 w-full p-4">
+        <div className="bottom-0 left-0 w-full p-4">
           <div className="flex items-center bg-white text-center w-[240px] py-[6px] mx-auto rounded-md">
             <div className="flex mx-auto">
               <LinkOutlined className="text-[20px] text-primary" />
@@ -120,3 +124,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
