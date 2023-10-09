@@ -1,8 +1,10 @@
 import { Badge } from "antd";
 import React from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex  mt-9">
       <div>
@@ -35,7 +37,7 @@ const Header = () => {
           01 October 2023
         </div>
       </div>
-      <div className="bg-primary ml-3 rounded-lg px-2">
+      <div   onClick={(e) => navigate("/notification")} className="bg-primary ml-3 rounded-lg px-2">
         {" "}
         <Badge count={5} color="red">
           <IoIosNotificationsOutline
@@ -46,7 +48,7 @@ const Header = () => {
           />
         </Badge>
       </div>
-      <div className="cursor-pointer">
+      <div onClick={(e) => navigate("/profile")} className="cursor-pointer">
         <img
           className="w-[50px] h-[45px] ml-3 rounded-lg"
           src="https://i.ibb.co/YbSN7hp/e2fa7e1c075f3e11ddf04c79df9349c4.png"

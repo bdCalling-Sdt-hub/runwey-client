@@ -6,6 +6,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import PrivateRoute from "./Components/PrivateRoute";
 import Signin from "./Pages/Signin/Signin";
 import Notification from "./Pages/Dashboard/Notification/Notification";
+import Profile from "./Pages/Dashboard/Profile/Profile";
+import Inbox from "./Pages/Dashboard/Inbox/Inbox";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           >
             <Route path="/" element={<DashboardHome />} />
             <Route path="/notification" element={<Notification />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/index" element={<Inbox />} />
           </Route>
           <Route path="/signin" element={<Signin />} />
           {/* <Route path="/forget-password" element={<ForgetPassword />} /> */}
