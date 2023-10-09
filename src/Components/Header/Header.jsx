@@ -24,7 +24,7 @@ const Header = () => {
           <input
             type="text"
             id="voice-search"
-            className="bg-red border w-[900px] border-gray-300 focus:ring-0 outline-none py-3 text-gray-900 text-sm rounded-2xl block pl-10 p-2.5 "
+            className="bg-red border w-[1020px] border-gray-300 focus:ring-0 outline-none py-3 text-gray-900 text-sm rounded-2xl block pl-10 p-2.5 "
             placeholder="Search names/ products/ videos"
             required
           />
@@ -35,20 +35,24 @@ const Header = () => {
           01 October 2023
         </div>
       </div>
-      <div className="bg-primary">
+      <div className="bg-primary ml-3 rounded-lg px-2">
         {" "}
-        <Badge
-          count={5}
-          color="red"
-        >
+        <Badge count={5} color="red">
           <IoIosNotificationsOutline
             style={{ cursor: "pointer" }}
-            fontSize={35}
+            fontSize={30}
             color="white"
+            className="mt-2"
           />
         </Badge>
       </div>
-      <div></div>
+      <div className="cursor-pointer">
+        <img
+          className="w-[50px] h-[45px] ml-3 rounded-lg"
+          src="https://i.ibb.co/YbSN7hp/e2fa7e1c075f3e11ddf04c79df9349c4.png"
+          alt=""
+        />
+      </div>
     </div>
   );
 };
