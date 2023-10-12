@@ -1,6 +1,9 @@
 import React from "react";
 import DashboardOverview from "./DashboardOverview";
 import TransactionTable from "./TransactionTable";
+import PendingRequests from "./PendingRequests";
+import GenderRatio from "./GenderRatio";
+import Earnings from "./Earnings";
 
 const DashboardHome = () => {
   return (
@@ -10,9 +13,9 @@ const DashboardHome = () => {
         <TransactionTable />
       </div>
       <div>
-        <div>Pending Request</div>
-        <div>Gender Ratio</div>
-        <div>Earnings</div>
+        <PendingRequests />
+        <GenderRatio />
+        <Earnings />
       </div>
     </div>
   );
