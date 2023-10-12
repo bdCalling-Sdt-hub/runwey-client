@@ -46,11 +46,7 @@ const Earnings = () => {
           <div className="self-end pb-7 ml-5">
             <p className="text-[10px]">date</p>
           </div>
-          <BarChart
-            width={350}
-            height={150}
-            data={data}
-          >
+          <BarChart width={350} height={150} data={data}>
             <XAxis className="text-[10px]" dataKey="name" />
             <Tooltip />
             <Bar dataKey="amt">
