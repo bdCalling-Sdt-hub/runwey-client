@@ -3,4 +3,23 @@
 body {
     font-family: 'Montserrat', sans-serif;
     font-family: 'Raleway', sans-serif;
+    background: linear-gradient(180deg, #FDFBFB 0%, #FFF 0.01%, #F4F4F4 100%);
+    background-repeat: no-repeat;
+}
+
+
+:where(.css-dev-only-do-not-override-pr0fja).ant-table-wrapper .ant-table-thead >tr>th{
+    background: #ffff;
+    color:  #6611E0;
+    /* Montserrat/S B 18 */
+    font-family: Montserrat;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-bottom: 1px solid #6611E0;
+}
+:where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a{
+    color: #6611E0;
+    border: #6611E0;
 }
