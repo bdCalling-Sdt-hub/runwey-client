@@ -2,7 +2,9 @@ import React from 'react'
 
 const Notification = () => {
   return (
-    <div>Notification</div>
+    <div className="flex mt-[24px] h-[800px] overflow-scroll sr-only">
+   
+    </div>
   )
 }
 
