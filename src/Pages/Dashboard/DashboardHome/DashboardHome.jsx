@@ -7,12 +7,12 @@ import Earnings from "./Earnings";
 
 const DashboardHome = () => {
   return (
-    <div className="flex mt-[24px]">
+    <div className="flex mt-[24px] h-[800px] overflow-scroll ">
       <div className="flex flex-col w-[1020px]">
         <DashboardOverview />
         <TransactionTable />
       </div>
-      <div>
+      <div className="mr-5">
         <PendingRequests />
         <GenderRatio />
         <Earnings />

@@ -11,6 +11,10 @@ export default {
         secondary:"#EBEBEB"
       },
     },
+    container: {
+      center: true,
+      // padding: "1rem",
+    },
   },
   plugins: [],
 }

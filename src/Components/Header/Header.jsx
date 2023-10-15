@@ -32,8 +32,8 @@ const Header = () => {
           />
         </div>
       </div>
-      <div class="w-[300px] h-[45px] p-4 bg-primary rounded-[10px] justify-center items-center gap-2.5 inline-flex ml-3">
-        <div class="text-white text-[22px] font-normal font-['Montserrat']">
+      <div className="w-[300px] h-[45px] p-4 bg-primary rounded-[10px] justify-center items-center gap-2.5 inline-flex ml-3">
+        <div className="text-white text-[22px] font-normal font-['Montserrat']">
           01 October 2023
         </div>
       </div>
