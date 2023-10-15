@@ -1,9 +1,14 @@
 import { Badge } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const date = new Date(); // Assuming the input date is in ISO 8601 format (YYYY-MM-DD)
+
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = date.toLocaleDateString("en-US", options);
+
   const navigate = useNavigate();
   return (
     <div className="flex  mt-9">
@@ -17,9 +22,9 @@ const Header = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
           </div>
@@ -34,10 +39,13 @@ const Header = () => {
       </div>
       <div className="w-[300px] h-[45px] p-4 bg-primary rounded-[10px] justify-center items-center gap-2.5 inline-flex ml-3">
         <div className="text-white text-[22px] font-normal font-['Montserrat']">
-          01 October 2023
+          {formattedDate}
         </div>
       </div>
-      <div   onClick={(e) => navigate("/notification")} className="bg-primary ml-3 rounded-lg px-2">
+      <div
+        onClick={(e) => navigate("/notification")}
+        className="bg-primary ml-3 rounded-lg px-2"
+      >
         {" "}
         <Badge count={5} color="red">
           <IoIosNotificationsOutline
