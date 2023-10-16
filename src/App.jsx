@@ -33,7 +33,6 @@ function App() {
             path="/"
             element={
               <PrivateRoute>
-                {" "}
                 <Dashboard />
               </PrivateRoute>
             }
