@@ -1,8 +1,11 @@
 import React from 'react'
+import { Col, Divider, Row } from 'antd';
 
 const Inbox = () => {
   return (
-    <div>Inbox</div>
+    <div>
+       <h1>inbox</h1>
+    </div>
   )
 }
 
