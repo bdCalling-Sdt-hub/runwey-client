@@ -23,17 +23,23 @@ const Dashboard = () => {
   const [mode, setMode] = useState("inline");
   const [theme, setTheme] = useState("light");
 
-
   const items = [
     getItem(
-      <p onClick={(e) => navigate("/")} className="text-[22px] leading-normal">Dashboard</p>,
+      <p onClick={(e) => navigate("/")} className="text-[22px] leading-normal">
+        Dashboard
+      </p>,
       "1",
       <RxDashboard style={{ fontSize: "18px" }} />
     ),
     getItem(
-      <p onClick={(e) => navigate("/index")} className="text-[22px] leading-normal">Inbox</p>,
+      <p
+        onClick={(e) => navigate("/index")}
+        className="text-[22px] leading-normal"
+      >
+        Inbox
+      </p>,
       "2",
-  
+
       <TiMessages style={{ fontSize: "18px" }} />
     ),
     getItem(
@@ -41,13 +47,31 @@ const Dashboard = () => {
       "sub1",
       <FaUsers style={{ fontSize: "18px" }} />,
       [
-        getItem(<li className="text-[22px] leading-normal">All Users</li>, "3"),
         getItem(
-          <li className="text-[22px] leading-normal">Creator Request</li>,
+          <li
+            onClick={(e) => navigate("/allUsers")}
+            className="text-[22px] leading-normal"
+          >
+            All Users
+          </li>,
+          "3"
+        ),
+        getItem(
+          <li
+            onClick={(e) => navigate("/creatorRequest")}
+            className="text-[22px] leading-normal"
+          >
+            Creator Request
+          </li>,
           "4"
         ),
         getItem(
-          <li className="text-[22px] leading-normal">Upload Request</li>,
+          <li
+            onClick={(e) => navigate("/uploadRequest")}
+            className="text-[22px] leading-normal"
+          >
+            Upload Request
+          </li>,
           "5"
         ),
       ]
@@ -57,10 +81,42 @@ const Dashboard = () => {
       "sub2",
       <BiWallet style={{ fontSize: "18px" }} />,
       [
-        getItem(<li className="text-[22px] leading-normal">Daily</li>, "6"),
-        getItem(<li className="text-[22px] leading-normal">Weekly</li>, "7"),
-        getItem(<li className="text-[22px] leading-normal">Monthly</li>, "8"),
-        getItem(<li className="text-[22px] leading-normal">Wallet</li>, "9"),
+        getItem(
+          <li
+            onClick={(e) => navigate("/daily-income")}
+            className="text-[22px] leading-normal"
+          >
+            Daily
+          </li>,
+          "6"
+        ),
+        getItem(
+          <li
+            onClick={(e) => navigate("/weekly-income")}
+            className="text-[22px] leading-normal"
+          >
+            Weekly
+          </li>,
+          "7"
+        ),
+        getItem(
+          <li
+            onClick={(e) => navigate("/monthly-income")}
+            className="text-[22px] leading-normal"
+          >
+            Monthly
+          </li>,
+          "8"
+        ),
+        getItem(
+          <li
+            onClick={(e) => navigate("/wallet")}
+            className="text-[22px] leading-normal"
+          >
+            Wallet
+          </li>,
+          "9"
+        ),
       ]
     ),
     getItem(
@@ -69,26 +125,54 @@ const Dashboard = () => {
       <FaUsers style={{ fontSize: "18px" }} />,
       [
         getItem(
-          <li className="text-[22px] leading-normal">Subscription Plan</li>,
+          <li
+            onClick={(e) => navigate("/subscriptionPlan")}
+            className="text-[22px] leading-normal"
+          >
+            Subscription Plan
+          </li>,
           "10"
         ),
         getItem(
-          <li className="text-[22px] leading-normal">Questionnaire</li>,
+          <li
+            onClick={(e) => navigate("/questionnaire")}
+            className="text-[22px] leading-normal"
+          >
+            Questionnaire
+          </li>,
           "11"
         ),
-        getItem(<li className="text-[22px] leading-normal">Banner</li>, "12"),
+        getItem(
+          <li
+            onClick={(e) => navigate("/banner")}
+            className="text-[22px] leading-normal"
+          >
+            Banner
+          </li>,
+          "12"
+        ),
       ]
     ),
     getItem(
-      <p className="text-[22px] leading-normal">Occasions</p>,
+      <p
+        onClick={(e) => navigate("/occasions")}
+        className="text-[22px] leading-normal"
+      >
+        Occasions
+      </p>,
       "13",
-  
+
       <RiDashboardLine style={{ fontSize: "18px" }} />
     ),
     getItem(
-      <p className="text-[22px] leading-normal">Settings</p>,
+      <p
+        onClick={(e) => navigate("/settings")}
+        className="text-[22px] leading-normal"
+      >
+        Settings
+      </p>,
       "14",
-  
+
       <IoSettingsOutline style={{ fontSize: "18px" }} />
     ),
   ];
