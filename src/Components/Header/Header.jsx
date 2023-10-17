@@ -16,7 +16,7 @@ const Header = () => {
         <div className="relative w-full">
           <div className="flex absolute inset-y-0 left-0  items-center pl-3 pointer-events-none">
             <svg
-              className="w-5 h-5 text-secondary  "
+              className="w-5 h-5 text-secondary2  "
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ const Header = () => {
           <input
             type="text"
             id="voice-search"
-            className="bg-red border w-[1020px] border-gray-300 focus:ring-0 outline-none py-3 text-gray-900 text-sm rounded-2xl block pl-10 p-2.5 "
+            className="bg-red border w-[1020px] border-secondary focus:ring-0 outline-none py-3 text-gray-900 text-sm rounded-2xl block pl-10 p-2.5 "
             placeholder="Search names/ products/ videos"
             required
           />
