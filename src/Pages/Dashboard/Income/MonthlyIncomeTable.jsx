@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Table } from "antd";
+import { Button, Modal, Table } from "antd";
 
-const IncomeTable = () => {
+const MonthlyIncomeTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -15,49 +15,19 @@ const IncomeTable = () => {
 
   const columns = [
     {
-      title: "Transaction ID",
-      dataIndex: "transactionID",
+      title: "Months",
+      dataIndex: "months",
       width: 150,
     },
     {
-      title: "Time & Date",
-      dataIndex: "timeAndDate",
-      width: 160,
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
+      title: "Total Users",
+      dataIndex: "totalUsers",
       width: 150,
     },
     {
-      title: "Payment Method",
-      dataIndex: "paymentMethod",
+      title: "Amount",
+      dataIndex: "amount",
       width: 190,
-    },
-    {
-      title: "Package",
-      dataIndex: "package",
-      width: 150,
-      responsive: ["lg"],
-      render: (_, record) => (
-        <div>
-          {/* <div className="w-[71px] h-[22px] px-3 py-1 bg-orange-100 rounded justify-center items-center gap-2.5 inline-flex">
-                <div className="text-yellow-400 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-                  Regular
-                </div>
-              </div> */}
-          <div className="w-[71px] h-[22px] px-3 py-1 bg-violet-100 rounded justify-center items-center gap-2.5 inline-flex">
-            <div className="text-violet-700 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-              Premium
-            </div>
-          </div>
-          {/* <div className="w-[71px] h-[22px] px-3 py-1 bg-emerald-50 rounded justify-center items-center gap-2.5 inline-flex">
-            <div className="text-green-600 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-              Standard
-            </div>
-          </div> */}
-        </div>
-      ),
     },
     {
       title: "Action",
@@ -115,11 +85,9 @@ const IncomeTable = () => {
   for (let i = 0; i < 10; i++) {
     data.push({
       key: i,
-      transactionID: `${i + 123456789}`,
-      name: `Edward King ${i}`,
-      timeAndDate: "11:21 AM, 30/09/23",
-      paymentMethod: "Credit Card",
-      package: "Basic",
+      months: `February, 2023`,
+      totalUsers: `${i + 8}`,
+      amount: "$1000.00",
       action: "View",
     });
   }
@@ -138,7 +106,7 @@ const IncomeTable = () => {
         open={isModalOpen}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
-            <span>Transaction ID #123456789</span>
+            <span>January, 2023</span>
           </div>
         }
         onCancel={handleCancel}
@@ -146,25 +114,26 @@ const IncomeTable = () => {
         footer={[]}
         width={1000}
       >
-        <div className=" flex justify-between">
+        <div className="flex justify-between">
           <div>
             <h1 className="text-xl my-[32px] font-semibold font-['Montserrat']">
               User Information
             </h1>
-            <div className="flex gap-4 ">
+            <div className="flex gap-10">
               <div>
-                <img
-                  className="w-[100px] h-[100px]"
-                  src="https://i.ibb.co/pQpXBmt/b2f2b8d89771068978e21e99c0397bef.png"
-                  alt=""
-                />
-              </div>
-              <div className="mt-4">
-                <p className="text-lg font-normal font-['Montserrat']">
-                  Name: <span className="font-semibold">Edward King</span>
+                <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
+                  Total Users
                 </p>
-                <p className="text-lg font-normal font-['Montserrat']">
-                  Email: <span className="font-semibold">info@gmail.com</span>
+                <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
+                  Total Amount
+                </p>
+              </div>
+              <div>
+                <p className=" text-lg font-semibold font-['Montserrat']">
+                  008
+                </p>
+                <p className=" text-lg font-semibold font-['Montserrat']">
+                  $100.00
                 </p>
               </div>
             </div>
@@ -182,44 +151,9 @@ const IncomeTable = () => {
             </div>
           </div>
         </div>
-        <div>
-          <h1 className="text-xl mb-[30px] font-semibold font-['Montserrat'] mt-[64px]">
-            Payment Information
-          </h1>
-          <div className="flex gap-10">
-            <div>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Payment Method
-              </p>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Payment Amount
-              </p>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Package
-              </p>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Date
-              </p>
-            </div>
-            <div>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                Credit Card
-              </p>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                $100.00
-              </p>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                Standard
-              </p>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                01 October 2023
-              </p>
-            </div>
-          </div>
-        </div>
       </Modal>
     </div>
   );
 };
 
-export default IncomeTable;
+export default MonthlyIncomeTable;

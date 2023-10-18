@@ -60,7 +60,7 @@ const Status = () => {
           </div>
           <div className="mt-[16px]">
             <h1 className="text-white text-3xl font-semibold font-['Montserrat']">
-              $ 22,500.00
+              $ 5000.00
             </h1>
           </div>
         </div>
@@ -86,12 +86,12 @@ const Status = () => {
           </div>
           <div className="mt-[16px]">
             <p className="text-white text-lg font-medium font-['Montserrat']">
-              Total Income
+              Weekly Income
             </p>
           </div>
           <div className="mt-[16px]">
             <h1 className="text-white text-3xl font-semibold font-['Montserrat']">
-              $ 22,500.00
+              $ 9,500.00
             </h1>
           </div>
         </div>
@@ -117,12 +117,12 @@ const Status = () => {
           </div>
           <div className="mt-[16px]">
             <p className="text-white text-lg font-medium font-['Montserrat']">
-              Total Income
+              Monthly Income
             </p>
           </div>
           <div className="mt-[16px]">
             <h1 className="text-white text-3xl font-semibold font-['Montserrat']">
-              $ 22,500.00
+              $ 15,500.00
             </h1>
           </div>
         </div>
