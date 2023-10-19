@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import ChatInboxLayout from "./ChatInboxLayout";
+import EmptyInbox from "./EmptyInbox";
 
 const Inbox = () => {
-  return (
-    <div>Inbox</div>
-  )
-}
+  const show = true;
+  return <>{show ? <ChatInboxLayout /> : <EmptyInbox />}</>;
+};
 
-export default Inbox
+export default Inbox;

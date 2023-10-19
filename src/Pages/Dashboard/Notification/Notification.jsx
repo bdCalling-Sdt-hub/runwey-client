@@ -4,14 +4,14 @@ import {Pagination } from "antd";
 
 const Notification = () => {
   return (
-    <div className="mt-[24px] border-#E0CFF9 border-[1px] h-[780px] rounded-2xl">
+    <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl">
       <div className="p-[40px]">
         <div className="border-primary border-b-[1px] pb-[35px] mb-[18px]">
           <h1 className="text-3xl text-primary font-semibold font-['Montserrat']">
             Notification
           </h1>
         </div>
-        <div className="overflow-scroll h-[580px]">
+        <div className="overflow-y-scroll h-[580px]">
           <SingleNotification />
         </div>
         <div className="mt-5">
