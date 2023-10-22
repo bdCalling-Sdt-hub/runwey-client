@@ -47,7 +47,7 @@ const Header = () => {
         onClick={(e) => navigate("/notification")}
         className={`${
           location.pathname === "/notification" ? " " : "bg-primary"
-        }  border-primary  border-[1px] ml-3 rounded-lg px-2`}
+        }  border-primary  border-[1px] ml-3 cursor-pointer rounded-lg px-2`}
       >
         <Badge count={5} color="red">
           <IoIosNotificationsOutline
