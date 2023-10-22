@@ -1,6 +1,6 @@
 import React from "react";
 import Status from "../../../Components/Common/Status";
-import IncomeTable from "./IncomeTable";
+import IncomeTable from "./../../../Components/Income/IncomeTable";
 
 const Daily = () => {
 

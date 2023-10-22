@@ -1,6 +1,6 @@
 import React from "react";
 import Status from "../../../Components/Common/Status";
-import MonthlyIncomeTable from "./MonthlyIncomeTable";
+import MonthlyIncomeTable from "./../../../Components/Income/MonthlyIncomeTable";
 
 const Monthly = () => {
   return (

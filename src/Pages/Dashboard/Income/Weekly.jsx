@@ -1,6 +1,6 @@
 import React from "react";
 import Status from "../../../Components/Common/Status";
-import WeeklyIncomeTable from "./WeeklyIncomeTable";
+import WeeklyIncomeTable from "./../../../Components/Income/WeeklyIncomeTable";
 
 const Weekly = () => {
   return (

@@ -1,7 +1,7 @@
 import { Badge } from "antd";
 import React, { useState } from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const date = new Date(); // Assuming the input date is in ISO 8601 format (YYYY-MM-DD)
@@ -10,6 +10,7 @@ const Header = () => {
   const formattedDate = date.toLocaleDateString("en-US", options);
 
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div className="flex  mt-9">
       <div>
@@ -44,15 +45,19 @@ const Header = () => {
       </div>
       <div
         onClick={(e) => navigate("/notification")}
-        className="bg-primary ml-3 rounded-lg px-2"
+        className={`${
+          location.pathname === "/notification" ? " " : "bg-primary"
+        }  border-primary  border-[1px] ml-3 rounded-lg px-2`}
       >
-        {" "}
         <Badge count={5} color="red">
           <IoIosNotificationsOutline
             style={{ cursor: "pointer" }}
             fontSize={30}
-            color="white"
-            className="mt-2"
+            className={`${
+              location.pathname === "/notification"
+                ? "text-primary "
+                : "text-white"
+            } mt-2 `}
           />
         </Badge>
       </div>

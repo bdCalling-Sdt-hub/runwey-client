@@ -1,9 +1,9 @@
 import React from "react";
-import DashboardOverview from "./DashboardOverview";
-import TransactionTable from "./TransactionTable";
-import PendingRequests from "./PendingRequests";
-import GenderRatio from "./GenderRatio";
-import Earnings from "./Earnings";
+import DashboardOverview from "./../../../Components/DashboardHome/DashboardOverview";
+import TransactionTable from "./../../../Components/DashboardHome/TransactionTable";
+import PendingRequests from "./../../../Components/DashboardHome/PendingRequests";
+import GenderRatio from "./../../../Components/DashboardHome/GenderRatio";
+import Earnings from "./../../../Components/DashboardHome/Earnings";
 
 const DashboardHome = () => {
   return (

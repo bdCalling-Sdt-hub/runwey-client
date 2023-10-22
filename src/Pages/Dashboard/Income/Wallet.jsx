@@ -1,6 +1,6 @@
 import React from "react";
 import Status from "../../../Components/Common/Status";
-import IncomePercentage from "./IncomePercentage";
+import IncomePercentage from "./../../../Components/Income/IncomePercentage";
 
 const Wallet = () => {
   return (

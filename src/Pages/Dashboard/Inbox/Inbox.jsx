@@ -1,5 +1,5 @@
 import React from "react";
-import ChatInboxLayout from "./ChatInboxLayout";
+import ChatInboxLayout from "./../../../Components/Inbox/ChatInboxLayout";
 import EmptyInbox from "./EmptyInbox";
 
 const Inbox = () => {

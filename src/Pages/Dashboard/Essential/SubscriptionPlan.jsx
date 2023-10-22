@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SinglePlan from "./SinglePlan";
-import AddPlan from "./AddPlan";
-import SubscriptionAddModal from "./SubscriptionAddModal";
+import SinglePlan from "./../../../Components/Essential/SinglePlan";
+import AddPlan from "./../../../Components/Essential/AddPlan";
+import SubscriptionAddModal from "./../../../Components/Essential/SubscriptionAddModal";
 
 const SinglePlanData = [
   {
