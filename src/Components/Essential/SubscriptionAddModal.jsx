@@ -1,5 +1,6 @@
 import { Modal } from "antd";
 import React, { useState } from "react";
+import { PiCrownSimpleFill } from "react-icons/pi";
 
 const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
   const [packageName, setPackageName] = useState("Package");
@@ -36,6 +37,7 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
             <input
               class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
+              onChange={(e) => setPackageName(e.target.value)}
               placeholder="Enter package name"
             />
           </div>
@@ -46,6 +48,7 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
             <input
               class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
+              onChange={(e) => setPackagePrice(e.target.value)}
               placeholder="Enter package price"
             />
           </div>
@@ -54,6 +57,7 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
               Package Validity
             </p>
             <input
+              onChange={(e) => setPackageValidity(e.target.value)}
               class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Enter package validity"
@@ -64,6 +68,7 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
               Video Upload Limitations
             </p>
             <input
+              onChange={(e) => setVideoLimit(e.target.value)}
               class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Enter video limitations"
@@ -77,6 +82,7 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
                 Package Main Color
               </p>
               <input
+                onChange={(e) => setPackageMainColor(e.target.value)}
                 class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
@@ -87,6 +93,7 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
                 Main Color Opacity 40%
               </p>
               <input
+                onChange={(e) => setPackageMainColorOpacity(e.target.value)}
                 class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
@@ -97,6 +104,7 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
                 Main Color Opacity 40%
               </p>
               <input
+                onChange={(e) => setPackageMainColorOpacity2(e.target.value)}
                 class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
@@ -107,28 +115,89 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
                 Main Color Opacity 40%
               </p>
               <input
+                onChange={(e) => setPackageMainColorOpacity3(e.target.value)}
                 class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
               />
             </div>
-  
           </div>
         </div>
 
         {/* here */}
         <div className="flex gap-3 mt-5">
-          <div>
-            <p className="text-sm cursor-pointer font-semibold p-2 px-5 font-['Montserrat'] rounded-lg border-[2px] border-primary">
-              Download
-            </p>
-          </div>
-          <div>
-            <p className="text-sm cursor-pointer font-semibold p-2 px-10 text-white bg-primary font-['Montserrat'] rounded-lg border-[2px] border-primary">
-              Print
-            </p>
+          <div
+            style={{
+              backgroundColor: packageMainColor,
+              borderColor: packageMainColor,
+            }}
+            className={`w-[230px] h-[259px] rounded-3xl overflow-hidden  border-[1px]`}
+          >
+            <div className="flex flex-col">
+              <div className="flex rounded-t-3xl justify-center flex-col text-center items-center">
+                <div className="bg-white p-5 rounded-full mt-[16px]">
+                  <PiCrownSimpleFill
+                    style={{ color: packageMainColor }}
+                    className="h-6 text-primary text-[24px]"
+                  />
+                </div>
+
+                <div>
+                  <h1 className=" text-lg text-white font-medium font-['Montserrat']">
+                    {packageName}
+                  </h1>
+                  <p className="text-white text-xs mb-5 font-normal font-['Montserrat']">
+                    {packagePrice}
+                  </p>
+                </div>
+              </div>
+              <div
+                style={{ color: packageMainColor }}
+                className="flex  gap-2 bg-white py-[20px] justify-center items-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+
+                <p className="text-xs font-medium font-['Montserrat']">
+                  Can Upload {videoLimit} Video
+                </p>
+              </div>
+              <div
+                style={{ backgroundColor: packageMainColorOpacity3 }}
+                className="h-[100px] "
+              >
+                <div
+                  style={{ backgroundColor: packageMainColorOpacity }}
+                  className=" py-[10px]"
+                ></div>
+                <div
+                  style={{ backgroundColor: packageMainColorOpacity2 }}
+                  className=" py-[10px]"
+                ></div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+      <div className="flex gap-5">
+        <button className="bg-white  text-lg font-semibold font-['Montserrat'] border-primary border-[1px] w-full text-pr rounded-[10px] px-10 py-2 mt-5">
+          Delete Package
+        </button>
+        <button className="bg-primary text-lg font-semibold font-['Montserrat'] w-full text-white rounded-[10px] px-10 py-2 mt-5">
+          Save Changes
+        </button>
       </div>
     </Modal>
   );
