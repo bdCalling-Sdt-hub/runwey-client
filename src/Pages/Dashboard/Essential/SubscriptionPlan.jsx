@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import SinglePlan from "./SinglePlan";
+import AddPlan from "./AddPlan";
+import SubscriptionAddModal from "./SubscriptionAddModal";
 
 const SinglePlanData = [
   {
@@ -25,6 +27,13 @@ const SinglePlanData = [
 ];
 
 const SubscriptionPlan = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+      setIsModalOpen(true);
+    };
+    const handleCancel = () => {
+      setIsModalOpen(false);
+    };
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
       <div className="p-[30px]">
@@ -35,6 +44,8 @@ const SubscriptionPlan = () => {
           {SinglePlanData.map((plan) => (
             <SinglePlan key={plan.id} plan={plan} />
           ))}
+          <AddPlan showModal={showModal} />
+          <SubscriptionAddModal handleCancel={handleCancel} isModalOpen={isModalOpen} />
         </div>
       </div>
     </div>
