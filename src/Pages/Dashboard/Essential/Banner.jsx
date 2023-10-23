@@ -75,7 +75,7 @@ const Banner = () => {
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
       <div className="p-[30px]">
-        <div className="flex justify-between items-center border-b-[1px] border-primary pb-[30px]">
+      <div className="flex justify-between items-center border-b-[1px] border-primary pb-[30px]">
           <h1 className="text-3xl font-semibold font-['Montserrat'] text-primary ">
             Current Banners
           </h1>
