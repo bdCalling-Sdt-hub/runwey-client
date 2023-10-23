@@ -11,14 +11,14 @@ const SingleBanner = () => {
         />
       </div>
       <div className="text-zinc-800 text-left  text-lg font-semibold font-['Montserrat']">
-        Offer Banner
+        Halloween Banner
       </div>
       <div className="text-zinc-800 text-lg font-semibold font-['Montserrat']">
         10:50 AM, 04/10/23
       </div>
       <div className="pr-10 ">
         <svg
-          className=""
+          className="cursor-pointer"
           width="22"
           height="22"
           viewBox="0 0 22 22"

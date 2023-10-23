@@ -12,13 +12,13 @@ const bannerData = [
   {
     id: 2,
     image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Offer Banner",
+    name: "Halloween Banner",
     date: "10:50 AM, 04/10/23",
   },
   {
     id: 3,
     image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Offer Banner",
+    name: "ululu Banner",
     date: "10:50 AM, 04/10/23",
   },
   {

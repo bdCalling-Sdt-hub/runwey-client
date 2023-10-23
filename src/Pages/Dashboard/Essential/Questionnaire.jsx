@@ -10,7 +10,7 @@ const Questionnaire = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  //
+  
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
       <div className="p-[30px]">
@@ -54,7 +54,7 @@ const Questionnaire = () => {
         <div className="flex flex-col">
           <div class="mb-4 w-full">
             <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
-            Question
+              Question
             </p>
             <input
               class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
@@ -64,7 +64,7 @@ const Questionnaire = () => {
           </div>
           <div class="mb-4 w-full">
             <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
-            Answer
+              Answer
             </p>
             <textarea
               class=" border rounded-[10px] h-[150px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
