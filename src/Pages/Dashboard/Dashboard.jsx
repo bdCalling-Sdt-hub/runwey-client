@@ -194,7 +194,7 @@ const Dashboard = () => {
         </>
 
         <div className="">
-          <div className="absolute bottom-0 left-0 w-full p-4 rounded-b-xl bg-primary border-t-[1px] border-secondary ">
+          <div className="absolute bottom-0 left-0 w-full p-4 rounded-b-xl bg-primary border-t-[1px] border-secondary2 ">
             <div
               onClick={(e) => navigate("/signin")}
               className="flex items-center bg-white text-center w-[240px] py-[6px] mx-auto rounded-md cursor-pointer"

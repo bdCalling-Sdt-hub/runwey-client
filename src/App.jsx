@@ -20,9 +20,9 @@ import Questionnaire from "./Pages/Dashboard/Essential/Questionnaire";
 import Banner from "./Pages/Dashboard/Essential/Banner";
 import Occasions from "./Pages/Dashboard/Occasions/Occasions";
 import Settings from "./Pages/Dashboard/Settings/Settings";
-import NewPassword from "./Pages/Dashboard/NewPassword/NewPassword";
-import Otp from "./Pages/Dashboard/Otp/Otp";
-import ForgetPassword from "./Pages/Dashboard/ForgetPassword/ForgetPassword";
+import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
+import NewPassword from "./Pages/NewPassword/NewPassword";
+import Otp from "./Pages/Otp/Otp";
 
 function App() {
   return (

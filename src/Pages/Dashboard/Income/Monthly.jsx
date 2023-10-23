@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import Status from "../../../Components/Common/Status";
+import MonthlyIncomeTable from "./../../../Components/Income/MonthlyIncomeTable";
 
 const Monthly = () => {
   return (
-    <div>Monthly</div>
-  )
-}
+    <div className="flex flex-col mt-[24px] h-[800px]">
+      <Status />
+      <div className="mt-[24px]">
+       <MonthlyIncomeTable />
+      </div>
+    </div>
+  );
+};
 
-export default Monthly
+export default Monthly;

@@ -1,0 +1,15 @@
+.custom-radio .ant-radio-inner {
+    background-color: white; /* Change this to your desired color */
+    border-color: #6611e0; /* Change this to your desired color */
+  }
+ 
+  
+  .custom-radio .ant-radio-checked .ant-radio-inner {
+    background-color: #6611e0; /* Change this to your desired color when checked */
+    border-color: #6611e0; /* Change this to your desired color when checked */
+  }
+  
+  
+  
+  
+  

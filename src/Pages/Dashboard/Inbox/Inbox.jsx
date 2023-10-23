@@ -1,12 +1,10 @@
-import React from 'react'
-import { Col, Divider, Row } from 'antd';
+import React from "react";
+import ChatInboxLayout from "./../../../Components/Inbox/ChatInboxLayout";
+import EmptyInbox from "./EmptyInbox";
 
 const Inbox = () => {
-  return (
-    <div>
-       <h1>inbox</h1>
-    </div>
-  )
-}
+  const show = true;
+  return <>{show ? <ChatInboxLayout /> : <EmptyInbox />}</>;
+};
 
-export default Inbox
+export default Inbox;

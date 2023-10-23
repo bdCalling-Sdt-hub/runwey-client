@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signin = () => {
+const ForgetPassword = () => {
   const navigate = useNavigate();
   return (
     <div className="h-screen">
@@ -16,54 +16,53 @@ const Signin = () => {
         </div>
         {/* <!-- Right: Login Form --> */}
         <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-          <h1 className="flex justify-center text-[44px] font-semibold">
-            Welcome
+          <h1
+            onClick={(e) => navigate("/signin")}
+            className="text-2xl font-semibold mb-4 cursor-pointer  flex gap-1"
+          >
+            <span>
+              <svg
+                width="30"
+                height="31"
+                viewBox="0 0 30 31"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.75 24.25L10 15.5L18.75 6.75"
+                  stroke="#333333"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>{" "}
+            <span>Forget Password</span>
           </h1>
-          <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
+          <p className="text-[14px] font-['Montserrat'] text-[#858585)]">
+            Enter the email address associated with your account. We'll send you
+            an OTP to your email.{" "}
+          </p>
           <form>
             {/* <!-- Username Input --> */}
-            <div className="mb-4">
-              <label for="username" className="block text-gray-600">
-                Email
-              </label>
+            <div className="mb-4 mt-[50px]">
               <input
                 type="text"
                 id="username"
                 name="username"
-                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                autocomplete="off"
-              />
-            </div>
-            {/* <!-- Password Input --> */}
-            <div className="mb-4">
-              <label for="password" className="block text-gray-600">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
+                placeholder="Email"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                 autocomplete="off"
               />
             </div>
 
-            {/* <!-- Forgot Password Link --> */}
-            <div className="mb-6 font-medium font-['Montserrat'] text-primary">
-              <p
-                onClick={(e) => navigate("/forget-password")}
-                className=" cursor-pointer"
-              >
-                Forgot Password?
-              </p>
-            </div>
             {/* <!-- Login Button --> */}
             <button
               type="submit"
-              onClick={(e) => navigate("/")}
+              onClick={(e) => navigate("/otp/d")}
               className="bg-primary  text-white font-semibold rounded-md flex justify-center mx-auto px-[100px] py-3"
             >
-              Login
+              Send OTP
             </button>
           </form>
         </div>
@@ -72,4 +71,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default ForgetPassword;

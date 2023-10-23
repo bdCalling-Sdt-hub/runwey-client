@@ -1,7 +1,7 @@
 import { Badge } from "antd";
 import React, { useState } from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const date = new Date(); // Assuming the input date is in ISO 8601 format (YYYY-MM-DD)
@@ -10,13 +10,14 @@ const Header = () => {
   const formattedDate = date.toLocaleDateString("en-US", options);
 
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div className="flex  mt-9">
       <div>
         <div className="relative w-full">
           <div className="flex absolute inset-y-0 left-0  items-center pl-3 pointer-events-none">
             <svg
-              className="w-5 h-5 text-secondary  "
+              className="w-5 h-5 text-secondary2  "
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +32,7 @@ const Header = () => {
           <input
             type="text"
             id="voice-search"
-            className="bg-red border w-[1020px] border-gray-300 focus:ring-0 outline-none py-3 text-gray-900 text-sm rounded-2xl block pl-10 p-2.5 "
+            className="bg-red border w-[1020px] border-secondary focus:ring-0 outline-none py-3 text-gray-900 text-sm rounded-2xl block pl-10 p-2.5 "
             placeholder="Search names/ products/ videos"
             required
           />
@@ -44,15 +45,19 @@ const Header = () => {
       </div>
       <div
         onClick={(e) => navigate("/notification")}
-        className="bg-primary ml-3 rounded-lg px-2"
+        className={`${
+          location.pathname === "/notification" ? " " : "bg-primary"
+        }  border-primary  border-[1px] ml-3 cursor-pointer rounded-lg px-2`}
       >
-        {" "}
         <Badge count={5} color="red">
           <IoIosNotificationsOutline
             style={{ cursor: "pointer" }}
             fontSize={30}
-            color="white"
-            className="mt-2"
+            className={`${
+              location.pathname === "/notification"
+                ? "text-primary "
+                : "text-white"
+            } mt-2 `}
           />
         </Badge>
       </div>

@@ -1,15 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-function NotFound() {
-  const navigate = useNavigate();
+const EmptyInbox = () => {
   return (
-    <div className="  h-screen ">
+    <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl">
       <div className="p-[30px]">
+        <h1 className="text-3xl font-semibold font-['Montserrat'] text-primary border-b-[1px] border-primary pb-[30px]">
+          Message List
+        </h1>
         <div className="flex justify-center items-center mt-[240px]">
-          <div className="flex flex-col mx-auto">
+          <div>
             <svg
-              className="mx-auto"
               width="160"
               height="150"
               viewBox="0 0 160 150"
@@ -192,18 +192,12 @@ function NotFound() {
                 </clipPath>
               </defs>
             </svg>
-            <p className="text-4xl text-center">404 Page Not Found</p>
-            <button
-              className="mt-5 text-xl font-bold text-primary"
-              onClick={(e) => navigate("/")}
-            >
-              Go Back to Dashboard
-            </button>
+            <p>No message available</p>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default NotFound;
+export default EmptyInbox;
