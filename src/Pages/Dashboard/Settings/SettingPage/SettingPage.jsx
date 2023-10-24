@@ -8,6 +8,8 @@ import Trash from "../../../../Components/Settings/Trash/Trash";
 import PrivacyPolicy from "../../../../Components/Settings/PrivacyPolicy/PrivacyPolicy";
 import TermsAndCondition from "../../../../Components/Settings/TermsAndCondition/TermsAndCondition";
 import AboutUs from "../../../../Components/Settings/AboutUs/AboutUs";
+import VerifyOTP from "../../../../Components/Settings/VerifyOTP/VerifyOTP";
+import UpdatePassword from "../../../../Components/Settings/UpdatePassword/UpdatePassword";
 
 const SettingPage = () => {
   const navigate = useNavigate();
@@ -33,13 +35,15 @@ const SettingPage = () => {
               "Subscription Package"}
             {location.pathname === "/settings/login-activity" &&
               "Login Activity"}
-            {location.pathname === "/settings/trash" &&
-              "Trash"}
+            {location.pathname === "/settings/trash" && "Trash"}
             {location.pathname === "/settings/privacy-policy" &&
               "Privacy Policy"}
             {location.pathname === "/settings/terms-condition" &&
               "Terms and Condition"}
             {location.pathname === "/settings/about-us" && "About Us"}
+            {location.pathname === "/settings/verify-otp" && "Verify OTP"}
+            {location.pathname === "/settings/update-password" &&
+              "Update Password"}
           </h1>
           <div>
             {text === "change password" && <ChangePassword />}
@@ -49,6 +53,10 @@ const SettingPage = () => {
             {text === "privacy policy" && <PrivacyPolicy />}
             {text === "terms condition" && <TermsAndCondition />}
             {text === "about us" && <AboutUs />}
+            {location.pathname === "/settings/verify-otp" && <VerifyOTP />}
+            {location.pathname === "/settings/update-password" && (
+              <UpdatePassword />
+            )}
           </div>
         </div>
       </div>
