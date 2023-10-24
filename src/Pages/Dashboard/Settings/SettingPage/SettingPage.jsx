@@ -1,6 +1,6 @@
 import React from "react";
 import { LiaAngleLeftSolid } from "react-icons/lia";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import SubscriptionPackage from "../../../../Components/Settings/SubscriptionPackage/SubscriptionPackage";
 import ChangePassword from "../../../../Components/Settings/ChangePassword/ChangePassword";
 import LoginActivity from "../../../../Components/Settings/LoginActivity/LoginActivity";
@@ -11,6 +11,7 @@ import AboutUs from "../../../../Components/Settings/AboutUs/AboutUs";
 
 const SettingPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const params = useParams();
 
   //don't delete this it's a important for navigation(those are mandatory)
@@ -24,7 +25,21 @@ const SettingPage = () => {
             onClick={() => navigate("/settings")}
             className="text-3xl flex items-center cursor-pointer font-semibold font-['Montserrat'] text-primary border-b-[1px] border-primary pb-[30px]"
           >
-            <LiaAngleLeftSolid fontSize={30} /> Settings
+            <LiaAngleLeftSolid fontSize={30} />
+            {location.pathname === "/settings" && "Settings"}
+            {location.pathname === "/settings/change-password" &&
+              "Change Password"}
+            {location.pathname === "/settings/subscription-package" &&
+              "Subscription Package"}
+            {location.pathname === "/settings/login-activity" &&
+              "Login Activity"}
+            {location.pathname === "/settings/trash" &&
+              "Trash"}
+            {location.pathname === "/settings/privacy-policy" &&
+              "Privacy Policy"}
+            {location.pathname === "/settings/terms-condition" &&
+              "Terms and Condition"}
+            {location.pathname === "/settings/about-us" && "About Us"}
           </h1>
           <div>
             {text === "change password" && <ChangePassword />}
