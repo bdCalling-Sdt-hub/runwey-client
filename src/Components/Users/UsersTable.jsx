@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Table } from "antd";
+import { Button, Modal, Table } from "antd";
 
 const UsersTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -111,7 +111,7 @@ const UsersTable = () => {
         open={isModalOpen}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
-            <span>Transaction ID #123456789</span>
+            <span>User information</span>
           </div>
         }
         onCancel={handleCancel}
@@ -119,75 +119,65 @@ const UsersTable = () => {
         footer={[]}
         width={1000}
       >
-        <div className=" flex justify-between">
+        <div className=" flex justify-between"  style={{borderBottom:"2px solid #6611e0",paddingBottom:10,marginBottom:"10px"}}>
           <div>
-            <h1 className="text-xl my-[32px] font-semibold font-['Montserrat']">
-              User Information
-            </h1>
-            <div className="flex gap-4 ">
-              <div>
+            
+            <div className="flex gap-4">
+              <div >
                 <img
-                  className="w-[100px] h-[100px]"
+                style={{borderRadius:"10px"}}
+                  className="w-[180px] h-[150px]"
                   src="https://i.ibb.co/pQpXBmt/b2f2b8d89771068978e21e99c0397bef.png"
                   alt=""
                 />
               </div>
-              <div className="mt-4">
-                <p className="text-lg font-normal font-['Montserrat']">
+              <div className="mt-2">
+                <p className="text-md font-normal font-['Montserrat']">
                   Name: <span className="font-semibold">Edward King</span>
                 </p>
-                <p className="text-lg font-normal font-['Montserrat']">
+                <p className="text-md font-normal font-['Montserrat']">
                   Email: <span className="font-semibold">info@gmail.com</span>
+                </p>
+                <p className="text-md font-normal font-['Montserrat']">
+                  Phone: <span className="font-semibold">01506987620</span>
+                </p>
+                <p className="text-md font-normal font-['Montserrat']">
+                  Gender: <span className="font-semibold">Male</span>
+                </p>
+                <p className="text-md font-normal font-['Montserrat']">
+                  Date of birth: <span className="font-semibold">03-07-1995</span>
+                </p>
+                <p className="text-md font-normal font-['Montserrat']">
+                  Address: <span className="font-semibold">Dhaka-Bangladesh</span>
                 </p>
               </div>
             </div>
           </div>
-          <div className="flex gap-3 mt-5">
-            <div>
-              <p className="text-sm cursor-pointer font-semibold p-2 px-5 font-['Montserrat'] rounded-lg border-[2px] border-primary">
-                Download
-              </p>
-            </div>
-            <div>
-              <p className="text-sm cursor-pointer font-semibold p-2 px-10 text-white bg-primary font-['Montserrat'] rounded-lg border-[2px] border-primary">
-                Print
-              </p>
-            </div>
-          </div>
+          
         </div>
-        <div>
-          <h1 className="text-xl mb-[30px] font-semibold font-['Montserrat'] mt-[64px]">
-            Payment Information
+        <div style={{border:"1px solid #e0cff9",borderRadius:"10px",padding:"20px"}}>
+          <h1 className="text-md mb-[30px] font-semibold font-['Montserrat'] mt-[6px]">
+            Uploaded videos
           </h1>
-          <div className="flex gap-10">
-            <div>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Payment Method
-              </p>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Payment Amount
-              </p>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Package
-              </p>
-              <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
-                Date
-              </p>
+          <div className="">
+            <div className="flex justify-between">
+             <img src=""/>
+             <h4>Sheath Weeding gown</h4>
+             <div>
+               <img src=""/>
+               <h1>0:10s</h1>
+             </div>
+             <div>
+               <img src=""/>
+               <h1>6k</h1>
+             </div>
+             <div>
+               
+               <h1>6k</h1>
+             </div>
+             <Button>Delete</Button>
             </div>
-            <div>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                Credit Card
-              </p>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                $100.00
-              </p>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                Standard
-              </p>
-              <p className=" text-lg font-semibold font-['Montserrat']">
-                01 October 2023
-              </p>
-            </div>
+           
           </div>
         </div>
       </Modal>
