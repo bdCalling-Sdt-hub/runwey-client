@@ -8,9 +8,9 @@ body {
 }
 
 
-:where(.css-dev-only-do-not-override-pr0fja).ant-table-wrapper .ant-table-thead >tr>th{
+:where(.css-dev-only-do-not-override-pr0fja).ant-table-wrapper .ant-table-thead>tr>th {
     background: #ffff;
-    color:  #6611E0;
+    color: #6611E0;
     /* Montserrat/S B 18 */
     font-family: Montserrat;
     font-size: 17px;
@@ -19,7 +19,16 @@ body {
     line-height: normal;
     border-bottom: 1px solid #6611E0;
 }
-:where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a{
+
+:where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a {
     color: #6611E0;
     border: #6611E0;
+}
+
+:where(.css-dev-only-do-not-override-pr0fja).ant-switch.ant-switch-checked {
+    background-color: #6611E0;
+}
+
+button.ant-switch.css-dev-only-do-not-override-pr0fja {
+    background: #6611E0;
 }

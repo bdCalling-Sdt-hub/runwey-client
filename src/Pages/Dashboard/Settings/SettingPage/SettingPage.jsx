@@ -1,0 +1,44 @@
+import React from "react";
+import { LiaAngleLeftSolid } from "react-icons/lia";
+import { useNavigate, useParams } from "react-router-dom";
+import SubscriptionPackage from "../../../../Components/Settings/SubscriptionPackage/SubscriptionPackage";
+import ChangePassword from "../../../../Components/Settings/ChangePassword/ChangePassword";
+import LoginActivity from "../../../../Components/Settings/LoginActivity/LoginActivity";
+import Trash from "../../../../Components/Settings/Trash/Trash";
+import PrivacyPolicy from "../../../../Components/Settings/PrivacyPolicy/PrivacyPolicy";
+import TermsAndCondition from "../../../../Components/Settings/TermsAndCondition/TermsAndCondition";
+import AboutUs from "../../../../Components/Settings/AboutUs/AboutUs";
+
+const SettingPage = () => {
+  const navigate = useNavigate();
+  const params = useParams();
+
+  //don't delete this it's a important for navigation(those are mandatory)
+  const textSplit = params.dynamic.split("-");
+  const text = textSplit.join(" ");
+  return (
+    <>
+      <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
+        <div className="p-[30px]">
+          <h1
+            onClick={() => navigate("/settings")}
+            className="text-3xl flex items-center cursor-pointer font-semibold font-['Montserrat'] text-primary border-b-[1px] border-primary pb-[30px]"
+          >
+            <LiaAngleLeftSolid fontSize={30} /> Settings
+          </h1>
+          <div>
+            {text === "change password" && <ChangePassword />}
+            {text === "subscription package" && <SubscriptionPackage />}
+            {text === "login activity" && <LoginActivity />}
+            {text === "trash" && <Trash />}
+            {text === "privacy policy" && <PrivacyPolicy />}
+            {text === "terms condition" && <TermsAndCondition />}
+            {text === "about us" && <AboutUs />}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default SettingPage;
