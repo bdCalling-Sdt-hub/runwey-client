@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Divider, Row, Button, Space, Badge } from "antd";
+import { Col,Row, Button,  Badge } from "antd";
 import { Pagination } from "antd";
 const style = {
   background: "#fff",
