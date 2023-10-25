@@ -89,7 +89,7 @@ const Banner = () => {
           </div>
         </div>
         <div className="">
-          <div className="border-[1px] border-primary border-x-0 border-t-0 flex justify-between py-3">
+          <div className="border-[1px] border-primary border-x-0 border-t-0 flex justify-evenly py-3">
             <p className="text-lg w-[220px] font-semibold font-['Montserrat'] text-primary">
               Banner Photo
             </p>

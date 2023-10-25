@@ -2,7 +2,7 @@ import React from "react";
 
 const SingleBanner = () => {
   return (
-    <div className="flex justify-between items-center my-[24px]">
+    <div className="flex justify-evenly items-center my-[24px]">
       <div>
         <img
           className="w-[200px] rounded-[10px] h-[100px] object-cover"
