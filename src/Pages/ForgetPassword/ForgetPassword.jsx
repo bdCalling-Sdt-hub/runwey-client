@@ -31,9 +31,9 @@ const ForgetPassword = () => {
                 <path
                   d="M18.75 24.25L10 15.5L18.75 6.75"
                   stroke="#333333"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </span>{" "}

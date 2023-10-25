@@ -22,16 +22,16 @@ const OccasionsSingleVideo = () => {
           <path
             d="M28.2745 21.4052L22.1465 17.3199C20.8728 16.4707 19.1667 17.3838 19.1667 18.9147V27.0853C19.1667 28.6162 20.8728 29.5293 22.1465 28.6801L28.2745 24.5948C29.4125 23.8361 29.4125 22.1639 28.2745 21.4052Z"
             stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M40.25 23C40.25 32.5269 32.5269 40.25 23 40.25C13.4731 40.25 5.75 32.5269 5.75 23C5.75 13.4731 13.4731 5.75 23 5.75C32.5269 5.75 40.25 13.4731 40.25 23Z"
             stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
         <div className="flex gap-1 justify-center items-center absolute top-[140px] left-6 transform -translate-x-1/2 -translate-y-1/2">
@@ -45,8 +45,8 @@ const OccasionsSingleVideo = () => {
             <path
               d="M6 4V6L7.5 7.5M10.5 6C10.5 8.48528 8.48528 10.5 6 10.5C3.51472 10.5 1.5 8.48528 1.5 6C1.5 3.51472 3.51472 1.5 6 1.5C8.48528 1.5 10.5 3.51472 10.5 6Z"
               stroke="white"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
 
@@ -119,8 +119,8 @@ const OccasionsSingleVideo = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M1.26843 2.06864C1.89327 1.4438 2.90634 1.4438 3.53118 2.06864L3.9998 2.53726L4.46843 2.06864C5.09327 1.4438 6.10634 1.4438 6.73118 2.06864C7.35601 2.69347 7.35601 3.70654 6.73118 4.33138L3.9998 7.06275L1.26843 4.33138C0.643595 3.70654 0.643595 2.69347 1.26843 2.06864Z"
                 fill="#858585"
               />
@@ -140,14 +140,14 @@ const OccasionsSingleVideo = () => {
               <path
                 d="M5.00089 3.99999C5.00089 4.55227 4.55318 4.99999 4.00089 4.99999C3.44861 4.99999 3.0009 4.55227 3.0009 3.99999C3.0009 3.44771 3.44861 2.99999 4.00089 2.99999C4.55318 2.99999 5.00089 3.44771 5.00089 3.99999Z"
                 stroke="#858585"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M0.820312 3.99998C1.24507 2.64762 2.5085 1.66666 4.00104 1.66666C5.49359 1.66666 6.75703 2.64763 7.18178 4C6.75702 5.35236 5.49359 6.33332 4.00105 6.33332C2.5085 6.33332 1.24506 5.35235 0.820312 3.99998Z"
                 stroke="#858585"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
 

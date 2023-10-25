@@ -17,9 +17,9 @@ const AddPlan = ({showModal}) => {
           <path
             d="M20 15V20M20 20V25M20 20H25M20 20H15M35 20C35 28.2843 28.2843 35 20 35C11.7157 35 5 28.2843 5 20C5 11.7157 11.7157 5 20 5C28.2843 5 35 11.7157 35 20Z"
             stroke="#858585"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
         <p className="text-zinc-500 text-lg font-medium font-['Montserrat']">

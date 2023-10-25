@@ -16,9 +16,9 @@ const Status = () => {
               <path
                 d="M3 10.5H21M7 15.5H8M12 15.5H13M6 19.5H18C19.6569 19.5 21 18.1569 21 16.5V8.5C21 6.84315 19.6569 5.5 18 5.5H6C4.34315 5.5 3 6.84315 3 8.5V16.5C3 18.1569 4.34315 19.5 6 19.5Z"
                 stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -47,9 +47,9 @@ const Status = () => {
               <path
                 d="M3 10.5H21M7 15.5H8M12 15.5H13M6 19.5H18C19.6569 19.5 21 18.1569 21 16.5V8.5C21 6.84315 19.6569 5.5 18 5.5H6C4.34315 5.5 3 6.84315 3 8.5V16.5C3 18.1569 4.34315 19.5 6 19.5Z"
                 stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -78,9 +78,9 @@ const Status = () => {
               <path
                 d="M3 10.5H21M7 15.5H8M12 15.5H13M6 19.5H18C19.6569 19.5 21 18.1569 21 16.5V8.5C21 6.84315 19.6569 5.5 18 5.5H6C4.34315 5.5 3 6.84315 3 8.5V16.5C3 18.1569 4.34315 19.5 6 19.5Z"
                 stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -109,9 +109,9 @@ const Status = () => {
               <path
                 d="M3 10.5H21M7 15.5H8M12 15.5H13M6 19.5H18C19.6569 19.5 21 18.1569 21 16.5V8.5C21 6.84315 19.6569 5.5 18 5.5H6C4.34315 5.5 3 6.84315 3 8.5V16.5C3 18.1569 4.34315 19.5 6 19.5Z"
                 stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

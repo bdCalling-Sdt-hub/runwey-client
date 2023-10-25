@@ -210,9 +210,9 @@ const Dashboard = () => {
                   <path
                     d="M17 16.5L21 12.5M21 12.5L17 8.5M21 12.5L7 12.5M13 16.5V17.5C13 19.1569 11.6569 20.5 10 20.5H6C4.34315 20.5 3 19.1569 3 17.5V7.5C3 5.84315 4.34315 4.5 6 4.5H10C11.6569 4.5 13 5.84315 13 7.5V8.5"
                     stroke="#6611E0"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
 
