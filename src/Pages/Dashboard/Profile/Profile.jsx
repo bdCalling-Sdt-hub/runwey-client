@@ -40,7 +40,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl">
+    <div className="mt-[24px] border-secondary border-[1px] rounded-2xl h-[780px] ">
       <div className="p-[30px]">
         {!profileEdit ? (
           <>

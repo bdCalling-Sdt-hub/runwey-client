@@ -43,7 +43,7 @@ const Questionnaire = () => {
         open={isModalOpen}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
-            <span>Add Banner</span>
+            <span>Add Question</span>
           </div>
         }
         onCancel={handleCancel}

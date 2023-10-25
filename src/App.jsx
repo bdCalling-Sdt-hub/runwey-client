@@ -23,6 +23,7 @@ import Settings from "./Pages/Dashboard/Settings/Settings";
 import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
 import NewPassword from "./Pages/NewPassword/NewPassword";
 import Otp from "./Pages/Otp/Otp";
+import SettingPage from "./Pages/Dashboard/Settings/SettingPage/SettingPage";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             <Route path="/banner" element={<Banner />} />
             <Route path="/occasions" element={<Occasions />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/settings/:dynamic" element={<SettingPage />} />
           </Route>
           <Route path="/signin" element={<Signin />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
