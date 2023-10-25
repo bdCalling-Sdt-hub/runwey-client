@@ -1,7 +1,8 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 
 const PendingRequests = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="w-[410px]  relative bg-white rounded-[30px] border ml-4 ">
@@ -15,7 +16,10 @@ const PendingRequests = () => {
             </p>
           </div>
           <div>
-            <p className="text-lg font-medium font-['Montserrat'] cursor-pointer text-primary">
+            <p
+              onClick={(e) => navigate("/uploadRequest")}
+              className="text-lg font-medium font-['Montserrat'] cursor-pointer text-primary"
+            >
               See All
             </p>
           </div>

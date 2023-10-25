@@ -199,9 +199,26 @@ const Dashboard = () => {
               onClick={(e) => navigate("/signin")}
               className="flex items-center bg-white text-center w-[240px] py-[6px] mx-auto rounded-md cursor-pointer"
             >
-              <div className="flex mx-auto">
-                <LinkOutlined className="text-[20px] text-primary" />
-                <p className=" text-primary text-[20px] pl-2">Logout</p>
+              <div className="flex items-center mx-auto">
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17 16.5L21 12.5M21 12.5L17 8.5M21 12.5L7 12.5M13 16.5V17.5C13 19.1569 11.6569 20.5 10 20.5H6C4.34315 20.5 3 19.1569 3 17.5V7.5C3 5.84315 4.34315 4.5 6 4.5H10C11.6569 4.5 13 5.84315 13 7.5V8.5"
+                    stroke="#6611E0"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <p className=" text-primary font-medium font-['Montserrat'] text-[20px] pl-2">
+                  Logout
+                </p>
               </div>
             </div>
           </div>

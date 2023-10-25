@@ -28,7 +28,7 @@ const UpdatePassword = () => {
 
       <button
         onClick={() => navigate("/settings")}
-        className="mt-5 bg-primary hover:bg-primary w-[750px] text-white font-bold py-3 px-4 rounded-full"
+        className="mt-5 bg-primary hover:bg-primary w-[750px] text-white font-bold py-3 px-4 rounded-md"
       >
         Confirm
       </button>
