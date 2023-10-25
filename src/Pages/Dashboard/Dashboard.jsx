@@ -113,7 +113,7 @@ const Dashboard = () => {
             onClick={(e) => navigate("/wallet")}
             className="text-[22px] leading-normal"
           >
-            Wallet
+           Yearly
           </li>,
           "9"
         ),
