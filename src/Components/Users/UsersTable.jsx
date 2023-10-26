@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from "antd";
-
+import testVideo from "./../../../public/tikvideo.mp4";
 const UsersTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+    console.log(isModalOpen2)
   };
+
+
+  const showVideo=()=>{
+    setIsModalOpen2(true);
+  }
+
+  const cancelVideo=()=>{
+    setIsModalOpen2(false);
+    console.log(isModalOpen2)
+  }
 
   const columns = [
     {
@@ -31,7 +43,7 @@ const UsersTable = () => {
       dataIndex: "package",
       width: 190,
     },
-   
+
     {
       title: "Action",
       dataIndex: "action",
@@ -107,6 +119,9 @@ const UsersTable = () => {
           y: 480,
         }}
       />
+
+
+
       <Modal
         open={isModalOpen}
         title={
@@ -119,13 +134,13 @@ const UsersTable = () => {
         footer={[]}
         width={1000}
       >
-        <div className=" flex justify-between"  style={{borderBottom:"2px solid #6611e0",paddingBottom:10,marginBottom:"10px"}}>
+        <div className=" flex justify-between" style={{ borderBottom: "2px solid #6611e0", paddingBottom: 10, marginBottom: "10px" }}>
           <div>
-            
+
             <div className="flex gap-4">
               <div >
                 <img
-                style={{borderRadius:"10px"}}
+                  style={{ borderRadius: "10px" }}
                   className="w-[180px] h-[150px]"
                   src="https://i.ibb.co/pQpXBmt/b2f2b8d89771068978e21e99c0397bef.png"
                   alt=""
@@ -153,32 +168,88 @@ const UsersTable = () => {
               </div>
             </div>
           </div>
-          
+
         </div>
-        <div style={{border:"1px solid #e0cff9",borderRadius:"10px",padding:"20px"}}>
+        <div style={{ border: "1px solid #e0cff9", borderRadius: "10px", padding: "20px", height: "50vh", overflowY: "scroll" }} >
           <h1 className="text-md mb-[30px] font-semibold font-['Montserrat'] mt-[6px]">
             Uploaded videos
           </h1>
           <div className="">
-            <div className="flex justify-between">
-             <img src=""/>
-             <h4>Sheath Weeding gown</h4>
-             <div>
-               <img src=""/>
-               <h1>0:10s</h1>
-             </div>
-             <div>
-               <img src=""/>
-               <h1>6k</h1>
-             </div>
-             <div>
-               
-               <h1>6k</h1>
-             </div>
-             <Button>Delete</Button>
-            </div>
-           
+            {
+              [...Array(20).keys()].map(() => {
+                return (
+
+                  <div className="flex justify-between" style={{ alignItems: "center", marginBottom: "10px" }}>
+                    <video
+                      width={50}
+
+
+                      className=" h-[50px]   bg-zinc-800 rounded-lg "
+                      src={testVideo}
+                      onClick={()=>showVideo()}
+                    ></video>
+                    <h4>Sheath Weeding gown</h4>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <img width="15" height="10" src="https://img.icons8.com/ios/50/clock--v1.png" alt="clock--v1" />
+                      <h1>0:10s</h1>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <img width="15" height="10" src="https://img.icons8.com/ios-filled/50/like--v1.png" alt="like--v1" />
+
+                      <h1>6k</h1>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+
+                      <img width="15" height="24" src="https://img.icons8.com/material-outlined/24/visible--v1.png" alt="visible--v1" />
+                      <h1>6k</h1>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+
+                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
+                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
+                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
+                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
+                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
+                    </div>
+                    <Button danger>Delete</Button>
+                  </div>
+                )
+              })
+
+            }
+
+
           </div>
+        </div>
+      </Modal>
+
+
+
+
+      <Modal
+        open={isModalOpen2}
+        title={
+          <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
+            <span>User information</span>
+          </div>
+        }
+        onCancel={cancelVideo}
+        centered
+        footer={[]}
+        width={1000}
+      >
+        <div className=" flex justify-between" style={{ borderBottom: "2px solid #6611e0", paddingBottom: 10, marginBottom: "10px" }}>
+        <video
+                      width={950}
+                      autoPlay={true}
+
+                      className=" h-[400px]   bg-zinc-800 rounded-lg "
+                      src={testVideo}
+                     
+                    ></video>
+         
         </div>
       </Modal>
     </div>
