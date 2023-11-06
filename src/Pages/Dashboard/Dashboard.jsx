@@ -7,6 +7,7 @@ import { RxDashboard } from "react-icons/rx";
 import { BiWallet } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
+import logo from "./../../../public/RunweyLogo.svg";
 import { Menu } from "antd";
 import Header from "../../Components/Header/Header";
 function getItem(label, key, icon, children) {
@@ -113,7 +114,7 @@ const Dashboard = () => {
             onClick={(e) => navigate("/wallet")}
             className="text-[22px] leading-normal"
           >
-           Yearly
+            Yearly
           </li>,
           "9"
         ),
@@ -181,10 +182,12 @@ const Dashboard = () => {
     <div className="flex" style={{ height: "100vh" }}>
       <div className=" m-8 rounded-xl bg-primary relative">
         <>
-          <h1 className="text-[30px] text-center py-4 text-white">Logo</h1>
+          <h1 className=" text-center text-white">
+            <img className="w-[220px] mx-auto p-5" src={logo} alt="" />
+          </h1>
           <Menu
             style={{ overflowY: "auto", height: "80vh" }}
-            className="w-[352px] p-[30px]  bg-primary text-white  rounded-b-xl "
+            className="w-[352px] p-[30px] pt-0  bg-primary text-white  rounded-b-xl "
             defaultSelectedKeys={["1"]}
             // defaultOpenKeys={["sub1"]}
             mode={mode}
