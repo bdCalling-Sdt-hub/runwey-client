@@ -64,7 +64,7 @@ const Header = () => {
       <div onClick={(e) => navigate("/profile")} className="cursor-pointer">
         <img
           className="w-[50px] h-[45px] ml-3 rounded-lg"
-          src="https://i.ibb.co/YbSN7hp/e2fa7e1c075f3e11ddf04c79df9349c4.png"
+          src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
           alt=""
         />
       </div>

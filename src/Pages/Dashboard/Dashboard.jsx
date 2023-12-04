@@ -10,6 +10,7 @@ import { FaUsers } from "react-icons/fa";
 import logo from "./../../../public/RunweyLogo.svg";
 import { Menu } from "antd";
 import Header from "../../Components/Header/Header";
+import Swal from "sweetalert2";
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -23,6 +24,25 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState("inline");
   const [theme, setTheme] = useState("light");
+
+  const logout = () => {
+    Swal.fire({
+      title: "Do you want to Logout from here?",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("yourInfo");
+
+        navigate("/signin");
+      } else if (result.isDenied) {
+        Swal.fire("Ok", "", "info");
+      }
+    });
+  };
 
   const items = [
     getItem(
@@ -199,7 +219,7 @@ const Dashboard = () => {
         <div className="">
           <div className="absolute bottom-0 left-0 w-full p-4 rounded-b-xl bg-primary border-t-[1px] border-secondary2 ">
             <div
-              onClick={(e) => navigate("/signin")}
+              onClick={logout}
               className="flex items-center bg-white text-center w-[240px] py-[6px] mx-auto rounded-md cursor-pointer"
             >
               <div className="flex items-center mx-auto">

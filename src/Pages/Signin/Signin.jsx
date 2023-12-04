@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { UserData } from "../../ReduxSlices/SigninSlice";
 
 const Signin = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { isLoading, isError, isSuccess, userData, accessToken, message } =
+    useSelector((state) => state.UserData);
+
+    console.log(userData);
+
+  useEffect(() => {
+    if (isError == true) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: message,
+      });
+    }
+    if (isSuccess == true) {
+      localStorage.setItem("yourInfo", JSON.stringify(userData));
+      localStorage.setItem("token", accessToken);
+      navigate("/");
+    }
+
+    //dispatch(reset());
+  }, [isLoading, isError, isSuccess, dispatch, navigate]);
+
+  const handleLogin = () => {
+    dispatch(UserData({ email: email, password: password }));
+    if (email == "" || password == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill all the fields",
+      });
+    }
+  };
+
   return (
     <div className="h-screen">
       <div className="bg-gray-100 flex justify-center items-center h-screen">
@@ -23,20 +62,21 @@ const Signin = () => {
           <form>
             {/* <!-- Username Input --> */}
             <div className="mb-4">
-              <label for="username" className="block text-gray-600">
+              <label htmlFor="email" className="block text-gray-600">
                 Email
               </label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="email"
+                name="email"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                autocomplete="off"
+                autoComplete="on"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             {/* <!-- Password Input --> */}
             <div className="mb-4">
-              <label for="password" className="block text-gray-600">
+              <label htmlFor="password" className="block text-gray-600">
                 Password
               </label>
               <input
@@ -44,7 +84,8 @@ const Signin = () => {
                 id="password"
                 name="password"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                autocomplete="off"
+                autoComplete="off"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -58,13 +99,12 @@ const Signin = () => {
               </p>
             </div>
             {/* <!-- Login Button --> */}
-            <button
-              type="submit"
-              onClick={(e) => navigate("/")}
-              className="bg-primary  text-white font-semibold rounded-md flex justify-center mx-auto px-[100px] py-3"
+            <div
+              onClick={handleLogin}
+              className="bg-primary cursor-pointer text-white font-semibold rounded-md flex justify-center mx-auto px-[100px] py-3"
             >
               Login
-            </button>
+            </div>
           </form>
         </div>
       </div>
