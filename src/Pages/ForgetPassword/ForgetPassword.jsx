@@ -1,8 +1,37 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import baseAxios from "../../../Config";
+import Swal from "sweetalert2";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = React.useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    baseAxios
+      .post("/api/users/forget-password", { email: email })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data.message);
+        Swal.fire({
+          icon: "success",
+          title: "OTP Sent Successfully",
+          text: "Please Check Your Email!",
+        });
+        navigate(`/otp/${email}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+      });
+  };
+
   return (
     <div className="h-screen">
       <div className="bg-gray-100 flex justify-center items-center h-screen">
@@ -48,18 +77,18 @@ const ForgetPassword = () => {
             <div className="mb-4 mt-[50px]">
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="email"
+                name="email"
                 placeholder="Email"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                autoComplete="off"
+                autoComplete="on"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
             {/* <!-- Login Button --> */}
             <button
-              type="submit"
-              onClick={(e) => navigate("/otp/d")}
+              onClick={handleSubmit}
               className="bg-primary  text-white font-semibold rounded-md flex justify-center mx-auto px-[100px] py-3"
             >
               Send OTP
