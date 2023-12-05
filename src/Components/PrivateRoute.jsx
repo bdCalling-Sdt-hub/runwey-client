@@ -1,18 +1,16 @@
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate} from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-  const location = useLocation();
+  const UserData = JSON.parse(localStorage.getItem("yourInfo"));
 
-  const user = {
-    email: "sahinur@gmail.com",
-  };
+  // console.log(UserData);
 
-  if (user.email) {
+  if (UserData?.role == "admin" || UserData?.oneTimeCode === "verified") {
     return children;
+  } else {
+    return <Navigate to="/signin" />;
   }
-
-  return <Navigate to="/signin" />;
 };
 
 export default PrivateRoute;
