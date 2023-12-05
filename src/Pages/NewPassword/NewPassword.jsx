@@ -1,9 +1,49 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import baseAxios from "../../../Config";
 
 const NewPassword = () => {
   let { email } = useParams();
+  console.log(email);
+
   const navigate = useNavigate();
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+
+  const handleChangePassword = (e) => {
+    e.preventDefault();
+    console.log("Change Password");
+
+    if (password !== confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Password and Confirm Password does not match",
+      });
+      return;
+    }
+    baseAxios
+      .post("/api/users/update-password", { email: email, password: password })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data.message);
+        navigate(`/signin`);
+        Swal.fire({
+          icon: "success",
+          title: response.data.message,
+        });
+    
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: error.response.data,
+        });
+      });
+  };
+
   return (
     <div className="h-screen">
       <div className="bg-gray-100 flex justify-center items-center h-screen">
@@ -47,7 +87,8 @@ const NewPassword = () => {
                 name="password"
                 placeholder="New Password"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                autoComplete="off"
+                autoComplete="on"
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <input
@@ -56,12 +97,12 @@ const NewPassword = () => {
                 name=" confirmPassword"
                 placeholder="Confirm Password"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-                autoComplete="off"
+                autoComplete="on"
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
             <button
-              type="submit"
-              onClick={(e) => navigate("/")}
+              onClick={handleChangePassword}
               className="bg-primary  text-white font-semibold rounded-md flex justify-center mx-auto px-[100px] py-3"
             >
               Confirm

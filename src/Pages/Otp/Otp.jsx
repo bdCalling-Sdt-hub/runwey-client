@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 const Otp = () => {
   const navigate = useNavigate();
   let { email } = useParams();
-  console.log(email);
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(60);
 
