@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import SignleUser from "./SignleUser";
+import socket from "../../lib/socket";
 
 const MessageList = () => {
 
   // const [chatList, setChatList] = useState([]);
   // useEffect(() => {
-  //   var socket = io("ws://192.168.10.17:3008");
+  //   // var socket = io("ws://192.168.10.17:3008");
   //   // Emit an event to request chat list from the server
   //   socket.emit(
   //     "chat-list",
