@@ -1,12 +1,64 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import OtpInput from "react-otp-input";
+import baseAxios from "../../../Config";
+import Swal from "sweetalert2";
 
 const Otp = () => {
-  let { email } = useParams();
-  const [otp, setOtp] = useState("");
-
   const navigate = useNavigate();
+  let { email } = useParams();
+  console.log(email);
+  const [otp, setOtp] = useState("");
+  const [timer, setTimer] = useState(60);
+
+  const handleOtp = (e) => {
+    e.preventDefault();
+    console.log(otp);
+    baseAxios
+      .post("/api/users/verify", { email: email, oneTimeCode : otp })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data.message);
+        Swal.fire({
+          icon: "success",
+          title: response.data.message,
+        });
+        navigate(`/new-password/${email}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+      });
+  };
+
+  const handleResendOtp = (e) => {
+    e.preventDefault();
+    console.log("Resend Otp");
+    baseAxios
+      .post("/api/users/forget-password", { email: email })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data.message);
+        Swal.fire({
+          icon: "success",
+          title: "Resend OTP Sent Successfully",
+          text: "Please Check Your Email!",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+      });
+  };
+
   return (
     <div className="h-screen">
       <div className="bg-gray-100 flex justify-center items-center h-screen">
@@ -68,12 +120,17 @@ const Otp = () => {
               <p className="text-[14px] font-['Montserrat'] text-[#858585)]">
                 Didn't receive the code?{" "}
               </p>
-              <p className="text-primary cursor-pointer mr-9">Resend Code</p>
+              <p
+                onClick={handleResendOtp}
+                className="text-primary cursor-pointer mr-9"
+              >
+                Resend Code
+              </p>
             </div>
             {/* <!-- Login Button --> */}
             <button
               type="submit"
-              onClick={(e) => navigate("/new-password/jkj")}
+              onClick={handleOtp}
               className="bg-primary  text-white font-semibold rounded-md flex justify-center mx-auto px-[100px] mt-10 py-3"
             >
               Verify
