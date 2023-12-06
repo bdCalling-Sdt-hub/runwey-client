@@ -52,22 +52,22 @@ const Questionnaire = () => {
         width={1000}
       >
         <div className="flex flex-col">
-          <div class="mb-4 w-full">
-            <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+          <div className="mb-4 w-full">
+            <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Question
             </p>
             <input
-              class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+              className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Write your question"
             />
           </div>
-          <div class="mb-4 w-full">
-            <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+          <div className="mb-4 w-full">
+            <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Answer
             </p>
             <textarea
-              class=" border rounded-[10px] h-[150px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+              className=" border rounded-[10px] h-[150px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Write your answer"
             />

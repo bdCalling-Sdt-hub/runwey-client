@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SinglePlan from "./../../../Components/Essential/SinglePlan";
 import AddPlan from "./../../../Components/Essential/AddPlan";
 import SubscriptionAddModal from "./../../../Components/Essential/SubscriptionAddModal";
+import { useDispatch, useSelector } from "react-redux";
+import { SubscriptionData } from "../../../ReduxSlices/SubscriptionSlice";
 
 const SinglePlanData = [
   {
@@ -27,7 +29,22 @@ const SinglePlanData = [
 ];
 
 const SubscriptionPlan = () => {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const data = useSelector((state) => state.SubscriptionData.SubscriptionList);
+  const [reload, setReload] = useState(1);
+
+  // console.log(data);
+
+
+  useEffect(() => {
+    let data = {
+      page: 1,
+    };
+      dispatch(SubscriptionData(data));
+  }, [reload]);
+
+
     const showModal = () => {
       setIsModalOpen(true);
     };
@@ -41,7 +58,7 @@ const SubscriptionPlan = () => {
           Subscription plan
         </h1>
         <div className="flex gap-5 mt-10">
-          {SinglePlanData.map((plan) => (
+          {data.map((plan) => (
             <SinglePlan key={plan.id} plan={plan} />
           ))}
           <AddPlan showModal={showModal} />

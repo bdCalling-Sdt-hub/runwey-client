@@ -21,7 +21,7 @@ const SinglePlan = ({ plan }) => {
 
           <div>
             <h1 className=" text-lg text-white font-medium font-['Montserrat']">
-              {plan?.title}
+              {plan?.name}
             </h1>
             <p className="text-white text-xs mb-5 font-normal font-['Montserrat']">
               {plan?.price}
@@ -48,19 +48,20 @@ const SinglePlan = ({ plan }) => {
           </svg>
 
           <p className="text-xs font-medium font-['Montserrat']">
-            {plan?.description}
+          Can Upload {plan?.limitation} Video
+            
           </p>
         </div>
         <div
-          style={{ backgroundColor: plan.mainColor4 }}
+          style={{ backgroundColor: plan.opacity3 }}
           className="h-[100px] "
         >
           <div
-            style={{ backgroundColor: plan.mainColor2 }}
+            style={{ backgroundColor: plan.opacity1 }}
             className=" py-[10px]"
           ></div>
           <div
-            style={{ backgroundColor: plan.mainColor3 }}
+            style={{ backgroundColor: plan.opacity2 }}
             className=" py-[10px]"
           ></div>
         </div>

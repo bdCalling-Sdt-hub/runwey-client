@@ -41,7 +41,7 @@ const OccasionsCard = () => {
         width={1000}
       >
         <div className="flex flex-col">
-          <div class="mb-4 flex justify-between py-[22px] border-b-primary border-b-[1px]  w-full">
+          <div className="mb-4 flex justify-between py-[22px] border-b-primary border-b-[1px]  w-full">
             <div>
               <img
                 className="w-[212px] h-[212px]"

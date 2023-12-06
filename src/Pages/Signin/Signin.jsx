@@ -61,7 +61,7 @@ const Signin = () => {
           </h1>
           <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
           <form>
-            {/* <!-- Username Input --> */}
+            {/* <!-- Email Input --> */}
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-600">
                 Email

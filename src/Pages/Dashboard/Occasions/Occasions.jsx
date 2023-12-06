@@ -90,12 +90,12 @@ const Occasions = () => {
           </div>
 
           <div className="border-secondary p-[30px] rounded-2xl border-[1px] ">
-            <div class="mb-4 w-full">
-              <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+            <div className="mb-4 w-full">
+              <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
                 Banner Name
               </p>
               <input
-                class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Enter banner name"
               />

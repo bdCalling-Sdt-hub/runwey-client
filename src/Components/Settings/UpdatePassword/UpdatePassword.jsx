@@ -5,22 +5,22 @@ const UpdatePassword = () => {
   const navigate = useNavigate();
   return (
     <div className="p-5">
-      <div class="mb-4 w-[750px]">
-        <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+      <div className="mb-4 w-[750px]">
+        <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
           New Password
         </p>
         <input
-          class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+          className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Enter your new password"
         />
       </div>
-      <div class="mb-4 w-[750px]">
-        <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+      <div className="mb-4 w-[750px]">
+        <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
           Confirm New Password
         </p>
         <input
-          class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+          className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Confirm your new password"
         />

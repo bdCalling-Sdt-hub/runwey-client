@@ -30,93 +30,93 @@ const SubscriptionAddModal = ({ isModalOpen, handleCancel }) => {
     >
       <div className="flex justify-between">
         <div>
-          <div class="mb-4 w-[750px]">
-            <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+          <div className="mb-4 w-[750px]">
+            <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Package Name
             </p>
             <input
-              class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+              className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               onChange={(e) => setPackageName(e.target.value)}
               placeholder="Enter package name"
             />
           </div>
-          <div class="mb-4 w-[750px]">
-            <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+          <div className="mb-4 w-[750px]">
+            <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Package Price
             </p>
             <input
-              class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+              className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               onChange={(e) => setPackagePrice(e.target.value)}
               placeholder="Enter package price"
             />
           </div>
-          <div class="mb-4 w-[750px]">
-            <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+          <div className="mb-4 w-[750px]">
+            <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Package Validity
             </p>
             <input
               onChange={(e) => setPackageValidity(e.target.value)}
-              class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+              className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Enter package validity"
             />
           </div>
-          <div class="mb-4 w-[750px]">
-            <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+          <div className="mb-4 w-[750px]">
+            <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Video Upload Limitations
             </p>
             <input
               onChange={(e) => setVideoLimit(e.target.value)}
-              class=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+              className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Enter video limitations"
             />
           </div>
 
           {/* here  color div */}
-          <div class="mb-4 flex gap-3 w-[750px]">
+          <div className="mb-4 flex gap-3 w-[750px]">
             <div>
-              <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+              <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
                 Package Main Color
               </p>
               <input
                 onChange={(e) => setPackageMainColor(e.target.value)}
-                class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
               />
             </div>
             <div>
-              <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+              <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
                 Main Color Opacity 40%
               </p>
               <input
                 onChange={(e) => setPackageMainColorOpacity(e.target.value)}
-                class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
               />
             </div>
             <div>
-              <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+              <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
                 Main Color Opacity 40%
               </p>
               <input
                 onChange={(e) => setPackageMainColorOpacity2(e.target.value)}
-                class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
               />
             </div>
             <div>
-              <p class="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+              <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
                 Main Color Opacity 40%
               </p>
               <input
                 onChange={(e) => setPackageMainColorOpacity3(e.target.value)}
-                class=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+                className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
               />
