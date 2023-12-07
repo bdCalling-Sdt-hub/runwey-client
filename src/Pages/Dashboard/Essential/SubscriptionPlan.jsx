@@ -4,37 +4,18 @@ import AddPlan from "./../../../Components/Essential/AddPlan";
 import SubscriptionAddModal from "./../../../Components/Essential/SubscriptionAddModal";
 import { useDispatch, useSelector } from "react-redux";
 import { SubscriptionData } from "../../../ReduxSlices/SubscriptionSlice";
+import SubscriptionShowModal from "../../../Components/Essential/SubscriptionShowModal";
 
-const SinglePlanData = [
-  {
-    id: 1,
-    mainColor: "#6611E0",
-    mainColor2: "#7d57df",
-    mainColor3: "#a58fe0",
-    mainColor4: "#c5b0e0",
-    title: "Premium",
-    price: "$9.99/Month",
-    description: "Can Upload Unlimited Video",
-  },
-  {
-    id: 2,
-    mainColor: "#FFC60B",
-    mainColor2: "#FFE89D",
-    mainColor3: "#FFF4CE",
-    mainColor4: "#FFFAE7",
-    title: "Free",
-    price: "Free",
-    description: "Can Upload 3 Video",
-  },
-];
 
 const SubscriptionPlan = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const data = useSelector((state) => state.SubscriptionData.SubscriptionList);
   const [reload, setReload] = useState(1);
+  const [modalData, setModalData] = useState();
 
-  // console.log(data);
+
 
 
   useEffect(() => {
@@ -45,24 +26,35 @@ const SubscriptionPlan = () => {
   }, [reload]);
 
 
+
     const showModal = () => {
       setIsModalOpen(true);
     };
+
+  const addModal = () => {
+    setIsAddModalOpen(true);
+    
+  };
     const handleCancel = () => {
       setIsModalOpen(false);
+
     };
+    const handleAddCancel = () => {
+      setIsAddModalOpen(false);
+    }
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
       <div className="p-[30px]">
         <h1 className="text-3xl font-semibold font-['Montserrat'] text-primary border-b-[1px] border-primary pb-[30px]">
           Subscription plan
         </h1>
-        <div className="flex gap-5 mt-10">
+        <div className="flex flex-wrap gap-5 mt-10">
           {data.map((plan) => (
-            <SinglePlan key={plan.id} plan={plan} />
+            <SinglePlan setModalData={setModalData} showModal={showModal} key={plan._id} plan={plan} />
           ))}
-          <AddPlan showModal={showModal} />
-          <SubscriptionAddModal handleCancel={handleCancel} isModalOpen={isModalOpen} />
+          <AddPlan setModalData={setModalData} setReload={setReload} addModal={addModal} />
+          <SubscriptionAddModal  setReload={setReload} handleAddCancel={handleAddCancel} isAddModalOpen={isAddModalOpen} />
+          <SubscriptionShowModal setModalData={setModalData} modalData={modalData} setReload={setReload} handleCancel={handleCancel} isModalOpen={isModalOpen} />
         </div>
       </div>
     </div>

@@ -1,13 +1,8 @@
 import { Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import { PiCrownSimpleFill } from "react-icons/pi";
-import baseAxios from "../../../Config";
 
-const SubscriptionAddModal = ({
-  isAddModalOpen,
-  handleAddCancel,
-  setReload,
-}) => {
+const SubscriptionShowModal = ({ isModalOpen, handleCancel,modalData,setModalData }) => {
   const [packageName, setPackageName] = useState("Package");
   const [packagePrice, setPackagePrice] = useState("Amount");
   const [packageValidity, setPackageValidity] = useState("Video amount");
@@ -20,47 +15,30 @@ const SubscriptionAddModal = ({
   const [packageMainColorOpacity3, setPackageMainColorOpacity3] =
     useState("#D6D6D6");
 
-  console.log(isAddModalOpen, handleAddCancel);
-  const token = localStorage.getItem("token");
+useEffect(() => {
+  if(modalData){
+    setPackageName(modalData.name)
+    setPackagePrice(modalData.price)
+    setPackageValidity(modalData.validity)
+    setVideoLimit(modalData.limitation)
+    setPackageMainColor(modalData.mainColor)
+    setPackageMainColorOpacity(modalData.opacity1)
+    setPackageMainColorOpacity2(modalData.opacity2)
+    setPackageMainColorOpacity3(modalData.opacity3)
+  }
+}
+, [modalData])
 
-  const handleAdd = () => {
-    let data = {
-      name: packageName,
-      price: packagePrice,
-      validity: packageValidity,
-      limitation: videoLimit,
-      mainColor: packageMainColor,
-      opacity1: packageMainColorOpacity,
-      opacity2: packageMainColorOpacity2,
-      opacity3: packageMainColorOpacity3,
-    };
-    console.log(data);
-    baseAxios
-      .post("api/subscribe", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    setReload((prev) => prev + 1);
-    handleAddCancel();
-  };
 
   return (
     <Modal
-      open={isAddModalOpen}
+      open={isModalOpen}
       title={
         <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
           <span>Package Information</span>
         </div>
       }
-      onCancel={handleAddCancel}
+      onCancel={handleCancel}
       centered
       footer={[]}
       width={1200}
@@ -76,6 +54,7 @@ const SubscriptionAddModal = ({
               type="text"
               onChange={(e) => setPackageName(e.target.value)}
               placeholder="Enter package name"
+              defaultValue={modalData?.name}
             />
           </div>
           <div className="mb-4 w-[750px]">
@@ -87,6 +66,7 @@ const SubscriptionAddModal = ({
               type="text"
               onChange={(e) => setPackagePrice(e.target.value)}
               placeholder="Enter package price"
+              defaultValue={modalData?.price}
             />
           </div>
           <div className="mb-4 w-[750px]">
@@ -98,6 +78,7 @@ const SubscriptionAddModal = ({
               className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Enter package validity"
+              defaultValue={modalData?.validity}
             />
           </div>
           <div className="mb-4 w-[750px]">
@@ -109,6 +90,7 @@ const SubscriptionAddModal = ({
               className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Enter video limitations"
+              defaultValue={modalData?.limitation}
             />
           </div>
 
@@ -123,6 +105,7 @@ const SubscriptionAddModal = ({
                 className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
+                defaultValue={modalData?.mainColor}
               />
             </div>
             <div>
@@ -134,6 +117,7 @@ const SubscriptionAddModal = ({
                 className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
+                defaultValue={modalData?.opacity1}
               />
             </div>
             <div>
@@ -145,6 +129,7 @@ const SubscriptionAddModal = ({
                 className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
+                defaultValue={modalData?.opacity2}
               />
             </div>
             <div>
@@ -156,6 +141,7 @@ const SubscriptionAddModal = ({
                 className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Color code"
+                defaultValue={modalData?.opacity3}
               />
             </div>
           </div>
@@ -229,15 +215,15 @@ const SubscriptionAddModal = ({
         </div>
       </div>
       <div className="flex gap-5">
-        {/* <button className="bg-white  text-lg font-semibold font-['Montserrat'] border-primary border-[1px] w-full text-pr rounded-[10px] px-10 py-2 mt-5">
+        <button className="bg-white  text-lg font-semibold font-['Montserrat'] border-primary border-[1px] w-full text-pr rounded-[10px] px-10 py-2 mt-5">
           Delete Package
-        </button> */}
-        <button onClick={handleAdd} className="bg-primary text-lg font-semibold font-['Montserrat'] w-full text-white rounded-[10px] px-10 py-2 mt-5">
-          Save Changes
+        </button>
+        <button className="bg-primary text-lg font-semibold font-['Montserrat'] w-full text-white rounded-[10px] px-10 py-2 mt-5">
+          Update Package
         </button>
       </div>
     </Modal>
   );
 };
 
-export default SubscriptionAddModal;
+export default SubscriptionShowModal;

@@ -1,16 +1,17 @@
 import React from "react";
 import { PiCrownSimpleFill } from "react-icons/pi";
 
-const SinglePlan = ({ plan }) => {
+const SinglePlan = ({ plan,setModalData,showModal }) => {
   return (
     <div
       style={{
         backgroundColor: plan.mainColor,
         borderColor: plan.mainColor,
       }}
-      className={`w-[230px] h-[259px] rounded-3xl overflow-hidden  border-[1px]`}
+      onClick={() => setModalData(plan)}
+      className={`w-[230px] h-[259px] rounded-3xl overflow-hidden cursor-pointer border-[1px]`}
     >
-      <div className="flex flex-col">
+      <div onClick={showModal} className="flex flex-col">
         <div className="flex rounded-t-3xl justify-center flex-col text-center items-center">
           <div className="bg-white p-5 rounded-full mt-[16px]">
             <PiCrownSimpleFill

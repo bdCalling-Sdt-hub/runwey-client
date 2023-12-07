@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const AddPlan = ({showModal}) => {
+const AddPlan = ({addModal}) => {
+
+
   return (
     <div
-    onClick={showModal}
+    onClick={addModal}
       className={`w-[230px] border-2 h-[259px] border-dashed rounded-3xl cursor-pointer overflow-hidden `}
     >
-      <div className="flex flex-col justify-center items-center my-[90px]">
+      <div  className="flex flex-col justify-center items-center my-[90px]">
         <svg
           width="40"
           height="40"
