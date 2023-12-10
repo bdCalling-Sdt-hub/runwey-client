@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignleQuestions = () => {
+const SignleQuestions = ({ answer, question }) => {
   return (
     <div className="my-5 border-b-[1px] border-secondary">
       <div className="flex gap-2 my-2 items-center">
@@ -19,16 +19,11 @@ const SignleQuestions = () => {
             />
           </svg>
         </div>
-        <h1 className="text-lg font-medium font-['Montserrat'] ">
-          Lorem ipsum dolor sit amet consectetur. Aliquet ultrices velit
-          suspendisse nec sollicitudin?
-        </h1>
+        <h1 className="text-lg font-medium font-['Montserrat'] ">{question}</h1>
       </div>
       <div>
         <p className="text-gray-500 ml-[33px] text-sm font-medium font-['Montserrat'] mb-2">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          hic culpa fugiat voluptate sequi, amet laboriosam voluptatum
-          voluptates veritatis. Natus aut corrupti consequuntur.
+          {answer}
         </p>
       </div>
     </div>
