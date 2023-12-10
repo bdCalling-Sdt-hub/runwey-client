@@ -1,23 +1,62 @@
 import React from "react";
+import moment from "moment";
+import Swal from "sweetalert2";
+import baseAxios from "../../../Config";
 
-const SingleBanner = () => {
+const SingleBanner = ({ item, setReload, reload }) => {
+  function formatDate(originalDateString) {
+    const formattedDate =
+      moment(originalDateString).format("hh:mm A, MM/DD/YY");
+    return formattedDate;
+  }
+  const token = localStorage.getItem("token");
+  const formatted = formatDate(item?.createdAt);
+
+  const deleteBanner = async () => {
+    try {
+      let response = await baseAxios.delete(`/api/banner/${item._id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      });
+      // here reload + 1 is used to reload the page after deleting the banner
+      setReload((reload) => reload + 1);
+      Swal.fire({
+        icon: "success",
+        title: "Banner Deleted Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return response.data;
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Banner Not Deleted",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   return (
     <div className="flex justify-evenly items-center my-[24px]">
       <div>
         <img
-          className="w-[200px] rounded-[10px] h-[100px] object-cover"
-          src="https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png"
+          className="w-[200px] rounded-[10px] items-center  h-[100px] object-cover"
+          src={item?.bannerImage}
           alt=""
         />
       </div>
       <div className="text-zinc-800 text-left  text-lg font-semibold font-['Montserrat']">
-        Halloween Banner
+        {item.bannerName}
       </div>
       <div className="text-zinc-800 text-lg font-semibold font-['Montserrat']">
-        10:50 AM, 04/10/23
+        {formatted}
       </div>
       <div className="pr-10 ">
         <svg
+        onClick={deleteBanner}
           className="cursor-pointer"
           width="22"
           height="22"

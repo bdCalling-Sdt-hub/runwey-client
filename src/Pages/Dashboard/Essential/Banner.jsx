@@ -1,6 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Modal, Pagination } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import SingleBanner from "../../../Components/Essential/SingleBanner";
+import { BannerData } from "../../../ReduxSlices/BannerSlice";
 
 const bannerData = [
   {
@@ -48,9 +50,23 @@ const bannerData = [
 ];
 
 const Banner = () => {
+  const dispatch = useDispatch();
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState();
+  const data = useSelector((state) => state.BannerData.BannerList);
   console.log(selectedFiles);
+  const [reload, setReload] = useState(1);
+
+
+  console.log(data);
+  
+  useEffect(() => {
+    let data = {
+      page: 1,
+    };
+    dispatch(BannerData(data));
+  }, [reload]);
+
 
   const handleFileSelect = () => {
     fileInputRef.current.click();
@@ -105,8 +121,8 @@ const Banner = () => {
           </div>
           <div className="h-[555px] overflow-y-scroll">
             {/* here all Single card show */}
-            {bannerData.map((data) => (
-              <SingleBanner key={data.id} data={data} />
+            {data?.map((item) => (
+              <SingleBanner key={item._id} item={item} reload={reload} setReload={setReload} />
             ))}
           </div>
           <div className="">
