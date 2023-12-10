@@ -3,51 +3,8 @@ import { Modal, Pagination } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import SingleBanner from "../../../Components/Essential/SingleBanner";
 import { BannerData } from "../../../ReduxSlices/BannerSlice";
-
-const bannerData = [
-  {
-    id: 1,
-    image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Offer Banner",
-    date: "10:50 AM, 04/10/23",
-  },
-  {
-    id: 2,
-    image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Halloween Banner",
-    date: "10:50 AM, 04/10/23",
-  },
-  {
-    id: 3,
-    image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "ululu Banner",
-    date: "10:50 AM, 04/10/23",
-  },
-  {
-    id: 4,
-    image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Offer Banner",
-    date: "10:50 AM, 04/10/23",
-  },
-  {
-    id: 5,
-    image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Offer Banner",
-    date: "10:50 AM, 04/10/23",
-  },
-  {
-    id: 6,
-    image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Offer Banner",
-    date: "10:50 AM, 04/10/23",
-  },
-  {
-    id: 7,
-    image: "https://i.ibb.co/bz71fsY/e1842982e8fad15f9d07c106b099a1aa.png",
-    name: "Offer Banner",
-    date: "10:50 AM, 04/10/23",
-  },
-];
+import baseAxios from "../../../../Config";
+import Swal from "sweetalert2";
 
 const Banner = () => {
   const dispatch = useDispatch();
@@ -56,10 +13,12 @@ const Banner = () => {
   const data = useSelector((state) => state.BannerData.BannerList);
   console.log(selectedFiles);
   const [reload, setReload] = useState(1);
+  const [bannerName, setBannerName] = useState("");
+  const token = localStorage.getItem("token");
 
-
+  const [bannerImage, setBannerImage] = useState(null);
   console.log(data);
-  
+
   useEffect(() => {
     let data = {
       page: 1,
@@ -67,14 +26,13 @@ const Banner = () => {
     dispatch(BannerData(data));
   }, [reload]);
 
-
   const handleFileSelect = () => {
     fileInputRef.current.click();
   };
 
   const handleFilesChosen = (e) => {
-    const files = e.target.files;
     const file = e.target.files[0];
+    setBannerImage(file);
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setSelectedFiles(imageUrl);
@@ -88,10 +46,60 @@ const Banner = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const handleSaveBanner = async () => {
+    console.log("save banner");
+    try {
+      const formData = new FormData();
+      formData.append("bannerImage", bannerImage);
+      formData.append("bannerName", bannerName);
+
+      baseAxios
+        .post("/api/banner", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setIsModalOpen(false);
+          setReload((reload) => reload + 1);
+          Swal.fire({
+            icon: "success",
+            title: "Banner Added Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // all set state to null
+          setBannerName("");
+          setSelectedFiles(null);
+          setBannerImage(null);
+        })
+        .catch((err) => {
+          console.log(err);
+          Swal.fire({
+            icon: "error",
+            title: err.response.data.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Banner Not Added",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
       <div className="p-[30px]">
-      <div className="flex justify-between items-center border-b-[1px] border-primary pb-[30px]">
+        <div className="flex justify-between items-center border-b-[1px] border-primary pb-[30px]">
           <h1 className="text-3xl font-semibold font-['Montserrat'] text-primary ">
             Current Banners
           </h1>
@@ -122,7 +130,12 @@ const Banner = () => {
           <div className="h-[555px] overflow-y-scroll">
             {/* here all Single card show */}
             {data?.map((item) => (
-              <SingleBanner key={item._id} item={item} reload={reload} setReload={setReload} />
+              <SingleBanner
+                key={item._id}
+                item={item}
+                reload={reload}
+                setReload={setReload}
+              />
             ))}
           </div>
           <div className="">
@@ -228,12 +241,13 @@ const Banner = () => {
               Banner Name
             </p>
             <input
+              onChange={(e) => setBannerName(e.target.value)}
               className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Enter banner name"
             />
           </div>
-          <div className="cursor-pointer">
+          <div onClick={handleSaveBanner} className="cursor-pointer">
             <div className="w-full h-10 p-2.5 bg-violet-700 rounded-lg justify-center items-center gap-2.5 inline-flex">
               <div className="text-white text-lg font-semibold font-['Montserrat']">
                 Save
