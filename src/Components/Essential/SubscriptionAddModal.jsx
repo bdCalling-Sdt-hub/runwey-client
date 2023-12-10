@@ -20,7 +20,6 @@ const SubscriptionAddModal = ({
   const [packageMainColorOpacity3, setPackageMainColorOpacity3] =
     useState("#D6D6D6");
 
-  console.log(isAddModalOpen, handleAddCancel);
   const token = localStorage.getItem("token");
 
   const handleAdd = () => {
