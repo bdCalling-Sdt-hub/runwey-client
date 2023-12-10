@@ -21,11 +21,11 @@ const SignleQuestions = ({ answer, question }) => {
         </div>
         <h1 className="text-lg font-medium font-['Montserrat'] ">{question}</h1>
       </div>
-      <div>
+      {/* <div>
         <p className="text-gray-500 ml-[33px] text-sm font-medium font-['Montserrat'] mb-2">
           {answer}
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -37,8 +37,7 @@ const Questionnaire = () => {
       .post(
         "/api/question",
         {
-          question: question,
-          answer: answer,
+          question: question
         },
         {
           headers: {
@@ -124,7 +123,7 @@ const Questionnaire = () => {
               onChange={(e) => setQuestion(e.target.value)}
             />
           </div>
-          <div className="mb-4 w-full">
+          {/* <div className="mb-4 w-full">
             <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Answer
             </p>
@@ -135,7 +134,7 @@ const Questionnaire = () => {
               type="text"
               placeholder="Write your answer"
             />
-          </div>
+          </div> */}
           <div onClick={handleAddQuestion} className="cursor-pointer">
             <div className="w-full h-10 p-2.5 bg-violet-700 rounded-lg justify-center items-center gap-2.5 inline-flex">
               <div className="text-white text-lg font-semibold font-['Montserrat']">
