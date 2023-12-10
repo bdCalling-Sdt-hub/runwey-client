@@ -1,17 +1,20 @@
 import JoditEditor from "jodit-react";
 import React, { useEffect, useRef, useState } from "react";
 import baseAxios from "../../../../Config";
+import Swal from "sweetalert2";
 
 const PrivacyPolicy = () => {
+
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
   const privacyAndPolicyDataSave = () => {
+
     let token = localStorage.getItem("token");
     baseAxios
       .post(
         "api/privacy",
-        { content: content },
+        { policy: content },
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -19,11 +22,13 @@ const PrivacyPolicy = () => {
         }
       )
       .then((res) => {
+        console.log(res);
         Swal.fire("Good job!", res.data.message, "success");
       })
       .catch((err) => {
-        Swal.fire("Oops!", err.response.data.message, "error");
+        console.log(err);
       });
+      console.log("cliked 45");
   };
 
   useEffect(() => {
