@@ -1,6 +1,27 @@
 import React from "react";
+import baseAxios from "../../../Config";
 
 const Status = () => {
+  const [data, setData] = React.useState()
+  const token = localStorage.getItem("token");
+
+  React.useEffect(() => {
+    baseAxios
+      .get("/api/payment/income", {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log(data);
   return (
     <div className="flex gap-11">
       <div className="bg-primary w-[330px] rounded-[20px]">
@@ -29,7 +50,7 @@ const Status = () => {
           </div>
           <div className="mt-[16px]">
             <h1 className="text-white text-3xl font-semibold font-['Montserrat']">
-              $ 22,500.00
+              $ {data?.totalIncome}
             </h1>
           </div>
         </div>
@@ -60,7 +81,7 @@ const Status = () => {
           </div>
           <div className="mt-[16px]">
             <h1 className="text-white text-3xl font-semibold font-['Montserrat']">
-              $ 5000.00
+              $ {data?.dailyTotalIncome}
             </h1>
           </div>
         </div>
@@ -91,7 +112,7 @@ const Status = () => {
           </div>
           <div className="mt-[16px]">
             <h1 className="text-white text-3xl font-semibold font-['Montserrat']">
-              $ 9,500.00
+              $ {data?.weeklyTotalIncome}
             </h1>
           </div>
         </div>
@@ -122,7 +143,7 @@ const Status = () => {
           </div>
           <div className="mt-[16px]">
             <h1 className="text-white text-3xl font-semibold font-['Montserrat']">
-              $ 15,500.00
+              $ {data?.monthlyTotalIncome}
             </h1>
           </div>
         </div>
