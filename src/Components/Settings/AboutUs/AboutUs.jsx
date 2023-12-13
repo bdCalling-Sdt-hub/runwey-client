@@ -38,6 +38,8 @@ const AboutUs = () => {
       })
       .then((res) => {
         setContent(res.data.data.aboutUs);
+
+        console.log(res.data.data.aboutUs);
       })
       .catch((err) => console.log(err));
   }, []);

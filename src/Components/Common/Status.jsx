@@ -21,7 +21,6 @@ const Status = () => {
       });
   }, []);
 
-  console.log(data);
   return (
     <div className="flex gap-11">
       <div className="bg-primary w-[330px] rounded-[20px]">
