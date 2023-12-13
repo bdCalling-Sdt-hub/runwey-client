@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import testVideo from "./../../../public/tikvideo.mp4";
 import OccasionsSingleVideo from "./OccasionsSingleVideo";
 
-const OccasionsCard = () => {
+const OccasionsCard = ({ occasion }) => {
   const [isVideoDelete, setIsVideoDelete] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,12 +19,12 @@ const OccasionsCard = () => {
         <div className="relative flex justify-center  items-center mx-auto  ">
           <img
             className="rounded-xl h-[150px] w-[200px]  opacity-70"
-            src="https://picsum.photos/200/300"
-            // src="https://i.ibb.co/fdL1pfM/5a76c9ebc122b99fe48d3e0e6278ea65.png"
+            src={occasion?.categoryImage}
+            // src="https://picsum.photos/200/300"
             alt=""
           />
           <p className="text-white absolute text-lg font-medium font-['Montserrat'] z-10">
-            Summer
+            {occasion?.name}
           </p>
         </div>
       </div>

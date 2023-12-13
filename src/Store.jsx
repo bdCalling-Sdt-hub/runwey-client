@@ -3,6 +3,7 @@ import SigninReducer from "./ReduxSlices/SigninSlice";
 import SubscriptionReducer from "./ReduxSlices/SubscriptionSlice";
 import BannerReducer from "./ReduxSlices/BannerSlice";
 import QuestionnaireReducer from "./ReduxSlices/QuestionnaireSlice";
+import OccasionsReducer from "./ReduxSlices/OccasionsSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const Store = configureStore({
     SubscriptionData: SubscriptionReducer,
     BannerData: BannerReducer,
     QuestionnaireData: QuestionnaireReducer,
+    OccasionsData: OccasionsReducer,
   },
 });
 
