@@ -4,6 +4,7 @@ import SubscriptionReducer from "./ReduxSlices/SubscriptionSlice";
 import BannerReducer from "./ReduxSlices/BannerSlice";
 import QuestionnaireReducer from "./ReduxSlices/QuestionnaireSlice";
 import OccasionsReducer from "./ReduxSlices/OccasionsSlice";
+import TransactionReducer from "./ReduxSlices/TransactionSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const Store = configureStore({
     BannerData: BannerReducer,
     QuestionnaireData: QuestionnaireReducer,
     OccasionsData: OccasionsReducer,
+    TransactionData: TransactionReducer,
   },
 });
 
