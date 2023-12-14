@@ -5,7 +5,6 @@ import SubscriptionAddModal from "./../../../Components/Essential/SubscriptionAd
 import { useDispatch, useSelector } from "react-redux";
 import { SubscriptionData } from "../../../ReduxSlices/SubscriptionSlice";
 import SubscriptionShowModal from "../../../Components/Essential/SubscriptionShowModal";
-import baseAxios from "../../../../Config";
 
 const SubscriptionPlan = () => {
   const dispatch = useDispatch();
