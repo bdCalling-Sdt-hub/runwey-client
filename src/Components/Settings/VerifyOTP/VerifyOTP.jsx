@@ -10,12 +10,11 @@ const VerifyOTP = () => {
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(60);
 
-
   const handleOtp = (e) => {
     e.preventDefault();
     console.log(otp);
     baseAxios
-      .post("/api/users/verify", { email: UserData.email, oneTimeCode : otp })
+      .post("/api/users/verify", { email: UserData.email, oneTimeCode: otp })
       .then((response) => {
         console.log(response);
         console.log(response.data.message);
@@ -23,7 +22,7 @@ const VerifyOTP = () => {
           icon: "success",
           title: response.data.message,
         });
-        navigate("/settings/update-password")
+        navigate("/settings/update-password");
       })
       .catch((error) => {
         console.log(error);
@@ -59,8 +58,6 @@ const VerifyOTP = () => {
       });
   };
 
-
-
   const navigate = useNavigate();
   return (
     <div className=" p-5">
@@ -92,6 +89,7 @@ const VerifyOTP = () => {
           <p
             className="text-primary text-lg font-semibold font-['Montserrat'] cursor-pointer 
           "
+            onClick={handleResendOtp}
           >
             Resend Code
           </p>
