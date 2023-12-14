@@ -47,7 +47,7 @@ const TransactionTable = () => {
       dataIndex: "transactionID",
       width: 150,
       render: (_, record) => (
-        <div>{record.paymentData.balance_transaction}</div>
+        <div>{record?.paymentData?.balance_transaction}</div>
       ),
     },
     {
@@ -65,7 +65,7 @@ const TransactionTable = () => {
       dataIndex: "name",
       width: 150,
       render: (_, record) => (
-        <div>{record.userId.fullName}</div>
+        <div>{record?.userId?.fullName}</div>
       ),
     },
     {
@@ -73,7 +73,7 @@ const TransactionTable = () => {
       dataIndex: "paymentMethod",
       width: 150,
       render: (_, record) => (
-        <div>{record.paymentData.payment_method_details.type}</div>
+        <div>{record?.paymentData?.payment_method_details?.type}</div>
       ),
     },
     {
@@ -95,7 +95,7 @@ const TransactionTable = () => {
           </div> */}
           <div className="w-[71px] h-[22px] px-3 py-1 bg-emerald-50 rounded justify-center items-center gap-2.5 inline-flex">
             <div className="text-green-600 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-            {record.paymentData.description}
+            {record?.paymentData?.description}
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@ const TransactionTable = () => {
             />
           </svg>
           <a
-            href={record.paymentData.receipt_url}
+            href={record?.paymentData?.receipt_url}
             target="_blank"
             rel="noopener noreferrer"
           >

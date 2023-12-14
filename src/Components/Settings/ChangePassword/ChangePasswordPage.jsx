@@ -1,8 +1,36 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import baseAxios from "../../../../Config";
+import Swal from "sweetalert2";
 
 const ChangePasswordPage = () => {
+  const UserData = JSON.parse(localStorage.getItem("yourInfo"));
+  let token = localStorage.getItem("token");
   const navigate = useNavigate();
+
+  const handleForgetPassword = () => {
+    baseAxios
+    .post("/api/users/forget-password", { email: UserData.email })
+    .then((response) => {
+      console.log(response);
+      console.log(response.data.message);
+      Swal.fire({
+        icon: "success",
+        title: "OTP Sent Successfully",
+        text: "Please Check Your Email!",
+      });
+      navigate("/settings/verify-otp");
+    })
+    .catch((error) => {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message,
+      });
+    });
+    
+  };
   return (
     <div className="p-5">
       <div className="mb-4 w-[750px]">
@@ -36,7 +64,7 @@ const ChangePasswordPage = () => {
         />
       </div>
       <p
-        onClick={() => navigate("/settings/verify-otp")}
+        onClick={handleForgetPassword}
         className="text-lg cursor-pointer text-primary font-semibold font-['Montserrat']"
       >
         Forget Password?

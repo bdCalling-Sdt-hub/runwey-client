@@ -8,7 +8,7 @@ function DashboardOverview() {
         <div>
           <p className="">Dashboard Overview</p>
           <h1 className="text-[44px] font-semibold font-['Montserrat']">
-            Hello 
+            Hello {UserData?.fullName}
           </h1>
         </div>
         <div className="flex justify-between mt-[20px]">
