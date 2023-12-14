@@ -23,6 +23,7 @@ const SubscriptionPlan = () => {
     dispatch(SubscriptionData(data));
   }, [reload]);
 
+
   const showModal = () => {
     setIsModalOpen(true);
   };

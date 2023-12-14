@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from "antd";
 import testVideo from "./../../../public/tikvideo.mp4";
-const UsersTable = () => {
+const UsersTable = ({ allUser }) => {
+  let users = allUser?.users;
+  let pagination = allUser?.pagination;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const showModal = () => {
@@ -9,23 +11,22 @@ const UsersTable = () => {
   };
   const handleCancel = () => {
     setIsModalOpen(false);
-    console.log(isModalOpen2)
+    console.log(isModalOpen2);
   };
 
-
-  const showVideo=()=>{
+  const showVideo = () => {
     setIsModalOpen2(true);
-  }
+  };
 
-  const cancelVideo=()=>{
+  const cancelVideo = () => {
     setIsModalOpen2(false);
-    console.log(isModalOpen2)
-  }
+    console.log(isModalOpen2);
+  };
 
   const columns = [
     {
       title: "User Name",
-      dataIndex: "username",
+      dataIndex: "fullName",
       width: 150,
     },
     {
@@ -35,12 +36,12 @@ const UsersTable = () => {
     },
     {
       title: "Phone Number",
-      dataIndex: "phone",
+      dataIndex: "phoneNumber",
       width: 150,
     },
     {
       title: "Package",
-      dataIndex: "package",
+      dataIndex: "subcriptionType",
       width: 190,
     },
 
@@ -96,31 +97,17 @@ const UsersTable = () => {
     },
   ];
 
-  const data = [];
-  for (let i = 0; i < 10; i++) {
-    data.push({
-      key: i,
-      username: `Edward King ${i}`,
-      email: `Edward${i}@gmail.com`,
-      phone: `0130569810${i}`,
-      paymentMethod: "Credit Card",
-      package: "Basic",
-      action: "View",
-    });
-  }
   return (
     <div className="w-16 md:w-[500px] lg:w-[1080px]">
       <Table
         headerBg="red"
         className="= p-5 bg-white rounded-2xl border-[1px] border-secondary"
         columns={columns}
-        dataSource={data}
+        dataSource={users}
         scroll={{
           y: 480,
         }}
       />
-
-
 
       <Modal
         open={isModalOpen}
@@ -134,11 +121,17 @@ const UsersTable = () => {
         footer={[]}
         width={1000}
       >
-        <div className=" flex justify-between" style={{ borderBottom: "2px solid #6611e0", paddingBottom: 10, marginBottom: "10px" }}>
+        <div
+          className=" flex justify-between"
+          style={{
+            borderBottom: "2px solid #6611e0",
+            paddingBottom: 10,
+            marginBottom: "10px",
+          }}
+        >
           <div>
-
             <div className="flex gap-4">
-              <div >
+              <div>
                 <img
                   style={{ borderRadius: "10px" }}
                   className="w-[180px] h-[150px]"
@@ -160,73 +153,136 @@ const UsersTable = () => {
                   Gender: <span className="font-semibold">Male</span>
                 </p>
                 <p className="text-md font-normal font-['Montserrat']">
-                  Date of birth: <span className="font-semibold">03-07-1995</span>
+                  Date of birth:{" "}
+                  <span className="font-semibold">03-07-1995</span>
                 </p>
                 <p className="text-md font-normal font-['Montserrat']">
-                  Address: <span className="font-semibold">Dhaka-Bangladesh</span>
+                  Address:{" "}
+                  <span className="font-semibold">Dhaka-Bangladesh</span>
                 </p>
               </div>
             </div>
           </div>
-
         </div>
-        <div style={{ border: "1px solid #e0cff9", borderRadius: "10px", padding: "20px", height: "50vh", overflowY: "scroll" }} >
+        <div
+          style={{
+            border: "1px solid #e0cff9",
+            borderRadius: "10px",
+            padding: "20px",
+            height: "50vh",
+            overflowY: "scroll",
+          }}
+        >
           <h1 className="text-md mb-[30px] font-semibold font-['Montserrat'] mt-[6px]">
             Uploaded videos
           </h1>
           <div className="">
-            {
-              [...Array(20).keys()].map(() => {
-                return (
-
-                  <div className="flex justify-between" style={{ alignItems: "center", marginBottom: "10px" }}>
-                    <video
-                      width={50}
-
-
-                      className=" h-[50px]   bg-zinc-800 rounded-lg "
-                      src={testVideo}
-                      onClick={()=>showVideo()}
-                    ></video>
-                    <h4>Sheath Weeding gown</h4>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <img width="15" height="10" src="https://img.icons8.com/ios/50/clock--v1.png" alt="clock--v1" />
-                      <h1>0:10s</h1>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <img width="15" height="10" src="https://img.icons8.com/ios-filled/50/like--v1.png" alt="like--v1" />
-
-                      <h1>6k</h1>
-                    </div>
-
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-
-                      <img width="15" height="24" src="https://img.icons8.com/material-outlined/24/visible--v1.png" alt="visible--v1" />
-                      <h1>6k</h1>
-                    </div>
-
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-
-                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
-                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
-                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
-                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
-                      <img width="15" height="15" src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
-                    </div>
-                    <Button danger>Delete</Button>
+            {[...Array(20).keys()].map(() => {
+              return (
+                <div
+                  className="flex justify-between"
+                  style={{ alignItems: "center", marginBottom: "10px" }}
+                >
+                  <video
+                    width={50}
+                    className=" h-[50px]   bg-zinc-800 rounded-lg "
+                    src={testVideo}
+                    onClick={() => showVideo()}
+                  ></video>
+                  <h4>Sheath Weeding gown</h4>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      width="15"
+                      height="10"
+                      src="https://img.icons8.com/ios/50/clock--v1.png"
+                      alt="clock--v1"
+                    />
+                    <h1>0:10s</h1>
                   </div>
-                )
-              })
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      width="15"
+                      height="10"
+                      src="https://img.icons8.com/ios-filled/50/like--v1.png"
+                      alt="like--v1"
+                    />
 
-            }
+                    <h1>6k</h1>
+                  </div>
 
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      width="15"
+                      height="24"
+                      src="https://img.icons8.com/material-outlined/24/visible--v1.png"
+                      alt="visible--v1"
+                    />
+                    <h1>6k</h1>
+                  </div>
 
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      width="15"
+                      height="15"
+                      src="https://img.icons8.com/fluency/48/star--v1.png"
+                      alt="star--v1"
+                    />
+                    <img
+                      width="15"
+                      height="15"
+                      src="https://img.icons8.com/fluency/48/star--v1.png"
+                      alt="star--v1"
+                    />
+                    <img
+                      width="15"
+                      height="15"
+                      src="https://img.icons8.com/fluency/48/star--v1.png"
+                      alt="star--v1"
+                    />
+                    <img
+                      width="15"
+                      height="15"
+                      src="https://img.icons8.com/fluency/48/star--v1.png"
+                      alt="star--v1"
+                    />
+                    <img
+                      width="15"
+                      height="15"
+                      src="https://img.icons8.com/fluency/48/star--v1.png"
+                      alt="star--v1"
+                    />
+                  </div>
+                  <Button danger>Delete</Button>
+                </div>
+              );
+            })}
           </div>
         </div>
       </Modal>
-
-
-
 
       <Modal
         open={isModalOpen2}
@@ -240,16 +296,20 @@ const UsersTable = () => {
         footer={[]}
         width={1000}
       >
-        <div className=" flex justify-between" style={{ borderBottom: "2px solid #6611e0", paddingBottom: 10, marginBottom: "10px" }}>
-        <video
-                      width={950}
-                      autoPlay={true}
-
-                      className=" h-[400px]   bg-zinc-800 rounded-lg "
-                      src={testVideo}
-                     
-                    ></video>
-         
+        <div
+          className=" flex justify-between"
+          style={{
+            borderBottom: "2px solid #6611e0",
+            paddingBottom: 10,
+            marginBottom: "10px",
+          }}
+        >
+          <video
+            width={950}
+            autoPlay={true}
+            className=" h-[400px]   bg-zinc-800 rounded-lg "
+            src={testVideo}
+          ></video>
         </div>
       </Modal>
     </div>
