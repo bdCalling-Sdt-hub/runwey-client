@@ -66,6 +66,22 @@ const Occasions = () => {
       });
   };
 
+  const handleDelete = (id) => {
+    baseAxios
+      .delete(`api/categories/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setReload(reload + 1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className="mt-[24px] h-[780px] ">
       <div className="p-[30px]">
@@ -85,7 +101,7 @@ const Occasions = () => {
         <div className="grid grid-cols-6">
           {
             data.map((occasion) => (
-              <OccasionsCard occasion={occasion} />
+              <OccasionsCard occasion={occasion} handleDelete={handleDelete} />
             ))
           }
         </div>

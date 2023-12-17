@@ -5,6 +5,7 @@ import SubscriptionAddModal from "./../../../Components/Essential/SubscriptionAd
 import { useDispatch, useSelector } from "react-redux";
 import { SubscriptionData } from "../../../ReduxSlices/SubscriptionSlice";
 import SubscriptionShowModal from "../../../Components/Essential/SubscriptionShowModal";
+import baseAxios from "../../../../Config";
 
 const SubscriptionPlan = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,24 @@ const SubscriptionPlan = () => {
   };
 
 
+  const handleDelete = (id) => {
+    console.log(id);
+    baseAxios.delete(`/api/subscribe/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        setReload(reload + 1);
+        setIsModalOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
       <div className="p-[30px]">
@@ -56,6 +75,7 @@ const SubscriptionPlan = () => {
               setReload={setReload}
               handleCancel={handleCancel}
               isModalOpen={isModalOpen}
+              handleDelete={handleDelete}
             />
           ))}
           <AddPlan

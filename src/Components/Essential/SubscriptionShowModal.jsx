@@ -1,12 +1,14 @@
 import { Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import { PiCrownSimpleFill } from "react-icons/pi";
+import baseAxios from "../../../Config";
 
 const SubscriptionShowModal = ({
   isModalOpen,
   handleCancel,
   modalData,
   setModalData,
+  handleDelete
 }) => {
   const [packageName, setPackageName] = useState("Package");
   const [packagePrice, setPackagePrice] = useState("Amount");
@@ -19,6 +21,8 @@ const SubscriptionShowModal = ({
     useState("#D6D6D6");
   const [packageMainColorOpacity3, setPackageMainColorOpacity3] =
     useState("#D6D6D6");
+
+    const token = localStorage.getItem("token");
 
   // useEffect(() => {
   //   if(modalData){
@@ -33,17 +37,6 @@ const SubscriptionShowModal = ({
   //   }
   // }
   // , [modalData])
-
-  const handleDelete = (id) => {
-    console.log(id);
-    // alert("Are you sure you want to delete this package ?")
-    // baseAxios.delete(`api/subscribe/${id}`, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
-    // setReload(reload + 1);
-  };
 
   return (
     <div>
@@ -232,7 +225,7 @@ const SubscriptionShowModal = ({
         </div>
         <div className="flex gap-5">
           <button
-            onClick={handleDelete(modalData?._id)}
+            onClick={()=>handleDelete(modalData?._id)}
             className="bg-white  text-lg font-semibold font-['Montserrat'] border-primary border-[1px] w-full text-pr rounded-[10px] px-10 py-2 mt-5"
           >
             Delete Package

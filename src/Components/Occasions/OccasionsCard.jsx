@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import testVideo from "./../../../public/tikvideo.mp4";
 import OccasionsSingleVideo from "./OccasionsSingleVideo";
 
-const OccasionsCard = ({ occasion }) => {
+const OccasionsCard = ({ occasion,handleDelete }) => {
   const [isVideoDelete, setIsVideoDelete] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +55,7 @@ const OccasionsCard = ({ occasion }) => {
                   Upload
                 </div>
               </div>
-              <div className="w-[120px] cursor-pointer h-9 p-2.5 bg-white rounded-lg border border-primary justify-center items-center gap-2.5 inline-flex">
+              <div onClick={()=>handleDelete(occasion?._id)} className="w-[120px] cursor-pointer h-9 p-2.5 bg-white rounded-lg border border-primary justify-center items-center gap-2.5 inline-flex">
                 <div className="text-primary text-sm font-semibold font-['Montserrat']">
                   Delete
                 </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { PiCrownSimpleFill } from "react-icons/pi";
 import SubscriptionShowModal from "./SubscriptionShowModal";
 
-const SinglePlan = ({ plan, setModalData, showModal,setReload,handleCancel,isModalOpen,modalData }) => {
+const SinglePlan = ({ plan, setModalData, showModal,setReload,handleCancel,isModalOpen,modalData,handleDelete }) => {
   return (
     <>
       <div
@@ -75,6 +75,7 @@ const SinglePlan = ({ plan, setModalData, showModal,setReload,handleCancel,isMod
             setReload={setReload}
             handleCancel={handleCancel}
             isModalOpen={isModalOpen}
+            handleDelete={handleDelete}
           />
     </>
   );
