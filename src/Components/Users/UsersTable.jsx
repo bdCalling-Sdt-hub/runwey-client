@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from "antd";
 import testVideo from "./../../../public/tikvideo.mp4";
+import UploadedVideos from "./UploadedVideos";
 const UsersTable = ({ allUser }) => {
   let users = allUser?.users;
   let pagination = allUser?.pagination;
@@ -92,6 +93,86 @@ const UsersTable = ({ allUser }) => {
               strokeLinejoin="round"
             />
           </svg>
+          <Modal
+            open={isModalOpen}
+            title={
+              <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
+                <span>User information</span>
+              </div>
+            }
+            onCancel={handleCancel}
+            centered
+            footer={[]}
+            width={1000}
+          >
+            <div
+              className=" flex justify-between"
+              style={{
+                borderBottom: "2px solid #6611e0",
+                paddingBottom: 10,
+                marginBottom: "10px",
+              }}
+            >
+              <div>
+                <div className="flex gap-4">
+                  <div>
+                    <img
+                      style={{ borderRadius: "10px" }}
+                      className="w-[180px] h-[150px]"
+                      src="https://i.ibb.co/pQpXBmt/b2f2b8d89771068978e21e99c0397bef.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="mt-2">
+                    <p className="text-md font-normal font-['Montserrat']">
+                      Name:{" "}
+                      <span className="font-semibold">{record?.fullName}</span>
+                    </p>
+                    <p className="text-md font-normal font-['Montserrat']">
+                      Email:{" "}
+                      <span className="font-semibold">{record?.email}</span>
+                    </p>
+                    <p className="text-md font-normal font-['Montserrat']">
+                      Phone:{" "}
+                      <span className="font-semibold">
+                        {record?.phoneNumber}
+                      </span>
+                    </p>
+                    <p className="text-md font-normal font-['Montserrat']">
+                      Gender:{" "}
+                      <span className="font-semibold">{record?.gender}</span>
+                    </p>
+                    <p className="text-md font-normal font-['Montserrat']">
+                      Date of birth:{" "}
+                      <span className="font-semibold">
+                        {record?.dateOfBirth}
+                      </span>
+                    </p>
+                    <p className="text-md font-normal font-['Montserrat']">
+                      Address:{" "}
+                      <span className="font-semibold">{record?.address}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                border: "1px solid #e0cff9",
+                borderRadius: "10px",
+                padding: "20px",
+                height: "50vh",
+                overflowY: "scroll",
+              }}
+            >
+              <h1 className="text-md mb-[30px] font-semibold font-['Montserrat'] mt-[6px]">
+                Uploaded videos
+              </h1>
+              <div className="">
+                <UploadedVideos record={record} />
+              </div>
+            </div>
+          </Modal>
         </div>
       ),
     },
@@ -109,7 +190,7 @@ const UsersTable = ({ allUser }) => {
         }}
       />
 
-      <Modal
+      {/* <Modal
         open={isModalOpen}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
@@ -177,7 +258,7 @@ const UsersTable = ({ allUser }) => {
             Uploaded videos
           </h1>
           <div className="">
-            {[...Array(20).keys()].map(() => {
+            {[...Array(3).keys()].map(() => {
               return (
                 <div
                   className="flex justify-between"
@@ -282,9 +363,9 @@ const UsersTable = ({ allUser }) => {
             })}
           </div>
         </div>
-      </Modal>
+      </Modal> */}
 
-      <Modal
+      {/* <Modal
         open={isModalOpen2}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
@@ -311,7 +392,7 @@ const UsersTable = ({ allUser }) => {
             src={testVideo}
           ></video>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
