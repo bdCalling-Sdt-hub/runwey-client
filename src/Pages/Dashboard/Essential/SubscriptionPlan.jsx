@@ -22,7 +22,6 @@ const SubscriptionPlan = () => {
     dispatch(SubscriptionData(data));
   }, [reload]);
 
-
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -35,6 +34,8 @@ const SubscriptionPlan = () => {
   };
   const handleAddCancel = () => {
     setIsAddModalOpen(false);
+    // here sum two number
+    
   };
 
 
