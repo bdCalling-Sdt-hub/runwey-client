@@ -47,7 +47,7 @@ const UploadRequest = () => {
           marginRight: "10px",
         }}
       >
-        {[...Array(160).keys()].map(() => {
+        {[...Array(16).keys()].map(() => {
           return (
             <Col
               className="gutter-row"

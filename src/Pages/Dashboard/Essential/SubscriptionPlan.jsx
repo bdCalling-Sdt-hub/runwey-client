@@ -52,6 +52,10 @@ const SubscriptionPlan = () => {
               showModal={showModal}
               key={plan._id}
               plan={plan}
+              modalData={modalData}
+              setReload={setReload}
+              handleCancel={handleCancel}
+              isModalOpen={isModalOpen}
             />
           ))}
           <AddPlan
@@ -64,13 +68,13 @@ const SubscriptionPlan = () => {
             handleAddCancel={handleAddCancel}
             isAddModalOpen={isAddModalOpen}
           />
-          <SubscriptionShowModal
+          {/* <SubscriptionShowModal
             setModalData={setModalData}
             modalData={modalData}
             setReload={setReload}
             handleCancel={handleCancel}
             isModalOpen={isModalOpen}
-          />
+          /> */}
         </div>
       </div>
     </div>

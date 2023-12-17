@@ -44,7 +44,7 @@ const CreatorRequest = () => {
           marginRight: "10px",
         }}
       >
-        {[...Array(160).keys()].map(() => {
+        {[...Array(15).keys()].map(() => {
           return (
             <Col
               className="gutter-row"
