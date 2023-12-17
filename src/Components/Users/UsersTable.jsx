@@ -119,7 +119,7 @@ const UsersTable = ({ allUser }) => {
                     <img
                       style={{ borderRadius: "10px" }}
                       className="w-[180px] h-[150px]"
-                      src="https://i.ibb.co/pQpXBmt/b2f2b8d89771068978e21e99c0397bef.png"
+                      src={record?.image?.publicFileUrl}
                       alt=""
                     />
                   </div>

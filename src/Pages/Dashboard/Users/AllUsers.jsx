@@ -24,8 +24,22 @@ const AllUsers = () => {
   const [allUser, setAllUser] = useState();
   console.log(allUser);
 
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState('all');
   const onChange = (e) => {
+    baseAxios
+    .get(`api/users/sort?search=${e.target.value}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      setAllUser(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
@@ -47,7 +61,7 @@ const AllUsers = () => {
 
   useEffect(() => {
     baseAxios
-      .get(`api/users/sort?search=all`, {
+      .get(`api/users/sort?search=${value}`, {
         headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${token}`,
