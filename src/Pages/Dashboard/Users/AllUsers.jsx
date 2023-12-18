@@ -7,13 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import "./User.css";
 import baseAxios from "../../../../Config";
 import { SubscriptionData } from "../../../ReduxSlices/SubscriptionSlice";
+
+
 const style = {
   padding: "8px 20px",
-
   color: "white",
   borderRadius: "10px",
   lineHeight: "35px",
 };
+
+
 const AllUsers = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");

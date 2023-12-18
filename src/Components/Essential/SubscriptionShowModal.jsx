@@ -8,7 +8,10 @@ const SubscriptionShowModal = ({
   handleCancel,
   modalData,
   setModalData,
-  handleDelete
+  setReload,
+  handleDelete,
+  setIsModalOpen,
+  reload
 }) => {
   const [packageName, setPackageName] = useState("Package");
   const [packagePrice, setPackagePrice] = useState("Amount");
@@ -22,21 +25,47 @@ const SubscriptionShowModal = ({
   const [packageMainColorOpacity3, setPackageMainColorOpacity3] =
     useState("#D6D6D6");
 
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-  // useEffect(() => {
-  //   if(modalData){
-  //     setPackageName(modalData.name)
-  //     setPackagePrice(modalData.price)
-  //     setPackageValidity(modalData.validity)
-  //     setVideoLimit(modalData.limitation)
-  //     setPackageMainColor(modalData.mainColor)
-  //     setPackageMainColorOpacity(modalData.opacity1)
-  //     setPackageMainColorOpacity2(modalData.opacity2)
-  //     setPackageMainColorOpacity3(modalData.opacity3)
-  //   }
-  // }
-  // , [modalData])
+  useEffect(() => {
+    if (modalData) {
+      setPackageName(modalData.name);
+      setPackagePrice(modalData.price);
+      setPackageValidity(modalData.validity);
+      setVideoLimit(modalData.limitation);
+      setPackageMainColor(modalData.mainColor);
+      setPackageMainColorOpacity(modalData.opacity1);
+      setPackageMainColorOpacity2(modalData.opacity2);
+      setPackageMainColorOpacity3(modalData.opacity3);
+    }
+  }, [modalData]);
+
+  const handleUpdate = () => {
+    let data = {
+      name: packageName,
+      price: packagePrice,
+      validity: packageValidity,
+      limitation: videoLimit,
+      mainColor: packageMainColor,
+      opacity1: packageMainColorOpacity,
+      opacity2: packageMainColorOpacity2,
+      opacity3: packageMainColorOpacity3,
+    };
+console.log(data);
+    baseAxios
+      .patch(`/api/subscribe/${modalData?._id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setReload(reload + 1);
+        setIsModalOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -225,12 +254,12 @@ const SubscriptionShowModal = ({
         </div>
         <div className="flex gap-5">
           <button
-            onClick={()=>handleDelete(modalData?._id)}
+            onClick={() => handleDelete(modalData?._id)}
             className="bg-white  text-lg font-semibold font-['Montserrat'] border-primary border-[1px] w-full text-pr rounded-[10px] px-10 py-2 mt-5"
           >
             Delete Package
           </button>
-          <button className="bg-primary text-lg font-semibold font-['Montserrat'] w-full text-white rounded-[10px] px-10 py-2 mt-5">
+          <button onClick={handleUpdate} className="bg-primary text-lg font-semibold font-['Montserrat'] w-full text-white rounded-[10px] px-10 py-2 mt-5">
             Update Package
           </button>
         </div>

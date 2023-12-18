@@ -31,12 +31,12 @@ const SubscriptionPlan = () => {
     setIsAddModalOpen(true);
   };
   const handleCancel = () => {
+    window.location.reload();
     setIsModalOpen(false);
   };
   const handleAddCancel = () => {
     setIsAddModalOpen(false);
-    // here sum two number
-    
+  
   };
 
 
@@ -71,10 +71,12 @@ const SubscriptionPlan = () => {
               showModal={showModal}
               key={plan._id}
               plan={plan}
+              setIsModalOpen={setIsModalOpen}
               modalData={modalData}
               setReload={setReload}
               handleCancel={handleCancel}
               isModalOpen={isModalOpen}
+              reload={reload}
               handleDelete={handleDelete}
             />
           ))}
