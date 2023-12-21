@@ -1,11 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Legend } from "recharts";
-
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-];
+import baseAxios from "../../../Config";
 
 const COLORS = ["#6611E0", "#A370EC", "#E0CFF9"];
 
@@ -37,6 +32,27 @@ const renderCustomizedLabel = ({
 };
 
 const GenderRatio = () => {
+  const [genderRatio, setGenderRatio] = useState();
+  useEffect(() => {
+    baseAxios
+      .get("api/users/gender-ratio")
+      .then((res) => {
+        setGenderRatio(res.data.data.attributes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  
+const data = [
+  { name: "Group A", value: genderRatio?.femaleCount },
+  { name: "Group B", value: genderRatio?.maleCount},
+  { name: "Group C", value: genderRatio?.otherCount },
+];
+
+
+  console.log(genderRatio);
   return (
     <div>
       <div className="w-[410px]  h-[250px] relative bg-white rounded-[30px] border border-violet-200 ml-4 mt-[24px]">
@@ -48,19 +64,19 @@ const GenderRatio = () => {
             <div className="justify-start items-center gap-4 inline-flex">
               <div className="w-6 h-6 bg-violet-700 rounded" />
               <div className="text-zinc-800 text-sm font-normal font-['Montserrat']">
-                Female (55%)
+                Female ({(genderRatio?.femalePercentage || 0).toFixed(0)}%)
               </div>
             </div>
             <div className="justify-start items-center gap-4 inline-flex">
               <div className="w-6 h-6 bg-purple-500 rounded" />
               <div className="text-zinc-800 text-sm font-normal font-['Montserrat']">
-                Male (30%)
+                Male ({(genderRatio?.malePercentage || 0).toFixed(0)}%)
               </div>
             </div>
             <div className="justify-start items-center gap-4 inline-flex">
               <div className="w-6 h-6 bg-violet-200 rounded" />
               <div className="text-zinc-800 text-sm font-normal font-['Montserrat']">
-                Others (15%)
+                Others ({(genderRatio?.otherPercentage || 0).toFixed(0)}%)
               </div>
             </div>
           </div>
