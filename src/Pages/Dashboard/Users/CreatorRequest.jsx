@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row, Button, Badge } from "antd";
 import { Pagination } from "antd";
+import baseAxios from "../../../../Config";
+import { useDispatch, useSelector } from "react-redux";
+import { CreatorRequestData } from "../../../ReduxSlices/CreatorRequestSlice";
 const style = {
   background: "#fff",
   padding: "20px 10px",
@@ -9,7 +12,45 @@ const style = {
   display: "flex",
 };
 
+
 const CreatorRequest = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.CreatorRequestData.CreatorRequestList);
+  const paginationData = useSelector((state) => state.CreatorRequestData.pagination);
+  
+  const [reload, setReload] = React.useState(0);
+
+  console.log(paginationData);
+
+  useEffect(() => {
+    let data = {
+      page: 1,
+    };
+    dispatch(CreatorRequestData(data));
+  }, [reload]);
+  
+  console.log(data);
+
+  // React.useEffect(() => {
+  //   baseAxios
+  //     .get("api/users/pending-creator-list")
+  //     .then((res) => setData(res.data.data));
+  // }, []);
+
+
+  const handleAccept = async (id) => {
+    console.log(id);
+    try {
+      const response = await baseAxios.post(
+        `api/users/accept-creator/${id}`,
+        {}
+      );
+      setReload(reload + 1);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div
       style={{
@@ -30,9 +71,9 @@ const CreatorRequest = () => {
           paddingBottom: "10px",
         }}
       >
-        Pending Content Creator Requests{" "}
-        <span>
-          <Badge count={30} style={{ backgroundColor: "#6611e0" }}></Badge>
+        Pending Content Creator Requests
+        <span className="ml-2">
+          <Badge count={paginationData?.totalDocuments} style={{ backgroundColor: "#6611e0" }}></Badge>
         </span>{" "}
       </h1>
       <Row
@@ -44,7 +85,7 @@ const CreatorRequest = () => {
           marginRight: "10px",
         }}
       >
-        {[...Array(15).keys()].map(() => {
+        {data?.map((user) => {
           return (
             <Col
               className="gutter-row"
@@ -53,13 +94,14 @@ const CreatorRequest = () => {
             >
               <div style={style}>
                 <div style={{ marginRight: "10px" }}>
+                  <p>{}</p>
                   <img
-                    style={{
-                      height: "60px",
-                      width: "60px",
-                      borderRadius: "100%",
-                    }}
-                    src="https://img.freepik.com/premium-photo/captivating-smile-radiant-young-indian-model-showcases-perfect-dental-care_983420-9652.jpg"
+                    // style={{
+                    //   height: "0px",
+                    //   width: "60px",
+                    //   borderRadius: "100%",
+                    // }}
+                    src={user?.image?.publicFileUrl}
                   />
                 </div>
                 <div>
@@ -70,7 +112,7 @@ const CreatorRequest = () => {
                       fontWeight: 500,
                     }}
                   >
-                    Alissa wants to be a content creator
+                    {user?.fullName} wants to be a content creator
                   </h4>
                   <div style={{ display: "flex" }}>
                     <Button
@@ -86,6 +128,7 @@ const CreatorRequest = () => {
                     </Button>
 
                     <Button
+                      onClick={(e) => handleAccept(user?._id)}
                       style={{
                         marginRight: "10px",
                         backgroundColor: "#6611e0",
