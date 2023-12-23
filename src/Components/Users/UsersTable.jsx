@@ -1,28 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Modal, Table } from "antd";
 import testVideo from "./../../../public/tikvideo.mp4";
 import UploadedVideos from "./UploadedVideos";
+import baseAxios from "../../../Config";
 const UsersTable = ({ allUser }) => {
+  const videoRef = useRef(null);
   let users = allUser?.users;
   let pagination = allUser?.pagination;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
-  const showModal = () => {
+  const [uploadedVideos, setUploadedVideos] = useState();
+  const [singleVideo, setSingleVideo] = useState();
+  const [modalUser, setModalUser] = useState();
+
+  console.log(singleVideo);
+
+  const showModal = (user) => {
+    setModalUser(user);
     setIsModalOpen(true);
+    baseAxios
+      .get(`/api/contents/contents-by-creator/${user?._id}`)
+      .then((res) => {
+        console.log(res.data.data.attributes);
+        setUploadedVideos(res.data.data.attributes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const handleCancel = () => {
     setIsModalOpen(false);
     console.log(isModalOpen2);
   };
 
-  const showVideo = () => {
+  const showVideo = (url) => {
+    setSingleVideo(url);
     setIsModalOpen2(true);
+    const video = videoRef?.current;
+    if (video?.paused) {
+      video?.play();
+    }
   };
 
   const cancelVideo = () => {
     setIsModalOpen2(false);
     console.log(isModalOpen2);
+    const video = videoRef?.current;
+    if (!video?.paused) {
+      video?.pause();
+    }
   };
+
+  function formatDuration(duration) {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}s`;
+  }
 
   const columns = [
     {
@@ -70,7 +104,7 @@ const UsersTable = ({ allUser }) => {
             />
           </svg>
           <svg
-            onClick={showModal}
+            onClick={(e) => showModal(record)}
             className="ml-[16px] cursor-pointer"
             width="22"
             height="22"
@@ -93,7 +127,7 @@ const UsersTable = ({ allUser }) => {
               strokeLinejoin="round"
             />
           </svg>
-          <Modal
+          {/* <Modal
             open={isModalOpen}
             title={
               <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
@@ -172,7 +206,7 @@ const UsersTable = ({ allUser }) => {
                 <UploadedVideos record={record} />
               </div>
             </div>
-          </Modal>
+          </Modal> */}
         </div>
       ),
     },
@@ -190,7 +224,7 @@ const UsersTable = ({ allUser }) => {
         }}
       />
 
-      {/* <Modal
+      <Modal
         open={isModalOpen}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
@@ -222,24 +256,32 @@ const UsersTable = ({ allUser }) => {
               </div>
               <div className="mt-2">
                 <p className="text-md font-normal font-['Montserrat']">
-                  Name: <span className="font-semibold">Edward King</span>
+                  Name:{" "}
+                  <span className="font-semibold">{modalUser?.fullName}</span>
                 </p>
                 <p className="text-md font-normal font-['Montserrat']">
-                  Email: <span className="font-semibold">info@gmail.com</span>
+                  Email:{" "}
+                  <span className="font-semibold">{modalUser?.email}</span>
                 </p>
                 <p className="text-md font-normal font-['Montserrat']">
-                  Phone: <span className="font-semibold">01506987620</span>
+                  Phone:{" "}
+                  <span className="font-semibold">
+                    {modalUser?.phoneNumber}
+                  </span>
                 </p>
                 <p className="text-md font-normal font-['Montserrat']">
-                  Gender: <span className="font-semibold">Male</span>
+                  Gender:{" "}
+                  <span className="font-semibold">{modalUser?.gender}</span>
                 </p>
                 <p className="text-md font-normal font-['Montserrat']">
                   Date of birth:{" "}
-                  <span className="font-semibold">03-07-1995</span>
+                  <span className="font-semibold">
+                    {modalUser?.dateOfBirth}
+                  </span>
                 </p>
                 <p className="text-md font-normal font-['Montserrat']">
                   Address:{" "}
-                  <span className="font-semibold">Dhaka-Bangladesh</span>
+                  <span className="font-semibold">{modalUser?.address}</span>
                 </p>
               </div>
             </div>
@@ -258,19 +300,49 @@ const UsersTable = ({ allUser }) => {
             Uploaded videos
           </h1>
           <div className="">
-            {[...Array(3).keys()].map(() => {
+            {uploadedVideos?.videos?.map((video) => {
               return (
                 <div
                   className="flex justify-between"
                   style={{ alignItems: "center", marginBottom: "10px" }}
                 >
-                  <video
+                  {/* <video
                     width={50}
                     className=" h-[50px]   bg-zinc-800 rounded-lg "
                     src={testVideo}
                     onClick={() => showVideo()}
-                  ></video>
-                  <h4>Sheath Weeding gown</h4>
+                  ></video> */}
+                  <div
+                    className="relative cursor-pointer"
+                    onClick={() => showVideo(video?.videoPath)}
+                  >
+                    <img
+                      className="w-[50px] h-[50px] rounded-lg"
+                      src={video?.thumbnailPath}
+                      alt=""
+                    />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6 absolute bottom-3 right-3 text-white"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
+                      />
+                    </svg>
+                  </div>
+                  {/* <img src={video?.thumbnailPath} alt="" /> */}
+                  <h4>{video?.title}</h4>
                   <div
                     style={{
                       display: "flex",
@@ -284,7 +356,7 @@ const UsersTable = ({ allUser }) => {
                       src="https://img.icons8.com/ios/50/clock--v1.png"
                       alt="clock--v1"
                     />
-                    <h1>0:10s</h1>
+                    <h1>{formatDuration(video?.duration)}</h1>
                   </div>
                   <div
                     style={{
@@ -292,6 +364,7 @@ const UsersTable = ({ allUser }) => {
                       justifyContent: "space-between",
                       alignItems: "center",
                     }}
+                    className="gap-2"
                   >
                     <img
                       width="15"
@@ -300,7 +373,7 @@ const UsersTable = ({ allUser }) => {
                       alt="like--v1"
                     />
 
-                    <h1>6k</h1>
+                    <h1>{video?.likes}</h1>
                   </div>
 
                   <div
@@ -309,6 +382,7 @@ const UsersTable = ({ allUser }) => {
                       justifyContent: "space-between",
                       alignItems: "center",
                     }}
+                    className="gap-2"
                   >
                     <img
                       width="15"
@@ -316,7 +390,7 @@ const UsersTable = ({ allUser }) => {
                       src="https://img.icons8.com/material-outlined/24/visible--v1.png"
                       alt="visible--v1"
                     />
-                    <h1>6k</h1>
+                    <h1>{video?.view}</h1>
                   </div>
 
                   <div
@@ -363,9 +437,9 @@ const UsersTable = ({ allUser }) => {
             })}
           </div>
         </div>
-      </Modal> */}
+      </Modal>
 
-      {/* <Modal
+      <Modal
         open={isModalOpen2}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
@@ -388,11 +462,14 @@ const UsersTable = ({ allUser }) => {
           <video
             width={950}
             autoPlay={true}
+            controlsList="nodownload"
+            controls
+            muted
             className=" h-[400px]   bg-zinc-800 rounded-lg "
-            src={testVideo}
+            src={singleVideo}
           ></video>
         </div>
-      </Modal> */}
+      </Modal>
     </div>
   );
 };
