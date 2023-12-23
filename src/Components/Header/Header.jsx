@@ -8,6 +8,7 @@ const Header = () => {
 
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = date.toLocaleDateString("en-US", options);
+  const userData = JSON.parse(localStorage.getItem("yourInfo"));
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -64,7 +65,7 @@ const Header = () => {
       <div onClick={(e) => navigate("/profile")} className="cursor-pointer">
         <img
           className="w-[50px] h-[45px] ml-3 rounded-lg"
-          src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+          src={userData?.image?.publicFileUrl}
           alt=""
         />
       </div>

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./User.css";
 import baseAxios from "../../../../Config";
 import { SubscriptionData } from "../../../ReduxSlices/SubscriptionSlice";
+import { AllUserData } from "../../../ReduxSlices/AllUserSlice";
 
 
 const style = {
@@ -23,14 +24,16 @@ const AllUsers = () => {
   const packageCategories = useSelector(
     (state) => state.SubscriptionData.SubscriptionList
   );
+  
   const [allUserStatus, setAllUserStatus] = useState();
   const [allUser, setAllUser] = useState();
   console.log(allUser);
 
   const [value, setValue] = useState('all');
+  const [page, setPage] = useState(1);
   const onChange = (e) => {
     baseAxios
-    .get(`api/users/sort?search=${e.target.value}`, {
+    .get(`api/users/sort?search=${e.target.value}&page=${page}`, {
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
@@ -46,6 +49,28 @@ const AllUsers = () => {
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
+
+  useEffect(() => {
+    AllUserData
+  },[])
+
+  const onPageChange = (page) => {
+    setPage(page);
+    baseAxios
+    .get(`api/users/sort?search=${value}&page=${page}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      setAllUser(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   useEffect(() => {
     baseAxios
       .get("api/users/details", {

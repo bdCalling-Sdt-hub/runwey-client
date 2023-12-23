@@ -17,7 +17,6 @@ export const UserData = createAsyncThunk(
         console.log(value.email, value.password)
       let response = await axios.post("api/users/sign-in", value);
       console.log(response.data)
-
       return response.data;
     } catch (error) {
       console.log(error);

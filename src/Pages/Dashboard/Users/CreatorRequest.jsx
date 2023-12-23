@@ -261,8 +261,7 @@ const CreatorRequest = () => {
                 </Button>
 
                 <Button
-                
-                   onClick={(e) => handleAccept(modalData?.userId?._id)}
+                  onClick={(e) => handleAccept(modalData?.userId?._id)}
                   style={{
                     marginRight: "10px",
                     backgroundColor: "#6611e0",

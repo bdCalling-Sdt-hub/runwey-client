@@ -3,24 +3,30 @@ import ImgCrop from "antd-img-crop";
 import dayjs from "dayjs";
 import React, { useState } from "react";
 import { LiaEditSolid } from "react-icons/lia";
+import baseAxios from "../../../../Config";
 
 const Profile = () => {
+  const userFromLocalStorage = JSON.parse(localStorage.getItem("yourInfo"));
   const [fileList, setFileList] = useState([
     {
       uid: "-1",
       name: "image.png",
       status: "done",
-      url: "https://i.ibb.co/k3qBHjn/e2fa7e1c075f3e11ddf04c79df9349c4-1.png",
+      url: userFromLocalStorage?.image?.publicFileUrl,
     },
   ]);
   const [profileEdit, setProfileEdit] = useState(false);
   const [file, setFile] = useState(null);
-  const [fullName, setFullName] = useState("Sahinur Islma");
-  const [email, setEmail] = useState("e@gami.com");
+  const [fullName, setFullName] = useState(userFromLocalStorage?.fullName);
+  const [email, setEmail] = useState(userFromLocalStorage?.email);
   const [image, setImage] = useState();
-  const [phoneNumber, setPhoneNumber] = useState("01878575454564");
-  const [dateOfBirth, setDateOfBirth] = useState("09-09-2000");
-  const [address, setAddress] = useState("kjslkjflsjkdk");
+  const [phoneNumber, setPhoneNumber] = useState(
+    userFromLocalStorage?.phoneNumber
+  );
+  const [dateOfBirth, setDateOfBirth] = useState(
+    userFromLocalStorage?.dateOfBirth
+  );
+  const [address, setAddress] = useState(userFromLocalStorage?.address);
 
   const handleDatePickerChange = (date, dateString) => {
     console.log(date, dateString);
@@ -39,6 +45,42 @@ const Profile = () => {
     // console.log(newFileList[0].originFileObj);
   };
 
+  const handleSubmit = () => {
+    const formData = new FormData();
+
+    // Append individual fields to the FormData object
+    formData.append("fullName", fullName);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("dateOfBirth", dateOfBirth);
+    formData.append("address", address);
+
+    // Append the image file if you have it (assuming 'image' is a File object)
+    if (image) {
+      formData.append("image", image);
+    }
+
+    console.log("form data", formData);
+
+    baseAxios
+      .put(`/api/users`, formData, {
+        headers: {
+          // Do not set Content-Type here; Axios will set it automatically for FormData
+          "Content-Type": "multipart/form-data",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        // here localsotrage is updated
+        localStorage.setItem(
+          "yourInfo",
+          JSON.stringify(res.data.data.attributes)
+        );
+        setProfileEdit(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="mt-[24px] border-secondary border-[1px] rounded-2xl h-[780px] ">
       <div className="p-[30px]">
@@ -55,10 +97,10 @@ const Profile = () => {
                   width={150}
                   height={150}
                   style={{ borderRadius: "6px" }}
-                  src="https://i.ibb.co/k3qBHjn/e2fa7e1c075f3e11ddf04c79df9349c4-1.png"
+                  src={userFromLocalStorage.image?.publicFileUrl}
                 />
                 <div style={{ width: "400px" }}>
-                  <h2>Sahinur Islam</h2>
+                  <h2>{userFromLocalStorage?.fullName}</h2>
                 </div>
               </div>
               <div>
@@ -77,7 +119,7 @@ const Profile = () => {
                 <label htmlFor="">Name</label>
                 <Input
                   style={{ height: "45px" }}
-                  defaultValue="test user"
+                  defaultValue={userFromLocalStorage?.fullName}
                   readOnly
                 />
               </Col>
@@ -87,7 +129,7 @@ const Profile = () => {
                 <label htmlFor="">Email</label>
                 <Input
                   style={{ height: "45px" }}
-                  defaultValue="in@gami.com"
+                  defaultValue={userFromLocalStorage?.email}
                   readOnly
                 />
               </Col>
@@ -98,14 +140,17 @@ const Profile = () => {
                 <label htmlFor="">Phone Number</label>
                 <Input
                   style={{ height: "45px" }}
-                  defaultValue="+880 1234567890"
+                  defaultValue={userFromLocalStorage?.phoneNumber}
                 />
               </Col>
               <Col span={12}>
                 <label htmlFor="">Date of Birth</label>
                 <DatePicker
                   style={{ height: "45px", width: "100%" }}
-                  defaultValue={dayjs("09-09-2000", "DD-MM-YY")}
+                  defaultValue={dayjs(
+                    userFromLocalStorage?.dateOfBirth,
+                    "DD-MM-YY"
+                  )}
                   disabled
                 />
               </Col>
@@ -115,7 +160,7 @@ const Profile = () => {
                 <label htmlFor="">Address</label>
                 <Input.TextArea
                   style={{ height: "170px" }}
-                  defaultValue="test ululu"
+                  defaultValue={userFromLocalStorage?.address}
                   readOnly
                 />
               </Col>
@@ -160,7 +205,7 @@ const Profile = () => {
               </ImgCrop>
 
               <div>
-                <h2>Mr ULULu</h2>
+                <h2>{userFromLocalStorage?.fullName}</h2>
               </div>
             </div>
 
@@ -169,7 +214,7 @@ const Profile = () => {
                 <label htmlFor="">Name</label>
                 <Input
                   style={{ height: "45px" }}
-                  defaultValue="test user"
+                  defaultValue={userFromLocalStorage?.fullName}
                   onChange={(e) => setFullName(e.target.value)}
                 />
               </Col>
@@ -181,7 +226,7 @@ const Profile = () => {
                   disabled
                   type="email"
                   style={{ height: "45px" }}
-                  defaultValue="example@gmail.com"
+                  defaultValue={userFromLocalStorage?.email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Col>
@@ -192,7 +237,7 @@ const Profile = () => {
                 <label htmlFor="">Phone Number</label>
                 <Input
                   style={{ height: "45px" }}
-                  // defaultValue={userFromLocalStorage.phoneNumber}
+                  defaultValue={userFromLocalStorage?.phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </Col>
@@ -201,7 +246,10 @@ const Profile = () => {
                 <DatePicker
                   onChange={handleDatePickerChange}
                   style={{ height: "45px", width: "100%" }}
-                  defaultValue={dayjs("09-09-2000", "DD-MM-YY")}
+                  defaultValue={dayjs(
+                    userFromLocalStorage?.dateOfBirth,
+                    "DD-MM-YY"
+                  )}
                 />
               </Col>
             </Row>
@@ -210,15 +258,14 @@ const Profile = () => {
                 <label htmlFor="">Address</label>
                 <Input.TextArea
                   style={{ height: "170px" }}
-                  defaultValue="test ululu"
+                  defaultValue={userFromLocalStorage.address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </Col>
             </Row>
             <button
               type="submit"
-              onClick={() => setProfileEdit(false)}
-              // onClick={handleSubmit}
+              onClick={handleSubmit}
               className="bg-primary text-white px-5 py-2 rounded-lg w-full"
               block
             >
