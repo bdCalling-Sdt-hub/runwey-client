@@ -1,36 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BarChart, Bar, XAxis, Tooltip, Cell } from "recharts";
+import baseAxios from "../../../Config";
 
 const COLORS = ["#6611E0", "#A370EC", "#E0CFF9"];
 
-const data = [
-  {
-    name: "01-05",
-    amt: 2400,
-  },
-  {
-    name: "06-10",
-    amt: 510,
-  },
-  {
-    name: "11-15",
-    amt: 1200,
-  },
-  {
-    name: "16-20",
-    amt: 1000,
-  },
-  {
-    name: "21-25",
-    amt: 500,
-  },
-  {
-    name: "26-30",
-    amt: 1181,
-  },
-];
-
 const Earnings = () => {
+  const [chartData, setChartData] = React.useState([]);
+
+  function extractDayRanges(dateRangeString) {
+    const [startDate, endDate] = dateRangeString.split("-");
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    const daysInMonth = end.getUTCDate() - start.getUTCDate() + 1;
+    const dayRanges = [];
+
+    for (let i = 0; i < daysInMonth; i += 5) {
+      const startDay = (start.getUTCDate() + i).toString().padStart(2, "0");
+      const endDay = Math.min(start.getUTCDate() + i + 4, end.getUTCDate())
+        .toString()
+        .padStart(2, "0");
+      dayRanges.push(`${startDay}-${endDay}`);
+    }
+    return dayRanges;
+  }
+
+  useEffect(() => {
+    baseAxios
+      .get("/api/payment/earning")
+      .then((res) => {
+        // setChartData(res.data.data)
+        setChartData(
+          res.data.data.map((entry) => ({
+            ...entry,
+            days: extractDayRanges(entry.days),
+          }))
+        );
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+
   return (
     <>
       <div className="w-[410px]  relative bg-white rounded-[30px] border ml-4 mt-[24px]">
@@ -46,11 +59,11 @@ const Earnings = () => {
           <div className="self-end pb-7 ml-5">
             <p className="text-[10px]">date</p>
           </div>
-          <BarChart width={350} height={150} data={data}>
-            <XAxis className="text-[10px]" dataKey="name" />
+          <BarChart width={350} height={150} data={chartData}>
+            <XAxis className="text-[10px]" dataKey="days" />
             <Tooltip />
-            <Bar dataKey="amt">
-              {data.map((entry, index) => (
+            <Bar dataKey="totalAmount">
+              {chartData?.map((entry, index) => (
                 <Cell
                   className="rounded-xl"
                   key={`cell-${index}`}

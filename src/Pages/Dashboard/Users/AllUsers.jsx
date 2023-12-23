@@ -110,6 +110,22 @@ const AllUsers = () => {
     dispatch(SubscriptionData(data));
   }, []);
 
+  const handleVideoDelete = (id) => {
+    baseAxios
+      .delete(`api/users/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <>
       <div className="flex flex-col mt-[24px] h-[800px]">
