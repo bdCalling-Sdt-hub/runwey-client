@@ -6,6 +6,7 @@ import QuestionnaireReducer from "./ReduxSlices/QuestionnaireSlice";
 import OccasionsReducer from "./ReduxSlices/OccasionsSlice";
 import TransactionReducer from "./ReduxSlices/TransactionSlice";
 import CreatorRequestReducer from "./ReduxSlices/CreatorRequestSlice"
+import LoginActivitySlice from "./ReduxSlices/LoginActivitySlice";
 
 export const Store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const Store = configureStore({
     QuestionnaireData: QuestionnaireReducer,
     OccasionsData: OccasionsReducer,
     TransactionData: TransactionReducer,
-    CreatorRequestData: CreatorRequestReducer
+    CreatorRequestData: CreatorRequestReducer,
+    LoginActivity: LoginActivitySlice,
   },
 });
 
