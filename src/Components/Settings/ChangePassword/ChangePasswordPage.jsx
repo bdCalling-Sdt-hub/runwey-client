@@ -7,6 +7,9 @@ const ChangePasswordPage = () => {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   let token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const [oldPassword, setOldPassword] = React.useState("");
+  const [newPassword, setNewPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
 
   const handleForgetPassword = () => {
     baseAxios
@@ -31,6 +34,38 @@ const ChangePasswordPage = () => {
     });
     
   };
+
+
+  const handleChangePassword = () => {
+    if(newPassword === confirmPassword){
+      baseAxios
+      .post("/api/users/change-password", { oldPassword, newPassword })
+      .then((response) => {
+        console.log(response);
+        console.log(response.data.message);
+        Swal.fire({
+          icon: "success",
+          title: response.data.message,
+        });
+        navigate("/settings");
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+      });
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Password and Confirm Password does not match",
+      });
+    }
+  }
+
   return (
     <div className="p-5">
       <div className="mb-4 w-[750px]">
@@ -41,6 +76,7 @@ const ChangePasswordPage = () => {
           className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Enter your current password"
+          onChange={(e) => setOldPassword(e.target.value)}
         />
       </div>
       <div className="mb-4 w-[750px]">
@@ -51,6 +87,7 @@ const ChangePasswordPage = () => {
           className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Enter your new password"
+          onChange={(e) => setNewPassword(e.target.value)}
         />
       </div>
       <div className="mb-4 w-[750px]">
@@ -61,6 +98,7 @@ const ChangePasswordPage = () => {
           className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Confirm your new password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
       <p
@@ -70,7 +108,7 @@ const ChangePasswordPage = () => {
         Forget Password?
       </p>
       <button
-        onClick={() => navigate("/settings")}
+        onClick={handleChangePassword}
         className="mt-5 bg-primary hover:bg-primary w-[750px] text-white font-bold py-3 px-4 rounded-md"
       >
         Change Password
