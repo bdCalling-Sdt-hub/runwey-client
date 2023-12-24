@@ -8,7 +8,6 @@ const TransactionTable = () => {
   const [reload, setReload] = useState(1);
   const datas = useSelector((state) => state.TransactionData.TransactionList);
 
-  console.log("datas", datas);
 
   function convertTimestampToCustomFormat(timestamp) {
     const date = new Date(timestamp);
@@ -95,7 +94,7 @@ const TransactionTable = () => {
           </div> */}
           <div className="w-[71px] h-[22px] px-3 py-1 bg-emerald-50 rounded justify-center items-center gap-2.5 inline-flex">
             <div className="text-green-600 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-            {record?.paymentData?.description}
+            {record?.paymentData?.description.replace(/^Purchase product\s*/, "")}
             </div>
           </div>
         </div>
@@ -158,18 +157,6 @@ const TransactionTable = () => {
     },
   ];
 
-  // const data = [];
-  // for (let i = 0; i < 10; i++) {
-  //   data.push({
-  //     key: i,
-  //     transactionID: `${i + 123456789}`,
-  //     name: `Edward King ${i}`,
-  //     timeAndDate: "11:21 AM, 30/09/23",
-  //     paymentMethod: "Credit Card",
-  //     package: "Basic",
-  //     action: "View",
-  //   });
-  // }
   return (
     <div>
       <Table

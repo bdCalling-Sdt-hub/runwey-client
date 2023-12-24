@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Table } from "antd";
 
-const IncomeTable = () => {
+const IncomeTable = ({incomeData}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -10,49 +10,88 @@ const IncomeTable = () => {
     setIsModalOpen(false);
   };
 
+  
+  function convertTimestampToCustomFormat(timestamp) {
+    const date = new Date(timestamp);
+
+    // Extracting components of the date
+    const year = date.getUTCFullYear().toString().slice(-2);
+    let month = (date.getUTCMonth() + 1).toString();
+    month = month.length === 1 ? `0${month}` : month;
+    let day = date.getUTCDate().toString();
+    day = day.length === 1 ? `0${day}` : day;
+
+    let hours = date.getUTCHours().toString();
+    hours = hours.length === 1 ? `0${hours}` : hours;
+    let minutes = date.getUTCMinutes().toString();
+    minutes = minutes.length === 1 ? `0${minutes}` : minutes;
+
+    const formattedDate = `${hours}:${minutes} ${
+      date.getUTCHours() < 12 ? "AM" : "PM"
+    }, ${day}/${month}/${year}`;
+
+    return formattedDate;
+  }
+
+
   const columns = [
     {
       title: "Transaction ID",
       dataIndex: "transactionID",
-      width: 150,
+      width: 160,
+      render: (_, record) => (
+        <p>{record?.paymentData?.balance_transaction}</p>
+      ),
     },
     {
       title: "Time & Date",
       dataIndex: "timeAndDate",
       width: 160,
+      render: (_, record) => (
+        <div>
+          {convertTimestampToCustomFormat(record?.createdAt)}
+        </div>
+      ),
     },
     {
       title: "Name",
       dataIndex: "name",
       width: 150,
+      render: (_, record) => (
+        <div>{record?.userId?.fullName}</div>
+      ),
     },
     {
       title: "Payment Method",
       dataIndex: "paymentMethod",
-      width: 190,
+      width: 120,
+      
+      render: (_, record) => (
+        <div>{record?.paymentData?.payment_method_details?.type}</div>
+      ),
     },
     {
       title: "Package",
       dataIndex: "package",
-      width: 150,
+      width: 110,
       responsive: ["lg"],
       render: (_, record) => (
         <div>
           {/* <div className="w-[71px] h-[22px] px-3 py-1 bg-orange-100 rounded justify-center items-center gap-2.5 inline-flex">
-                <div className="text-yellow-400 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-                  Regular
-                </div>
-              </div> */}
-          <div className="w-[71px] h-[22px] px-3 py-1 bg-violet-100 rounded justify-center items-center gap-2.5 inline-flex">
+            <div className="text-yellow-400 text-[13px] font-normal font-['Poppins'] leading-[14px]">
+              Regular
+            </div>
+          </div> */}
+          {/* <div className="w-[71px] h-[22px] px-3 py-1 bg-violet-100 rounded justify-center items-center gap-2.5 inline-flex">
             <div className="text-violet-700 text-[13px] font-normal font-['Poppins'] leading-[14px]">
               Premium
             </div>
-          </div>
-          {/* <div className="w-[71px] h-[22px] px-3 py-1 bg-emerald-50 rounded justify-center items-center gap-2.5 inline-flex">
-            <div className="text-green-600 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-              Standard
-            </div>
           </div> */}
+          <div className="w-[71px] h-[22px] px-3 py-1 bg-emerald-50 rounded justify-center items-center gap-2.5 inline-flex">
+            <div className="text-green-600 text-[13px] font-normal font-['Poppins'] leading-[14px]">
+            {record?.paymentData?.description.replace(/^Purchase product\s*/, "")}
+            </div>
+          </div>
         </div>
       ),
     },
@@ -64,7 +103,7 @@ const IncomeTable = () => {
       render: (_, record) => (
         <div className="flex">
           <svg
-            className="cursor-pointer"
+          className="cursor-pointer"
             width="22"
             height="22"
             viewBox="0 0 22 22"
@@ -79,54 +118,47 @@ const IncomeTable = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <svg
-            onClick={showModal}
-            className="ml-[16px] cursor-pointer"
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href={record?.paymentData?.receipt_url}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <path
-              d="M13.75 11.0007C13.75 12.5194 12.5188 13.7507 11 13.7507C9.48124 13.7507 8.25002 12.5194 8.25002 11.0007C8.25002 9.48187 9.48124 8.25065 11 8.25065C12.5188 8.25065 13.75 9.48187 13.75 11.0007Z"
-              stroke="#858585"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M2.25342 11.0006C3.4215 7.28162 6.89593 4.58398 11.0004 4.58398C15.1049 4.58398 18.5794 7.28166 19.7474 11.0007C18.5794 14.7197 15.1049 17.4173 11.0004 17.4173C6.89593 17.4173 3.42148 14.7196 2.25342 11.0006Z"
-              stroke="#858585"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+            <svg
+              className="ml-[16px]"
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.75 11.0007C13.75 12.5194 12.5188 13.7507 11 13.7507C9.48124 13.7507 8.25002 12.5194 8.25002 11.0007C8.25002 9.48187 9.48124 8.25065 11 8.25065C12.5188 8.25065 13.75 9.48187 13.75 11.0007Z"
+                stroke="#858585"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M2.25342 11.0006C3.4215 7.28162 6.89593 4.58398 11.0004 4.58398C15.1049 4.58398 18.5794 7.28166 19.7474 11.0007C18.5794 14.7197 15.1049 17.4173 11.0004 17.4173C6.89593 17.4173 3.42148 14.7196 2.25342 11.0006Z"
+                stroke="#858585"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
         </div>
       ),
     },
   ];
 
-  const data = [];
-  for (let i = 0; i < 10; i++) {
-    data.push({
-      key: i,
-      transactionID: `${i + 123456789}`,
-      name: `Edward King ${i}`,
-      timeAndDate: "11:21 AM, 30/09/23",
-      paymentMethod: "Credit Card",
-      package: "Basic",
-      action: "View",
-    });
-  }
   return (
     <div className="w-[1450px]">
       <Table
         headerBg="red"
         className="= p-5 bg-white rounded-2xl border-[1px] border-secondary"
         columns={columns}
-        dataSource={data}
+        dataSource={incomeData}
         scroll={{
           y: 445,
         }}
