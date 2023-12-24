@@ -7,9 +7,10 @@ const OccasionsSingleVideo = () => {
       <div className="relative">
         <video
           width={171}
-          autoPlay
           className=" h-[150px]   bg-zinc-800 rounded-tl-xl rounded-tr-xl"
           src={testVideo}
+          // controls
+          muted
         ></video>
         <svg
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"

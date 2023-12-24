@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import baseAxios from "../../../Config";
 
 function DashboardOverview() {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
+  const [data, setData] = React.useState();
+
+  useEffect(() => {
+    baseAxios
+      .get(`api/contents/calculate`)
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log(data);
   return (
     <>
       <div className="w-full bg-primary text-white p-[32px] rounded-2xl ">
@@ -17,7 +32,7 @@ function DashboardOverview() {
               Total Income
             </p>
             <h2 className=" text-3xl font-semibold font-['Montserrat']">
-              $ 22,500.00
+              $ {data?.totalIncome || 0}
             </h2>
           </div>
           <div className="border-l-2 p-7">
@@ -25,7 +40,7 @@ function DashboardOverview() {
               Total Users
             </p>
             <h2 className=" text-3xl font-semibold font-['Montserrat']">
-              1,234
+              {data?.totalUsers || 0}
             </h2>
           </div>
           <div className="border-l-2 p-7">
@@ -33,7 +48,7 @@ function DashboardOverview() {
               Total Videos
             </p>
             <h2 className=" text-3xl font-semibold font-['Montserrat']">
-              20,350
+              {data?.totalVideo || 0}
             </h2>
           </div>
         </div>

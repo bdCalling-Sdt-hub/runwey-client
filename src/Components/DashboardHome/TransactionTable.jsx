@@ -44,7 +44,7 @@ const TransactionTable = () => {
     {
       title: "Transaction ID",
       dataIndex: "transactionID",
-      width: 150,
+      width: 240,
       render: (_, record) => (
         <div>{record?.paymentData?.balance_transaction}</div>
       ),

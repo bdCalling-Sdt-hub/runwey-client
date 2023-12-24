@@ -50,14 +50,14 @@ const OccasionsCard = ({ occasion,handleDelete }) => {
               />
             </div>
             <div className="flex gap-3">
-              <div className="w-[120px] cursor-pointer h-9 p-2.5 bg-primary rounded-lg justify-center items-center gap-2.5 inline-flex">
+              {/* <div className="w-[120px] cursor-pointer h-9 p-2.5 bg-primary rounded-lg justify-center items-center gap-2.5 inline-flex">
                 <div className="text-white text-sm font-semibold font-['Montserrat']">
                   Upload
                 </div>
-              </div>
-              <div onClick={()=>handleDelete(occasion?._id)} className="w-[120px] cursor-pointer h-9 p-2.5 bg-white rounded-lg border border-primary justify-center items-center gap-2.5 inline-flex">
-                <div className="text-primary text-sm font-semibold font-['Montserrat']">
-                  Delete
+              </div> */}
+              <div onClick={()=>handleDelete(occasion?._id)} className="w-[220px] cursor-pointer h-9 p-2.5 bg-primary rounded-lg justify-center items-center gap-2.5 inline-flex">
+                <div className="text-white text-sm font-semibold font-['Montserrat']">
+                  Delete Occasion 
                 </div>
               </div>
             </div>
