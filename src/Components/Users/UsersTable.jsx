@@ -4,6 +4,7 @@ import testVideo from "./../../../public/tikvideo.mp4";
 import UploadedVideos from "./UploadedVideos";
 import baseAxios from "../../../Config";
 const UsersTable = ({ allUser }) => {
+  const token = localStorage.getItem("token");
   const videoRef = useRef(null);
   let users = allUser?.users;
   let pagination = allUser?.pagination;
@@ -14,6 +15,24 @@ const UsersTable = ({ allUser }) => {
   const [modalUser, setModalUser] = useState();
 
   console.log(singleVideo);
+
+  const handleVideoDelete = (id) => {
+    console.log(id);
+    baseAxios
+      .delete(`api/contents/delete-content/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setIsModalOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const showModal = (user) => {
     setModalUser(user);
@@ -127,86 +146,6 @@ const UsersTable = ({ allUser }) => {
               strokeLinejoin="round"
             />
           </svg>
-          {/* <Modal
-            open={isModalOpen}
-            title={
-              <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
-                <span>User information</span>
-              </div>
-            }
-            onCancel={handleCancel}
-            centered
-            footer={[]}
-            width={1000}
-          >
-            <div
-              className=" flex justify-between"
-              style={{
-                borderBottom: "2px solid #6611e0",
-                paddingBottom: 10,
-                marginBottom: "10px",
-              }}
-            >
-              <div>
-                <div className="flex gap-4">
-                  <div>
-                    <img
-                      style={{ borderRadius: "10px" }}
-                      className="w-[180px] h-[150px]"
-                      src={record?.image?.publicFileUrl}
-                      alt=""
-                    />
-                  </div>
-                  <div className="mt-2">
-                    <p className="text-md font-normal font-['Montserrat']">
-                      Name:{" "}
-                      <span className="font-semibold">{record?.fullName}</span>
-                    </p>
-                    <p className="text-md font-normal font-['Montserrat']">
-                      Email:{" "}
-                      <span className="font-semibold">{record?.email}</span>
-                    </p>
-                    <p className="text-md font-normal font-['Montserrat']">
-                      Phone:{" "}
-                      <span className="font-semibold">
-                        {record?.phoneNumber}
-                      </span>
-                    </p>
-                    <p className="text-md font-normal font-['Montserrat']">
-                      Gender:{" "}
-                      <span className="font-semibold">{record?.gender}</span>
-                    </p>
-                    <p className="text-md font-normal font-['Montserrat']">
-                      Date of birth:{" "}
-                      <span className="font-semibold">
-                        {record?.dateOfBirth}
-                      </span>
-                    </p>
-                    <p className="text-md font-normal font-['Montserrat']">
-                      Address:{" "}
-                      <span className="font-semibold">{record?.address}</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                border: "1px solid #e0cff9",
-                borderRadius: "10px",
-                padding: "20px",
-                height: "50vh",
-                overflowY: "scroll",
-              }}
-            >
-              <h1 className="text-md mb-[30px] font-semibold font-['Montserrat'] mt-[6px]">
-                Uploaded videos
-              </h1>
-              <div className="">
-                <UploadedVideos record={record} />
-              </div>
-            </div>
-          </Modal> */}
         </div>
       ),
     },
@@ -431,7 +370,9 @@ const UsersTable = ({ allUser }) => {
                       alt="star--v1"
                     />
                   </div>
-                  <Button danger>Delete</Button>
+                  <Button onClick={() => handleVideoDelete(video?._id)} danger>
+                    Delete
+                  </Button>
                 </div>
               );
             })}
