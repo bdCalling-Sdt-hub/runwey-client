@@ -71,6 +71,23 @@ const CreatorRequest = () => {
     }
   };
 
+  const handleCancelRequest = async (id) => {
+    try {
+      const response = await baseAxios.post(
+        `api/users/cancel-request/${id}`,
+        {}
+      );
+
+      // Handle the response if needed
+      setReload(reload + 1);
+      setIsModalOpen(false);
+      // Additional actions upon successful cancellation
+    } catch (error) {
+      console.error(error);
+      // Handle errors if the cancellation request fails
+    }
+  };
+
   return (
     <div
       style={{
@@ -256,6 +273,7 @@ const CreatorRequest = () => {
                     fontWeight: "bold",
                     padding: "0px 30px",
                   }}
+                  onClick={(e) => handleCancelRequest(modalData?.userId?._id)}
                 >
                   Cancel
                 </Button>

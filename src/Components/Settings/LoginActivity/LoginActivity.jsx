@@ -15,6 +15,8 @@ const LoginActivity = () => {
   let token = localStorage.getItem("token");
   const { loginActivity } = useSelector((state) => state.LoginActivity);
 
+  console.log(loginActivity?.data?.attributes);
+
   function formatDateString(inputDateString) {
     const inputDate = new Date(inputDateString);
 
@@ -94,6 +96,9 @@ const LoginActivity = () => {
       title: "Time & Date",
       dataIndex: "timeAndDate",
       width: 150,
+      render: (_, record) => (
+        <div className="">{formatDateString(record?.createdAt)}</div>
+      ),
     },
 
     {
@@ -133,7 +138,7 @@ const LoginActivity = () => {
         headerBg="red"
         className="mt-[32px] bg-white rounded-2xl"
         columns={columns}
-        dataSource={data}
+        dataSource={loginActivity?.data?.attributes}
         scroll={{
           y: 500,
         }}

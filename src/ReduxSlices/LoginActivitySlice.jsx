@@ -16,7 +16,7 @@ export const LoginActivitys = createAsyncThunk(
   "LoginActivitys",
   async (value, thunkAPI) => {
     try {
-      const response = await axios.get("/api/activities", {
+      const response = await axios.get("api/users/login-activities", {
         headers: {
           "Content-type": "application/json",
           authorization: `Bearer ${token}`,
