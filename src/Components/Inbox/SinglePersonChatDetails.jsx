@@ -76,6 +76,7 @@ let chat = [
 ];
 
 const SinglePersonChatDetails = () => {
+  const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   const chatContainerRef = useRef(null);
   const sender = true;
   const [messages, setMessages] = useState("");
