@@ -20,7 +20,6 @@ const OccasionsCard = ({ occasion,handleDelete }) => {
           <img
             className="rounded-xl h-[150px] w-[200px]  opacity-70"
             src={occasion?.categoryImage}
-            // src="https://picsum.photos/200/300"
             alt=""
           />
           <p className="text-white absolute text-lg font-medium font-['Montserrat'] z-10">
@@ -67,13 +66,6 @@ const OccasionsCard = ({ occasion,handleDelete }) => {
             <OccasionsSingleVideo />
             <OccasionsSingleVideo />
           </div>
-          {/* <div className="cursor-pointer">
-            <div className="w-full h-10 p-2.5 bg-violet-700 rounded-lg justify-center items-center gap-2.5 inline-flex">
-              <div className="text-white text-lg font-semibold font-['Montserrat']">
-                Save
-              </div>
-            </div>
-          </div> */}
         </div>
       </Modal>
     </>
