@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignleUser = ({ status }) => {
+const SignleUser = ({ status,item }) => {
   return (
     <div
       className={`{ ${
@@ -18,7 +18,7 @@ const SignleUser = ({ status }) => {
       </div>
       <div>
         <h1 className="text-primary font-semibold font-['Montserrat'] text-lg">
-          Ann Marie
+         {item?.chat?.adminId?.fullName}
         </h1>
         <p className="text-sm font-normal font-['Montserrat']">
           Lorem ipsum dolor...

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import SignleUser from "./SignleUser";
 import socket from "../../lib/socket";
+import baseAxios from "../../../Config";
 
 const MessageList = () => {
 
@@ -32,6 +33,18 @@ const MessageList = () => {
   //     }
   //   );
   // }, []);
+
+const [messageList, setMessageList] =useState()
+
+  useEffect(() => {
+    baseAxios.get("/api/chats").then((res) => {
+      setMessageList(res.data.data.attributes)
+      console.log(res.data.data.attributes)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
+
   return (
     <div className="mt-[24px] bg-white border-secondary border-[1px] h-[780px] w-[500px] rounded-2xl">
       <div className="p-[30px]">
@@ -39,7 +52,14 @@ const MessageList = () => {
           Message List
         </h1>
         <div className="overflow-y-scroll h-[690px]">
-          <SignleUser status={true} />
+{
+  messageList?.data?.map((item) => {
+    return (
+      <SignleUser status={false} item={item} />
+    )
+  })
+}
+          {/* <SignleUser status={true} />
           <SignleUser />
           <SignleUser />
           <SignleUser />
@@ -48,7 +68,7 @@ const MessageList = () => {
           <SignleUser />
           <SignleUser />
           <SignleUser />
-          <SignleUser />
+          <SignleUser /> */}
         </div>
       </div>
     </div>
