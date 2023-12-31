@@ -21,7 +21,7 @@ const SignleUser = ({ status,item }) => {
          {item?.chat?.adminId?.fullName}
         </h1>
         <p className="text-sm font-normal font-['Montserrat']">
-          Lorem ipsum dolor...
+          Lorem ipsum dolor... 
         </p>
       </div>
     </div>
