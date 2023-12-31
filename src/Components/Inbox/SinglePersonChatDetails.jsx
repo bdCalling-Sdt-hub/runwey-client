@@ -1,81 +1,81 @@
 import React, { useEffect, useRef, useState } from "react";
 
-let chat = [
-  {
-    id: 1,
-    sender: true,
-    image: "https://picsum.photos/200/300",
-    message:
-      "Lorem ipsum dolor sit amet, consectetur suspendisse pharetra odio. Lot sagittis facilisis magna quam vel.",
-    time: "1 hr ago",
-  },
-  {
-    id: 2,
-    sender: false,
-    image: "https://picsum.photos/200/300",
-    message: "Lorem ipsum dolor sit amet, consectetum vel.",
-    time: "1 hr ago",
-  },
-  {
-    id: 3,
-    sender: true,
-    image: "https://picsum.photos/200/300",
-    message:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus m vel.",
-    time: "1 hr ago",
-  },
+// let chat = [
+//   {
+//     id: 1,
+//     sender: true,
+//     image: "https://picsum.photos/200/300",
+//     message:
+//       "Lorem ipsum dolor sit amet, consectetur suspendisse pharetra odio. Lot sagittis facilisis magna quam vel.",
+//     time: "1 hr ago",
+//   },
+//   {
+//     id: 2,
+//     sender: false,
+//     image: "https://picsum.photos/200/300",
+//     message: "Lorem ipsum dolor sit amet, consectetum vel.",
+//     time: "1 hr ago",
+//   },
+//   {
+//     id: 3,
+//     sender: true,
+//     image: "https://picsum.photos/200/300",
+//     message:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus m vel.",
+//     time: "1 hr ago",
+//   },
 
-  {
-    id: 4,
-    sender: false,
-    image: "https://picsum.photos/200/300",
-    message:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
-    time: "1 hr ago",
-  },
+//   {
+//     id: 4,
+//     sender: false,
+//     image: "https://picsum.photos/200/300",
+//     message:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
+//     time: "1 hr ago",
+//   },
 
-  {
-    id: 5,
-    sender: true,
-    image: "https://picsum.photos/200/300",
-    message:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
-    time: "1 hr ago",
-  },
+//   {
+//     id: 5,
+//     sender: true,
+//     image: "https://picsum.photos/200/300",
+//     message:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
+//     time: "1 hr ago",
+//   },
 
-  {
-    id: 6,
-    sender: false,
-    image: "https://picsum.photos/200/300",
-    message:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
-    time: "1 hr ago",
-  },
-  {
-    id: 7,
-    sender: true,
-    image: "https://picsum.photos/200/300",
-    message:
-      "Lorem ipsum dolor sit amet, cotis. Amet sagittis facilisis magna quam vel.",
-    time: "1 hr ago",
-  },
-  {
-    id: 8,
-    sender: false,
-    image: "https://picsum.photos/200/300",
-    message: "Lorem sagittis facilisis magna quam vel.",
-    time: "1 hr ago",
-  },
-  {
-    id: 9,
-    sender: true,
-    image: "https://picsum.photos/200/300",
-    message: "ok",
-    time: "just now",
-  },
-];
+//   {
+//     id: 6,
+//     sender: false,
+//     image: "https://picsum.photos/200/300",
+//     message:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
+//     time: "1 hr ago",
+//   },
+//   {
+//     id: 7,
+//     sender: true,
+//     image: "https://picsum.photos/200/300",
+//     message:
+//       "Lorem ipsum dolor sit amet, cotis. Amet sagittis facilisis magna quam vel.",
+//     time: "1 hr ago",
+//   },
+//   {
+//     id: 8,
+//     sender: false,
+//     image: "https://picsum.photos/200/300",
+//     message: "Lorem sagittis facilisis magna quam vel.",
+//     time: "1 hr ago",
+//   },
+//   {
+//     id: 9,
+//     sender: true,
+//     image: "https://picsum.photos/200/300",
+//     message: "ok",
+//     time: "just now",
+//   },
+// ];
 
-const SinglePersonChatDetails = () => {
+const SinglePersonChatDetails = ({chat}) => {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   const chatContainerRef = useRef(null);
   const sender = true;
@@ -102,19 +102,43 @@ const SinglePersonChatDetails = () => {
     }
   };
 
+
+  function getTimeAgo(timestamp) {
+    const now = new Date();
+    const date = new Date(timestamp);
+
+    const secondsAgo = Math.floor((now - date) / 1000);
+    const minutesAgo = Math.floor(secondsAgo / 60);
+    const hoursAgo = Math.floor(minutesAgo / 60);
+    const daysAgo = Math.floor(hoursAgo / 24);
+    const yearsAgo = Math.floor(daysAgo / 365);
+
+    if (yearsAgo > 0) {
+      return yearsAgo === 1 ? "1 year ago" : `${yearsAgo} years ago`;
+    } else if (daysAgo > 0) {
+      return daysAgo === 1 ? "1 day ago" : `${daysAgo} days ago`;
+    } else if (hoursAgo > 0) {
+      return hoursAgo === 1 ? "1 hour ago" : `${hoursAgo} hours ago`;
+    } else if (minutesAgo > 0) {
+      return minutesAgo === 1 ? "1 minute ago" : `${minutesAgo} minutes ago`;
+    } else {
+      return "just now";
+    }
+  }
+
   return (
     <div className="mt-[24px] border-secondary border-[1px] bg-white h-[780px] w-full rounded-2xl">
       <div className="p-[30px]">
         <h1 className="text-2xl font-semibold font-['Montserrat'] text-primary border-b-[1px] border-primary pb-[20px]">
-          Ann Marie
+          {chat?.data[0]?.sender?.fullName}
         </h1>
         <div ref={chatContainerRef} className=" h-[600px] overflow-y-scroll  ">
-          {chat.map((c) =>
-            c?.sender ? (
+          {chat?.data?.map((c) =>
+            c?.sender?._id === UserData?._id ? (
               <div className="flex flex-row-reverse gap-5  mt-[32px] mr-5 mb-5">
                 <img
                   className="w-[60px] h-[60px] rounded-full"
-                  src={c?.image}
+                  src={c?.sender?.image?.publicFileUrl}
                   alt=""
                 />
                 <div className="flex flex-row-reverse gap-5 ">
@@ -122,7 +146,7 @@ const SinglePersonChatDetails = () => {
                     {c?.message}
                   </p>
                   <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
-                    {c?.time}
+                  {getTimeAgo(c?.createdAt)}
                   </p>
                 </div>
               </div>
@@ -130,7 +154,7 @@ const SinglePersonChatDetails = () => {
               <div className="flex gap-5 mt-[32px] ml-5 mb-5">
                 <img
                   className="w-[60px] h-[60px] rounded-full"
-                  src={c?.image}
+                  src={c?.sender?.image?.publicFileUrl}
                   alt=""
                 />
                 <div className="flex  gap-5 ">
@@ -138,7 +162,7 @@ const SinglePersonChatDetails = () => {
                     {c?.message}
                   </p>
                   <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
-                    {c?.time}
+                    {getTimeAgo(c?.createdAt)}
                   </p>
                 </div>
               </div>

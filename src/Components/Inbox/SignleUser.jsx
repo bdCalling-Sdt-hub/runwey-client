@@ -1,8 +1,9 @@
 import React from "react";
 
-const SignleUser = ({ status,item }) => {
+const SignleUser = ({ status, item, handleChat }) => {
   return (
     <div
+      onClick={() => handleChat(item?.chat?._id)}
       className={`{ ${
         status
           ? "bg-secondary flex gap-3 mt-3 border-[1px] mr-5 border-secondary cursor-pointer hover:bg-secondary rounded-[10px] p-[16px]"
@@ -18,10 +19,10 @@ const SignleUser = ({ status,item }) => {
       </div>
       <div>
         <h1 className="text-primary font-semibold font-['Montserrat'] text-lg">
-         {item?.chat?.adminId?.fullName}
+          {item?.chat?.adminId?.fullName}
         </h1>
         <p className="text-sm font-normal font-['Montserrat']">
-          Lorem ipsum dolor... 
+          Lorem ipsum dolor...
         </p>
       </div>
     </div>
@@ -29,10 +30,6 @@ const SignleUser = ({ status,item }) => {
 };
 
 export default SignleUser;
-
-
-
-
 
 // import React from "react";
 
@@ -67,4 +64,3 @@ export default SignleUser;
 // };
 
 // export default SignleUser;
-

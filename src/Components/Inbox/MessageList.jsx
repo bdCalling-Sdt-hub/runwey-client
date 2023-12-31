@@ -4,7 +4,7 @@ import SignleUser from "./SignleUser";
 import socket from "../../lib/socket";
 import baseAxios from "../../../Config";
 
-const MessageList = () => {
+const MessageList = ({chatList,handleChat}) => {
 
   // const [chatList, setChatList] = useState([]);
   // useEffect(() => {
@@ -34,16 +34,6 @@ const MessageList = () => {
   //   );
   // }, []);
 
-const [messageList, setMessageList] =useState()
-
-  useEffect(() => {
-    baseAxios.get("/api/chats").then((res) => {
-      setMessageList(res.data.data.attributes)
-      console.log(res.data.data.attributes)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }, [])
 
   return (
     <div className="mt-[24px] bg-white border-secondary border-[1px] h-[780px] w-[500px] rounded-2xl">
@@ -53,9 +43,9 @@ const [messageList, setMessageList] =useState()
         </h1>
         <div className="overflow-y-scroll h-[690px]">
 {
-  messageList?.data?.map((item) => {
+  chatList?.data?.map((item) => {
     return (
-      <SignleUser status={false} item={item} />
+      <SignleUser key={item?._id} handleChat={handleChat} status={false} item={item} />
     )
   })
 }
