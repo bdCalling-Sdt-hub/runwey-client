@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Table } from "antd";
+import baseAxios from "../../../Config";
 
 const MonthlyIncomeTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [data, setData] = useState([]);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -10,21 +12,49 @@ const MonthlyIncomeTable = () => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    baseAxios
+      .get("/api/payment/monthly-income")
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const columns = [
     {
       title: "Months",
       dataIndex: "months",
       width: 150,
+      render: (_, record) => (
+        <div className="">
+          <p>
+            {record?.month}, {record?.year}
+          </p>
+        </div>
+      ),
     },
     {
       title: "Total Users",
       dataIndex: "totalUsers",
       width: 150,
+      render: (_, record) => (
+        <div className="">
+          <p>{record?.usersWithPackageCount}</p>
+        </div>
+      ),
     },
     {
       title: "Amount",
       dataIndex: "amount",
       width: 190,
+      render: (_, record) => (
+        <div className="">
+          <p>{record?.totalAmount}</p>
+        </div>
+      ),
     },
     {
       title: "Action",
@@ -78,16 +108,6 @@ const MonthlyIncomeTable = () => {
     },
   ];
 
-  const data = [];
-  for (let i = 0; i < 10; i++) {
-    data.push({
-      key: i,
-      months: `February, 2023`,
-      totalUsers: `${i + 8}`,
-      amount: "$1000.00",
-      action: "View",
-    });
-  }
   return (
     <div className="w-[1450px]">
       <Table
