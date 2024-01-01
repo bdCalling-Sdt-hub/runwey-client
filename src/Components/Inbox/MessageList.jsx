@@ -4,7 +4,8 @@ import SignleUser from "./SignleUser";
 import socket from "../../lib/socket";
 import baseAxios from "../../../Config";
 
-const MessageList = ({chatList,handleChat}) => {
+const MessageList = ({ chatList, handleChat }) => {
+  console.log("chatList", chatList?.data[0].chat.userId.image.publicFileUrl);
 
   // const [chatList, setChatList] = useState([]);
   // useEffect(() => {
@@ -34,7 +35,6 @@ const MessageList = ({chatList,handleChat}) => {
   //   );
   // }, []);
 
-
   return (
     <div className="mt-[24px] bg-white border-secondary border-[1px] h-[780px] w-[500px] rounded-2xl">
       <div className="p-[30px]">
@@ -42,23 +42,16 @@ const MessageList = ({chatList,handleChat}) => {
           Message List
         </h1>
         <div className="overflow-y-scroll h-[690px]">
-{
-  chatList?.data?.map((item) => {
-    return (
-      <SignleUser key={item?._id} handleChat={handleChat} status={false} item={item} />
-    )
-  })
-}
-          {/* <SignleUser status={true} />
-          <SignleUser />
-          <SignleUser />
-          <SignleUser />
-          <SignleUser />
-          <SignleUser />
-          <SignleUser />
-          <SignleUser />
-          <SignleUser />
-          <SignleUser /> */}
+          {chatList?.data?.map((item) => {
+            return (
+              <SignleUser
+                key={item?._id}
+                handleChat={handleChat}
+                status={false}
+                item={item}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

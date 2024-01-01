@@ -1,107 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
+import io from "socket.io-client";
 
-// let chat = [
-//   {
-//     id: 1,
-//     sender: true,
-//     image: "https://picsum.photos/200/300",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur suspendisse pharetra odio. Lot sagittis facilisis magna quam vel.",
-//     time: "1 hr ago",
-//   },
-//   {
-//     id: 2,
-//     sender: false,
-//     image: "https://picsum.photos/200/300",
-//     message: "Lorem ipsum dolor sit amet, consectetum vel.",
-//     time: "1 hr ago",
-//   },
-//   {
-//     id: 3,
-//     sender: true,
-//     image: "https://picsum.photos/200/300",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus m vel.",
-//     time: "1 hr ago",
-//   },
-
-//   {
-//     id: 4,
-//     sender: false,
-//     image: "https://picsum.photos/200/300",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
-//     time: "1 hr ago",
-//   },
-
-//   {
-//     id: 5,
-//     sender: true,
-//     image: "https://picsum.photos/200/300",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
-//     time: "1 hr ago",
-//   },
-
-//   {
-//     id: 6,
-//     sender: false,
-//     image: "https://picsum.photos/200/300",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus id molestie vitae id odio consequat. Consequat ac ultricies sit amet, lacinia ipsum. Aliquam non suspendisse pharetra odio. Lorem nulla ornare sed neque. Ullamcorper viverra felis eu pharetra faucibus. Adipiscing leo a mattis. Amet sagittis facilisis magna quam vel.",
-//     time: "1 hr ago",
-//   },
-//   {
-//     id: 7,
-//     sender: true,
-//     image: "https://picsum.photos/200/300",
-//     message:
-//       "Lorem ipsum dolor sit amet, cotis. Amet sagittis facilisis magna quam vel.",
-//     time: "1 hr ago",
-//   },
-//   {
-//     id: 8,
-//     sender: false,
-//     image: "https://picsum.photos/200/300",
-//     message: "Lorem sagittis facilisis magna quam vel.",
-//     time: "1 hr ago",
-//   },
-//   {
-//     id: 9,
-//     sender: true,
-//     image: "https://picsum.photos/200/300",
-//     message: "ok",
-//     time: "just now",
-//   },
-// ];
-
-const SinglePersonChatDetails = ({chat}) => {
+const SinglePersonChatDetails = ({
+  chat,
+  currentChatId,
+  currentChatPersonName,
+}) => {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   const chatContainerRef = useRef(null);
-  const sender = true;
-  const [messages, setMessages] = useState("");
+  // const sender = true;
+  const [messages, setMessages] = useState();
+  const socket = io("ws://103.145.138.77:3002");
+  const [chats, setChats] = useState();
+
+  const allMessage = chat?.data;
+
+  useEffect(() => {
+    setChats(chat?.data);
+  });
 
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
     }
-  }, [messages]);
-  console.log(chat);
-
-  const messagesHandler = () => {
-    if (messages) {
-      chat.push({
-        id: 10,
-        sender: true,
-        image: "https://picsum.photos/200/300",
-        message: messages,
-        time: "just now",
-      });
-      setMessages("");
-    }
-  };
-
+  });
 
   function getTimeAgo(timestamp) {
     const now = new Date();
@@ -126,48 +49,76 @@ const SinglePersonChatDetails = ({chat}) => {
     }
   }
 
+  const handleMessageSend = () => {
+    if (messages) {
+      // Emit the 'add-new-message' event
+      const dataToSend = {
+        chat: currentChatId,
+        sender: UserData?._id,
+        receiver: "admin",
+        message: messages,
+      };
+
+      socket.emit("add-new-message", dataToSend, (callbackResponse) => {
+        // Handle the callback response from the server
+
+        setChats([...chats, callbackResponse.message]);
+
+        allMessage.unshift(callbackResponse.message);
+        console.log("Callback response:", callbackResponse.message);
+        console.log("chats socket", allMessage);
+        // Update your React state or perform actions based on the callback response
+      });
+      setMessages("");
+    }
+  };
+
+  console.log("chats---------", chats);
   return (
     <div className="mt-[24px] border-secondary border-[1px] bg-white h-[780px] w-full rounded-2xl">
       <div className="p-[30px]">
         <h1 className="text-2xl font-semibold font-['Montserrat'] text-primary border-b-[1px] border-primary pb-[20px]">
-          {chat?.data[0]?.sender?.fullName}
+          {currentChatPersonName}
         </h1>
         <div ref={chatContainerRef} className=" h-[600px] overflow-y-scroll  ">
-          {chat?.data?.map((c) =>
-            c?.sender?._id === UserData?._id ? (
-              <div className="flex flex-row-reverse gap-5  mt-[32px] mr-5 mb-5">
-                <img
-                  className="w-[60px] h-[60px] rounded-full"
-                  src={c?.sender?.image?.publicFileUrl}
-                  alt=""
-                />
-                <div className="flex flex-row-reverse gap-5 ">
-                  <p className="max-w-[500px] bg-primary text-white border-[1px] border-secondary p-[20px] rounded-[10px] rounded-tr-none text-sm font-normal font-['Montserrat']">
-                    {c?.message}
-                  </p>
-                  <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
-                  {getTimeAgo(c?.createdAt)}
-                  </p>
+          {allMessage
+            ?.slice()
+            .reverse()
+            ?.map((c) =>
+              c?.sender?._id === UserData?._id ? (
+                <div className="flex flex-row-reverse gap-5  mt-[32px] mr-5 mb-5">
+                  <img
+                    className="w-[60px] h-[60px] rounded-full"
+                    src={c?.sender?.image?.publicFileUrl}
+                    alt=""
+                  />
+                  <div className="flex flex-row-reverse gap-5 ">
+                    <p className="max-w-[500px] bg-primary text-white border-[1px] border-secondary p-[20px] rounded-[10px] rounded-tr-none text-sm font-normal font-['Montserrat']">
+                      {c?.message}
+                    </p>
+                    <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
+                      {getTimeAgo(c?.createdAt)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="flex gap-5 mt-[32px] ml-5 mb-5">
-                <img
-                  className="w-[60px] h-[60px] rounded-full"
-                  src={c?.sender?.image?.publicFileUrl}
-                  alt=""
-                />
-                <div className="flex  gap-5 ">
-                  <p className="max-w-[500px] border-[1px] border-secondary p-[24px] rounded-[10px] rounded-tl-none text-zinc-800 text-sm font-normal font-['Montserrat']">
-                    {c?.message}
-                  </p>
-                  <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
-                    {getTimeAgo(c?.createdAt)}
-                  </p>
+              ) : (
+                <div className="flex gap-5 mt-[32px] ml-5 mb-5">
+                  <img
+                    className="w-[60px] h-[60px] rounded-full"
+                    src={c?.sender?.image?.publicFileUrl}
+                    alt=""
+                  />
+                  <div className="flex  gap-5 ">
+                    <p className="max-w-[500px] border-[1px] border-secondary p-[24px] rounded-[10px] rounded-tl-none text-zinc-800 text-sm font-normal font-['Montserrat']">
+                      {c?.message}
+                    </p>
+                    <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
+                      {getTimeAgo(c?.createdAt)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            )
-          )}
+              )
+            )}
         </div>
         <div className="flex  gap-2">
           <input
@@ -177,7 +128,7 @@ const SinglePersonChatDetails = ({chat}) => {
             type="text"
           />
           <svg
-            onClick={messagesHandler}
+            onClick={handleMessageSend}
             className=" cursor-pointer"
             width="60"
             height="60"

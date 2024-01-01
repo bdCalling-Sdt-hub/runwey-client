@@ -1,9 +1,12 @@
 import React from "react";
 
 const SignleUser = ({ status, item, handleChat }) => {
+
+  console.log(item?.message?.message)
+
   return (
     <div
-      onClick={() => handleChat(item?.chat?._id)}
+      onClick={() => handleChat(item)}
       className={`{ ${
         status
           ? "bg-secondary flex gap-3 mt-3 border-[1px] mr-5 border-secondary cursor-pointer hover:bg-secondary rounded-[10px] p-[16px]"
@@ -13,16 +16,16 @@ const SignleUser = ({ status, item, handleChat }) => {
       <div>
         <img
           className="w-[60px] h-[60px] rounded-full"
-          src="https://picsum.photos/200/300"
+          src={item?.chat?.userId?.image?.publicFileUrl}
           alt=""
         />
       </div>
       <div>
         <h1 className="text-primary font-semibold font-['Montserrat'] text-lg">
-          {item?.chat?.adminId?.fullName}
+          {item?.chat?.userId?.fullName}
         </h1>
         <p className="text-sm font-normal font-['Montserrat']">
-          Lorem ipsum dolor...
+          {item?.message?.message.slice(0, 11)} {item?.message?.message.length > 11 && "..."}
         </p>
       </div>
     </div>
