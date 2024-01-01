@@ -1,11 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 
-const SinglePersonChatDetails = ({
-  chat,
-  currentChatId,
-  currentChatPersonName,
-}) => {
+
+const SinglePersonChatDetails = ({ chat,currentChatId,currentChatPersonName }) => {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   const chatContainerRef = useRef(null);
   // const sender = true;
@@ -13,16 +10,16 @@ const SinglePersonChatDetails = ({
   const socket = io("ws://103.145.138.77:3002");
   const [chats, setChats] = useState();
 
-  const allMessage = chat?.data;
+  const allMessage = chat?.data
 
   useEffect(() => {
+
     setChats(chat?.data);
-  });
+  })
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   });
 
@@ -61,19 +58,32 @@ const SinglePersonChatDetails = ({
 
       socket.emit("add-new-message", dataToSend, (callbackResponse) => {
         // Handle the callback response from the server
-
-        setChats([...chats, callbackResponse.message]);
-
-        allMessage.unshift(callbackResponse.message);
+     
+        setChats([...chats, callbackResponse.message])
+        setMessages("");
+        allMessage.unshift(callbackResponse.message)
         console.log("Callback response:", callbackResponse.message);
-        console.log("chats socket", allMessage);
+        console.log("chats socket",allMessage)
         // Update your React state or perform actions based on the callback response
       });
-      setMessages("");
+
+    
     }
   };
 
-  console.log("chats---------", chats);
+  useEffect(() => {
+    socket.on(`new-message::${currentChatId}`, (messageData) => {
+      setChats((prevChats) => [...prevChats, messageData]);
+      console.log(messageData);
+    });
+
+    return () => {
+      socket.off(`new-message::${currentChatId}`);
+    };
+  }, []);
+
+
+  console.log("chats---------",chats)
   return (
     <div className="mt-[24px] border-secondary border-[1px] bg-white h-[780px] w-full rounded-2xl">
       <div className="p-[30px]">
@@ -81,47 +91,45 @@ const SinglePersonChatDetails = ({
           {currentChatPersonName}
         </h1>
         <div ref={chatContainerRef} className=" h-[600px] overflow-y-scroll  ">
-          {allMessage
-            ?.slice()
-            .reverse()
-            ?.map((c) =>
-              c?.sender?._id === UserData?._id ? (
-                <div className="flex flex-row-reverse gap-5  mt-[32px] mr-5 mb-5">
-                  <img
-                    className="w-[60px] h-[60px] rounded-full"
-                    src={c?.sender?.image?.publicFileUrl}
-                    alt=""
-                  />
-                  <div className="flex flex-row-reverse gap-5 ">
-                    <p className="max-w-[500px] bg-primary text-white border-[1px] border-secondary p-[20px] rounded-[10px] rounded-tr-none text-sm font-normal font-['Montserrat']">
-                      {c?.message}
-                    </p>
-                    <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
-                      {getTimeAgo(c?.createdAt)}
-                    </p>
-                  </div>
+          {chats?.slice().reverse()?.map((c) =>
+            c?.sender?._id === UserData?._id ? (
+              <div className="flex flex-row-reverse gap-5  mt-[32px] mr-5 mb-5">
+                <img
+                  className="w-[60px] h-[60px] rounded-full"
+                  src={c?.sender?.image?.publicFileUrl}
+                  alt=""
+                />
+                <div className="flex flex-row-reverse gap-5 ">
+                  <p className="max-w-[500px] bg-primary text-white border-[1px] border-secondary p-[20px] rounded-[10px] rounded-tr-none text-sm font-normal font-['Montserrat']">
+                    {c?.message}
+                  </p>
+                  <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
+                    {getTimeAgo(c?.createdAt)}
+                  </p>
                 </div>
-              ) : (
-                <div className="flex gap-5 mt-[32px] ml-5 mb-5">
-                  <img
-                    className="w-[60px] h-[60px] rounded-full"
-                    src={c?.sender?.image?.publicFileUrl}
-                    alt=""
-                  />
-                  <div className="flex  gap-5 ">
-                    <p className="max-w-[500px] border-[1px] border-secondary p-[24px] rounded-[10px] rounded-tl-none text-zinc-800 text-sm font-normal font-['Montserrat']">
-                      {c?.message}
-                    </p>
-                    <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
-                      {getTimeAgo(c?.createdAt)}
-                    </p>
-                  </div>
+              </div>
+            ) : (
+              <div className="flex gap-5 mt-[32px] ml-5 mb-5">
+                <img
+                  className="w-[60px] h-[60px] rounded-full"
+                  src={c?.sender?.image?.publicFileUrl}
+                  alt=""
+                />
+                <div className="flex  gap-5 ">
+                  <p className="max-w-[500px] border-[1px] border-secondary p-[24px] rounded-[10px] rounded-tl-none text-zinc-800 text-sm font-normal font-['Montserrat']">
+                    {c?.message}
+                  </p>
+                  <p className="text-center my-auto text-zinc-400 text-sm font-normal font-['Montserrat']">
+                    {getTimeAgo(c?.createdAt)}
+                  </p>
                 </div>
-              )
-            )}
+              </div>
+            )
+          )}
         </div>
         <div className="flex  gap-2">
           <input
+          value={messages}
             onChange={(e) => setMessages(e.target.value)}
             className="p-3 outline-primary border-[1px] border-secondary w-full rounded-[20px]"
             placeholder="Enter your message"
