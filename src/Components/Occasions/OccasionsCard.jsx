@@ -81,7 +81,7 @@ const OccasionsCard = ({ occasion, handleDelete }) => {
             </div>
           </div>
           <div className="border-secondary grid grid-cols-4 h-[300px] overflow-y-scroll overflow-x-hidden gap-3 border-[1px] rounded-2xl p-[30px]">
-            {singleOccasionVideos.length === 0 && <NoVideo />}
+            {singleOccasionVideos?.length === 0 && <NoVideo />}
             {singleOccasionVideos?.map((video) => (
               <OccasionsSingleVideo video={video} />
             ))}
