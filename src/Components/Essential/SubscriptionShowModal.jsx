@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Modal,Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { PiCrownSimpleFill } from "react-icons/pi";
 import baseAxios from "../../../Config";
@@ -27,16 +27,18 @@ const SubscriptionShowModal = ({
 
   const token = localStorage.getItem("token");
 
+  console.log("modal data -------",modalData);
+
   useEffect(() => {
     if (modalData) {
       setPackageName(modalData.name);
-      setPackagePrice(modalData.price);
-      setPackageValidity(modalData.validity);
-      setVideoLimit(modalData.limitation);
-      setPackageMainColor(modalData.mainColor);
-      setPackageMainColorOpacity(modalData.opacity1);
-      setPackageMainColorOpacity2(modalData.opacity2);
-      setPackageMainColorOpacity3(modalData.opacity3);
+      setPackagePrice(modalData.package.price);
+      setPackageValidity(modalData.package.validity);
+      setVideoLimit(modalData.package.limitation);
+      setPackageMainColor(modalData.package.mainColor);
+      setPackageMainColorOpacity(modalData.package.opacity1);
+      setPackageMainColorOpacity2(modalData.package.opacity2);
+      setPackageMainColorOpacity3(modalData.package.opacity3);
     }
   }, [modalData]);
 
@@ -50,10 +52,11 @@ const SubscriptionShowModal = ({
       opacity1: packageMainColorOpacity,
       opacity2: packageMainColorOpacity2,
       opacity3: packageMainColorOpacity3,
+      type: packageName,
     };
 console.log(data);
     baseAxios
-      .patch(`/api/subscribe/${modalData?._id}`, data, {
+      .patch(`/api/subscribe/${modalData?.package?._id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -66,6 +69,17 @@ console.log(data);
         console.log(err);
       });
   };
+
+
+  const onChange = (value) => {
+    setPackageName(value);
+    console.log(`selected ${value}`);
+  };
+  const onSearch = (value) => {
+    console.log("search:", value);
+  };
+  const filterOption = (input, option) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   return (
     <div>
@@ -87,13 +101,30 @@ console.log(data);
               <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
                 Package Name
               </p>
-              <input
-                className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
-                type="text"
-                onChange={(e) => setPackageName(e.target.value)}
-                placeholder="Enter package name"
-                defaultValue={modalData?.name}
-              />
+              <Select
+              showSearch
+              className="border rounded-[10px] w-full h-[45px]  text-gray-700  focus:outline-none focus:shadow-outline"
+              placeholder="Select a package name"
+              optionFilterProp="children"
+              onChange={onChange}
+              defaultValue={modalData?.name}
+              onSearch={onSearch}
+              filterOption={filterOption}
+              options={[
+                {
+                  value: "Regular",
+                  label: "Regular",
+                },
+                {
+                  value: "Premium",
+                  label: "Premium",
+                },
+                {
+                  value: "Standard",
+                  label: "Standard",
+                },
+              ]}
+            />
             </div>
             <div className="mb-4 w-[750px]">
               <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
@@ -104,7 +135,7 @@ console.log(data);
                 type="text"
                 onChange={(e) => setPackagePrice(e.target.value)}
                 placeholder="Enter package price"
-                defaultValue={modalData?.price}
+                defaultValue={modalData?.package?.price}
               />
             </div>
             <div className="mb-4 w-[750px]">
@@ -116,7 +147,7 @@ console.log(data);
                 className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Enter package validity"
-                defaultValue={modalData?.validity}
+                defaultValue={modalData?.package?.validity}
               />
             </div>
             <div className="mb-4 w-[750px]">
@@ -128,7 +159,7 @@ console.log(data);
                 className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Enter video limitations"
-                defaultValue={modalData?.limitation}
+                defaultValue={modalData?.package?.limitation}
               />
             </div>
 
@@ -143,7 +174,7 @@ console.log(data);
                   className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                   type="text"
                   placeholder="Color code"
-                  defaultValue={modalData?.mainColor}
+                  defaultValue={modalData?.package?.mainColor}
                 />
               </div>
               <div>
@@ -155,7 +186,7 @@ console.log(data);
                   className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                   type="text"
                   placeholder="Color code"
-                  defaultValue={modalData?.opacity1}
+                  defaultValue={modalData?.package?.opacity1}
                 />
               </div>
               <div>
@@ -167,7 +198,7 @@ console.log(data);
                   className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                   type="text"
                   placeholder="Color code"
-                  defaultValue={modalData?.opacity2}
+                  defaultValue={modalData?.package?.opacity2}
                 />
               </div>
               <div>
@@ -179,7 +210,7 @@ console.log(data);
                   className=" border rounded-[10px] py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
                   type="text"
                   placeholder="Color code"
-                  defaultValue={modalData?.opacity3}
+                  defaultValue={modalData?.package?.opacity3}
                 />
               </div>
             </div>
@@ -254,7 +285,7 @@ console.log(data);
         </div>
         <div className="flex gap-5">
           <button
-            onClick={() => handleDelete(modalData?._id)}
+            onClick={() => handleDelete(modalData?.package?._id)}
             className="bg-white  text-lg font-semibold font-['Montserrat'] border-primary border-[1px] w-full text-pr rounded-[10px] px-10 py-2 mt-5"
           >
             Delete Package

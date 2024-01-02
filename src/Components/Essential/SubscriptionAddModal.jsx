@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Modal, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { PiCrownSimpleFill } from "react-icons/pi";
 import baseAxios from "../../../Config";
@@ -9,9 +9,9 @@ const SubscriptionAddModal = ({
   setReload,
 }) => {
   const [packageName, setPackageName] = useState("Package");
-  const [packagePrice, setPackagePrice] = useState("Amount");
-  const [packageValidity, setPackageValidity] = useState("Video amount");
-  const [videoLimit, setVideoLimit] = useState("4");
+  const [packagePrice, setPackagePrice] = useState(100);
+  const [packageValidity, setPackageValidity] = useState(1);
+  const [videoLimit, setVideoLimit] = useState(4);
   const [packageMainColor, setPackageMainColor] = useState("#5C5C5C");
   const [packageMainColorOpacity, setPackageMainColorOpacity] =
     useState("#ADADAD");
@@ -32,6 +32,7 @@ const SubscriptionAddModal = ({
       opacity1: packageMainColorOpacity,
       opacity2: packageMainColorOpacity2,
       opacity3: packageMainColorOpacity3,
+      type:packageName,
     };
     console.log(data);
     baseAxios
@@ -50,6 +51,16 @@ const SubscriptionAddModal = ({
     setReload((prev) => prev + 1);
     handleAddCancel();
   };
+
+  const onChange = (value) => {
+    setPackageName(value);
+    console.log(`selected ${value}`);
+  };
+  const onSearch = (value) => {
+    console.log("search:", value);
+  };
+  const filterOption = (input, option) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   return (
     <Modal
@@ -70,11 +81,28 @@ const SubscriptionAddModal = ({
             <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
               Package Name
             </p>
-            <input
-              className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
-              type="text"
-              onChange={(e) => setPackageName(e.target.value)}
-              placeholder="Enter package name"
+            <Select
+              showSearch
+              className="border rounded-[10px] w-full h-[45px]  text-gray-700  focus:outline-none focus:shadow-outline"
+              placeholder="Select a package name"
+              optionFilterProp="children"
+              onChange={onChange}
+              onSearch={onSearch}
+              filterOption={filterOption}
+              options={[
+                {
+                  value: "Regular",
+                  label: "Regular",
+                },
+                {
+                  value: "Premium",
+                  label: "Premium",
+                },
+                {
+                  value: "Standard",
+                  label: "Standard",
+                },
+              ]}
             />
           </div>
           <div className="mb-4 w-[750px]">
@@ -83,7 +111,7 @@ const SubscriptionAddModal = ({
             </p>
             <input
               className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
-              type="text"
+              type="number"
               onChange={(e) => setPackagePrice(e.target.value)}
               placeholder="Enter package price"
             />
@@ -95,7 +123,7 @@ const SubscriptionAddModal = ({
             <input
               onChange={(e) => setPackageValidity(e.target.value)}
               className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
-              type="text"
+              type="number"
               placeholder="Enter package validity"
             />
           </div>
@@ -231,7 +259,10 @@ const SubscriptionAddModal = ({
         {/* <button className="bg-white  text-lg font-semibold font-['Montserrat'] border-primary border-[1px] w-full text-pr rounded-[10px] px-10 py-2 mt-5">
           Delete Package
         </button> */}
-        <button onClick={handleAdd} className="bg-primary text-lg font-semibold font-['Montserrat'] w-full text-white rounded-[10px] px-10 py-2 mt-5">
+        <button
+          onClick={handleAdd}
+          className="bg-primary text-lg font-semibold font-['Montserrat'] w-full text-white rounded-[10px] px-10 py-2 mt-5"
+        >
           Save Changes
         </button>
       </div>

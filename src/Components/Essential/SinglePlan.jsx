@@ -7,8 +7,8 @@ const SinglePlan = ({ plan, setModalData, showModal,setReload,handleCancel,isMod
     <>
       <div
         style={{
-          backgroundColor: plan.mainColor,
-          borderColor: plan.mainColor,
+          backgroundColor: plan?.package?.mainColor,
+          borderColor: plan?.package?.mainColor,
         }}
         onClick={() => setModalData(plan)}
         className={`w-[230px] h-[259px] rounded-3xl overflow-hidden cursor-pointer border-[1px]`}
@@ -17,22 +17,22 @@ const SinglePlan = ({ plan, setModalData, showModal,setReload,handleCancel,isMod
           <div className="flex rounded-t-3xl justify-center flex-col text-center items-center">
             <div className="bg-white p-5 rounded-full mt-[16px]">
               <PiCrownSimpleFill
-                style={{ color: plan.mainColor }}
+                style={{ color: plan?.package?.mainColor }}
                 className="h-6 text-primary text-[24px]"
               />
             </div>
 
             <div>
               <h1 className=" text-lg text-white font-medium font-['Montserrat']">
-                {plan?.name}
+                {plan?.package?.name}
               </h1>
               <p className="text-white text-xs mb-5 font-normal font-['Montserrat']">
-                {plan?.price}
+                {plan?.package?.price}
               </p>
             </div>
           </div>
           <div
-            style={{ color: plan.mainColor }}
+            style={{ color: plan?.package?.mainColor }}
             className="flex  gap-2 bg-white py-[20px] justify-center items-center"
           >
             <svg
@@ -51,19 +51,19 @@ const SinglePlan = ({ plan, setModalData, showModal,setReload,handleCancel,isMod
             </svg>
 
             <p className="text-xs font-medium font-['Montserrat']">
-              Can Upload {plan?.limitation} Video
+              Can Upload {plan?.package?.limitation} Video
             </p>
           </div>
           <div
-            style={{ backgroundColor: plan.opacity3 }}
+            style={{ backgroundColor: plan?.package?.opacity3 }}
             className="h-[100px] "
           >
             <div
-              style={{ backgroundColor: plan.opacity1 }}
+              style={{ backgroundColor: plan?.package?.opacity1 }}
               className=" py-[10px]"
             ></div>
             <div
-              style={{ backgroundColor: plan.opacity2 }}
+              style={{ backgroundColor: plan?.package?.opacity2 }}
               className=" py-[10px]"
             ></div>
           </div>
