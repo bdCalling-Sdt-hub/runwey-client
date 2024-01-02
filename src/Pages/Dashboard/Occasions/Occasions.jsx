@@ -17,6 +17,9 @@ const Occasions = () => {
   const [reload, setReload] = useState(1);
 
 
+
+
+
   useEffect(() => {
     let data = {
       page: 1,
@@ -90,7 +93,7 @@ const Occasions = () => {
             Occasions
           </h1>
           <div
-            onClick={showModal}
+            onClick={() => showModal()}
             className="w-36 group  h-9 cursor-pointer p-2.5 border-primary border-[1px] hover:bg-white bg-primary rounded-lg justify-center items-center gap-2.5 inline-flex"
           >
             <div className="text-white group-hover:text-primary text-sm font-semibold font-['Montserrat']">

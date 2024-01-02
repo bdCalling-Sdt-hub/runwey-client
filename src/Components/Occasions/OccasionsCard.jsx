@@ -2,20 +2,36 @@ import { Modal } from "antd";
 import React, { useState } from "react";
 import testVideo from "./../../../public/tikvideo.mp4";
 import OccasionsSingleVideo from "./OccasionsSingleVideo";
+import baseAxios from "../../../Config";
+import NoVideo from "./NoVideo";
 
-const OccasionsCard = ({ occasion,handleDelete }) => {
+const OccasionsCard = ({ occasion, handleDelete }) => {
   const [isVideoDelete, setIsVideoDelete] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState();
+  const [singleOccasionVideos, setSingleOccasionVideos] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
+  const showModal = (occasion) => {
     setIsModalOpen(true);
+    console.log(occasion?._id);
+    baseAxios
+      .get(`/api/contents/category-wise-video/${occasion?._id}`)
+      .then((res) => {
+        console.log(res.data.data.attributes);
+        setSingleOccasionVideos(res.data.data.attributes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
   return (
     <>
-      <div onClick={showModal} className="cursor-pointer mt-5 rounded-xl ">
+      <div
+        onClick={() => showModal(occasion)}
+        className="cursor-pointer mt-5 rounded-xl "
+      >
         <div className="relative flex justify-center  items-center mx-auto  ">
           <img
             className="rounded-xl h-[150px] w-[200px]  opacity-70"
@@ -44,7 +60,7 @@ const OccasionsCard = ({ occasion,handleDelete }) => {
             <div>
               <img
                 className="w-[212px] h-[212px]"
-                src="https://i.ibb.co/fdL1pfM/5a76c9ebc122b99fe48d3e0e6278ea65.png"
+                src={occasion?.categoryImage}
                 alt=""
               />
             </div>
@@ -54,17 +70,21 @@ const OccasionsCard = ({ occasion,handleDelete }) => {
                   Upload
                 </div>
               </div> */}
-              <div onClick={()=>handleDelete(occasion?._id)} className="w-[220px] cursor-pointer h-9 p-2.5 bg-primary rounded-lg justify-center items-center gap-2.5 inline-flex">
+              <div
+                onClick={() => handleDelete(occasion?._id)}
+                className="w-[220px] cursor-pointer h-9 p-2.5 bg-primary rounded-lg justify-center items-center gap-2.5 inline-flex"
+              >
                 <div className="text-white text-sm font-semibold font-['Montserrat']">
-                  Delete Occasion 
+                  Delete Occasion
                 </div>
               </div>
             </div>
           </div>
-          <div className="border-secondary flex gap-3 border-[1px] rounded-2xl p-[30px]">
-            <OccasionsSingleVideo />
-            <OccasionsSingleVideo />
-            <OccasionsSingleVideo />
+          <div className="border-secondary grid grid-cols-4 h-[300px] overflow-y-scroll overflow-x-hidden gap-3 border-[1px] rounded-2xl p-[30px]">
+            {singleOccasionVideos.length === 0 && <NoVideo />}
+            {singleOccasionVideos?.map((video) => (
+              <OccasionsSingleVideo video={video} />
+            ))}
           </div>
         </div>
       </Modal>

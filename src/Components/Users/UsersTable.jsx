@@ -384,7 +384,7 @@ const UsersTable = ({ allUser }) => {
         open={isModalOpen2}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
-            <span>User information</span>
+            <span>Video Details</span>
           </div>
         }
         onCancel={cancelVideo}

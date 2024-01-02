@@ -1,14 +1,20 @@
 import React from "react";
 import testVideo from "./../../../public/tikvideo.mp4";
 
-const OccasionsSingleVideo = () => {
+const OccasionsSingleVideo = ({ video }) => {
+  function formatDuration(duration) {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}s`;
+  }
   return (
-    <div className="rounded-xl border w-[171px] h-[220px] border-secondary">
+    <div className="rounded-xl cursor-pointer border w-[171px] h-[220px] border-secondary">
       <div className="relative">
         <video
           width={171}
           className=" h-[150px]   bg-zinc-800 rounded-tl-xl rounded-tr-xl"
-          src={testVideo}
+          src={video?.videoPath}
           // controls
           muted
         ></video>
@@ -52,13 +58,13 @@ const OccasionsSingleVideo = () => {
           </svg>
 
           <span className="text-white text-xs font-normal font-['Montserrat']">
-            0:10
+            {formatDuration(video?.duration)}
           </span>
         </div>
       </div>
       <div className="p-[8px]">
         <h2 className="text-zinc-800 text-sm font-normal font-['Montserrat']">
-          Summer Gown
+          {video?.title}
         </h2>
         <div className="flex mt-1">
           <svg
@@ -127,7 +133,7 @@ const OccasionsSingleVideo = () => {
               />
             </svg>
             <p className="text-zinc-500 text-[8px] font-normal font-['Montserrat']">
-              00
+              {video?.likes | 0}
             </p>
           </div>
           <div className="flex gap-1  justify-center items-center">
