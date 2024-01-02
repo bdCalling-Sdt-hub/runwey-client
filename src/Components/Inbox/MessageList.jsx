@@ -35,6 +35,8 @@ const MessageList = ({ chatList, handleChat }) => {
   //   );
   // }, []);
 
+  
+
   return (
     <div className="mt-[24px] bg-white border-secondary border-[1px] h-[780px] w-[500px] rounded-2xl">
       <div className="p-[30px]">

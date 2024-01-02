@@ -24,7 +24,7 @@ const SinglePersonChatDetails = ({
     }
   });
 
-console.log("name",currentChatId)
+  console.log("chat id", currentChatId);
 
   function getTimeAgo(timestamp) {
     const now = new Date();
@@ -64,15 +64,22 @@ console.log("name",currentChatId)
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleMessageSend();
+    }
+  };
+
   // here last message set in state chats
   useEffect(() => {
     socket.on(`new-message::${currentChatId}`, (messageData) => {
+      console.log(messageData);
+      console.log(currentChatId)
       setChats((prevChats) => {
         return [...prevChats, messageData];
       });
     });
   }, []);
-
 
   // console.log("chats---------", chats);
   return (
@@ -85,7 +92,8 @@ console.log("name",currentChatId)
           {chats
             ?.sort((a, b) => {
               return new Date(a.createdAt) - new Date(b.createdAt);
-            }).map((c) =>
+            })
+            .map((c) =>
               c?.sender?._id === UserData?._id ? (
                 <div className="flex flex-row-reverse gap-5  mt-[32px] mr-5 mb-5">
                   <img
@@ -128,6 +136,7 @@ console.log("name",currentChatId)
             className="p-3 outline-primary border-[1px] border-secondary w-full rounded-[20px]"
             placeholder="Enter your message"
             type="text"
+            onKeyDown={handleKeyPress} // Handle key press event
           />
           <svg
             onClick={handleMessageSend}
