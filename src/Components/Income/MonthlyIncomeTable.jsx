@@ -5,8 +5,12 @@ import baseAxios from "../../../Config";
 const MonthlyIncomeTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState([]);
-  const showModal = () => {
+  const [singleData, setSingleData] = useState();
+
+
+  const showModal = (data) => {
     setIsModalOpen(true);
+    setSingleData(data);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -80,7 +84,7 @@ const MonthlyIncomeTable = () => {
             />
           </svg>
           <svg
-            onClick={showModal}
+             onClick={(e) => showModal(record)}
             className="ml-[16px] cursor-pointer"
             width="22"
             height="22"
@@ -123,7 +127,7 @@ const MonthlyIncomeTable = () => {
         open={isModalOpen}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
-            <span>January, 2023</span>
+            <span>{singleData?.month}, {singleData?.year}</span>
           </div>
         }
         onCancel={handleCancel}
@@ -147,10 +151,10 @@ const MonthlyIncomeTable = () => {
               </div>
               <div>
                 <p className=" text-lg font-semibold font-['Montserrat']">
-                  008
+                  {singleData?.usersWithPackageCount}
                 </p>
                 <p className=" text-lg font-semibold font-['Montserrat']">
-                  $100.00
+                  {singleData?.totalAmount}
                 </p>
               </div>
             </div>

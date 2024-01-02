@@ -5,9 +5,15 @@ import baseAxios from "../../../Config";
 const YearlyIncomeTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState([]);
-  const showModal = () => {
+  const [singleData, setSingleData] = useState();
+
+
+  const showModal = (data) => {
     setIsModalOpen(true);
+    setSingleData(data);
   };
+
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -78,7 +84,7 @@ const YearlyIncomeTable = () => {
             />
           </svg>
           <svg
-            onClick={showModal}
+           onClick={(e) => showModal(record)}
             className="ml-[16px] cursor-pointer"
             width="22"
             height="22"
@@ -144,9 +150,9 @@ const YearlyIncomeTable = () => {
                 </p>
               </div>
               <div>
-                <p className="text-lg font-semibold font-['Montserrat']">008</p>
+                <p className="text-lg font-semibold font-['Montserrat']">{singleData?.usersWithPackageCount}</p>
                 <p className="text-lg font-semibold font-['Montserrat']">
-                  $100.00
+                  $ {singleData?.totalAmount}
                 </p>
               </div>
             </div>

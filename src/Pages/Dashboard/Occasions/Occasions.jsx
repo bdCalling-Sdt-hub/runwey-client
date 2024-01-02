@@ -79,6 +79,7 @@ const Occasions = () => {
       .then((res) => {
         console.log(res);
         setReload(reload + 1);
+        setIsModalOpen(false);
       })
       .catch((err) => {
         console.log(err);

@@ -28,7 +28,7 @@ const SubscriptionPackage = () => {
               {item?.name}
             </p>
             <p className="text-lg font-medium font-['Montserrat']">
-            <Switch defaultChecked onChange={onChange} />
+            <Switch defaultChecked onChange={onChange} onClick={() => setReload(reload + 1)} />
             </p>
           </div>
         );

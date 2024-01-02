@@ -3,8 +3,13 @@ import { Button, Modal, Table } from "antd";
 
 const WeeklyIncomeTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
+
+  const [singleData, setSingleData] = useState();
+
+
+  const showModal = (data) => {
     setIsModalOpen(true);
+    setSingleData(data);
   };
   const handleOk = () => {
     setIsModalOpen(false);
@@ -53,7 +58,7 @@ const WeeklyIncomeTable = () => {
             />
           </svg>
           <svg
-            onClick={showModal}
+                onClick={(e) => showModal(record)}
             className="ml-[16px] cursor-pointer"
             width="22"
             height="22"
@@ -128,20 +133,20 @@ const WeeklyIncomeTable = () => {
                   Total Amount
                 </p>
 
-                <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
+                {/* <p className="text-zinc-500 text-lg font-normal font-['Montserrat']">
                   Date
-                </p>
+                </p> */}
               </div>
               <div>
                 <p className=" text-lg font-semibold font-['Montserrat']">
-                  008
+                 {singleData?.totalUsers}
                 </p>
                 <p className=" text-lg font-semibold font-['Montserrat']">
-                  $100.00
+                  {singleData?.amount}
                 </p>
-                <p className=" text-lg font-semibold font-['Montserrat']">
+                {/* <p className=" text-lg font-semibold font-['Montserrat']">
                   01 October 2023 - 07 October 2023
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
