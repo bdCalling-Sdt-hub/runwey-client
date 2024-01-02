@@ -156,6 +156,7 @@ const CreatorRequest = () => {
                   </h4>
                   <div style={{ display: "flex" }}>
                     <Button
+                    onClick={(e) => handleCancelRequest(user?._id)}
                       style={{
                         marginRight: "10px",
                         border: "1px solid #6611e0",
