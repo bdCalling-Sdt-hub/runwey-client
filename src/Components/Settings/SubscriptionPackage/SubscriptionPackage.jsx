@@ -19,6 +19,7 @@ const SubscriptionPackage = () => {
     console.log(`switch to ${checked}`);
   }
 
+  console.log("data", data)
   return (
     <div className="p-5">
       {data.map((item) => {
