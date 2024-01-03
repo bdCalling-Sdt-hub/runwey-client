@@ -20,11 +20,11 @@ const Settings = () => {
       title: "Login Activity",
       link: "login-activity",
     },
-    {
-      key: "4",
-      title: "Trash",
-      link: "trash",
-    },
+    // {
+    //   key: "4",
+    //   title: "Trash",
+    //   link: "trash",
+    // },
     {
       key: "5",
       title: "Privacy Policy",

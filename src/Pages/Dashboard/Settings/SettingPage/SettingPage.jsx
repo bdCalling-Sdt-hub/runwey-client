@@ -35,7 +35,7 @@ const SettingPage = () => {
               "Subscription Package"}
             {location.pathname === "/settings/login-activity" &&
               "Login Activity"}
-            {location.pathname === "/settings/trash" && "Trash"}
+            {/* {location.pathname === "/settings/trash" && "Trash"} */}
             {location.pathname === "/settings/privacy-policy" &&
               "Privacy Policy"}
             {location.pathname === "/settings/terms-condition" &&
@@ -49,7 +49,7 @@ const SettingPage = () => {
             {text === "change password" && <ChangePassword />}
             {text === "subscription package" && <SubscriptionPackage />}
             {text === "login activity" && <LoginActivity />}
-            {text === "trash" && <Trash />}
+            {/* {text === "trash" && <Trash />} */}
             {text === "privacy policy" && <PrivacyPolicy />}
             {text === "terms condition" && <TermsAndCondition />}
             {text === "about us" && <AboutUs />}
