@@ -50,7 +50,7 @@ const Header = () => {
           location.pathname === "/notification" ? " " : "bg-primary"
         }  border-primary  border-[1px] ml-3 cursor-pointer rounded-lg px-2`}
       >
-        <Badge count={5} color="red">
+        <div className="relative items-center top-0 left-0">
           <IoIosNotificationsOutline
             style={{ cursor: "pointer" }}
             fontSize={30}
@@ -60,7 +60,15 @@ const Header = () => {
                 : "text-white"
             } mt-2 `}
           />
-        </Badge>
+          <span
+            className={`${
+              location.pathname === "/notification" ? "hidden" : " absolute"
+            }  top-0 right-0 flex h-3 w-3}`}
+          >
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
+        </div>
       </div>
       <div onClick={(e) => navigate("/profile")} className="cursor-pointer">
         <img

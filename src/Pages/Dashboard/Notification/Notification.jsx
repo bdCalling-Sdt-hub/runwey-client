@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from "react";
 import SingleNotification from "../../../Components/Notification/SingleNotification";
-import {Pagination } from "antd";
+import { Pagination } from "antd";
 import baseAxios from "../../../../Config";
+import ShowingPegination from "../../../Components/ShowingPegination";
 
 const Notification = () => {
-const [notificationData, setNotificationDat] = useState([]);
+  const pageSize = 10;
+  const [notificationData, setNotificationDat] = useState([]);
+  const [page, setPage] = useState(1);
 
+  useEffect(() => {
+    baseAxios
+      .get(`api/notification?page=${page}&limit=${10}`)
+      .then((res) => {
+        setNotificationDat(res.data.data.attributes);
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  }, [page]);
 
-useEffect(() => {
-  baseAxios.get(`/api/contents/notification`).then((res) => {
-    setNotificationDat(res.data.data.attributes);
-  }).then((err) => {
-    console.log(err);
-  })
-}, [])
+  const notificationsDataGetByPagination = (page) => {
+    console.log("page", page);
 
-console.log(notificationData)
+    setPage(page);
+  };
 
+  console.log(notificationData);
 
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl">
@@ -27,22 +37,26 @@ console.log(notificationData)
           </h1>
         </div>
         <div className="overflow-y-scroll h-[580px]">
-          <SingleNotification />
+          {notificationData?.notifications?.map((data) => (
+            <SingleNotification data={data} />
+          ))}
         </div>
         <div className="mt-5">
           <div className="flex justify-between">
             <div lg={{ span: 12 }}>
               <p className="text-lg font-normal font-['Montserrat'] text-primary ">
-                Showing 1-10 OF 250
+              <ShowingPegination pagination={notificationData?.pagination} />
               </p>
             </div>
             <div style={{ textAlign: "right" }}>
               <Pagination
+                pageSize={pageSize}
                 className="text-primary font-['Montserrat']"
-                defaultCurrent={1}
-                total={200}
+                defaultCurrent={notificationData?.pagination?.page}
+                total={notificationData?.pagination?.totalResults}
                 showQuickJumper={false}
                 showSizeChanger={false}
+                onChange={notificationsDataGetByPagination}
               />
             </div>
           </div>
