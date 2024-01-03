@@ -7,6 +7,8 @@ import baseAxios from "../../../Config";
 const MessageList = ({ chatList, handleChat }) => {
   console.log("chatList", chatList?.data[0].chat.userId.image.publicFileUrl);
 
+  const socket = io("ws://localhost:3008");
+
   // const [chatList, setChatList] = useState([]);
   // useEffect(() => {
   //   // var socket = io("ws://192.168.10.17:3008");
@@ -35,7 +37,22 @@ const MessageList = ({ chatList, handleChat }) => {
   //   );
   // }, []);
 
+
+  // useEffect(() => {
+  //   socket.on(`new-message::${currentChatId}`, (messageData) => {
+  //     console.log(messageData);
+  //     console.log(currentChatId)
+  //     setChats((prevChats) => {
+  //       return [...prevChats, messageData];
+  //     });
+  //   });
   
+  //   // Clean up the socket listener when component unmounts or when chat ID changes
+  //   return () => {
+  //     socket.off(`new-message::${currentChatId}`);
+  //   };
+  // }, [currentChatId]);
+
 
   return (
     <div className="mt-[24px] bg-white border-secondary border-[1px] h-[780px] w-[500px] rounded-2xl">

@@ -110,6 +110,8 @@ const AllUsers = () => {
     dispatch(SubscriptionData(data));
   }, []);
 
+  console.log(packageCategories)
+
 
 
   return (
@@ -173,11 +175,11 @@ const AllUsers = () => {
                 </Radio>
                 {packageCategories?.map((data, index) => (
                   <Radio
-                    key={data._id}
-                    value={data.name}
+                    key={data?.package?._id}
+                    value={data?.package?.name}
                     className="custom-radio"
                   >
-                    {data.name}
+                    {data?.package?.name}
                   </Radio>
                 ))}
                 {/* <Radio value={"sfkld"} className="custom-radio">

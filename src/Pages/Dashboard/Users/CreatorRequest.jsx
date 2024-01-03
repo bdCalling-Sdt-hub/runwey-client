@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Button, Badge, Modal } from "antd";
+import { Col, Row, Button, Badge, Modal,Empty } from "antd";
 import { Pagination } from "antd";
 import baseAxios from "../../../../Config";
 import { useDispatch, useSelector } from "react-redux";
@@ -125,6 +125,9 @@ const CreatorRequest = () => {
           marginRight: "10px",
         }}
       >
+        {data?.length === 0 ? (
+          <Empty className="justify-center items-center mx-auto my-auto"/>
+        ):<>
         {data?.map((user) => {
           return (
             <Col
@@ -188,6 +191,8 @@ const CreatorRequest = () => {
             </Col>
           );
         })}
+        </>}
+        
       </Row>
       <Modal
         open={isModalOpen}

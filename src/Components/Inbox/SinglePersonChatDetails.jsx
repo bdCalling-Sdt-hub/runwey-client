@@ -24,7 +24,6 @@ const SinglePersonChatDetails = ({
     }
   });
 
-  console.log("chat id", currentChatId);
 
   function getTimeAgo(timestamp) {
     const now = new Date();
