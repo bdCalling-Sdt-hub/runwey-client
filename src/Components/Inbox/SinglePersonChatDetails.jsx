@@ -79,7 +79,12 @@ const SinglePersonChatDetails = ({
         return [...prevChats, messageData];
       });
     });
-  }, []);
+  
+    // Clean up the socket listener when component unmounts or when chat ID changes
+    return () => {
+      socket.off(`new-message::${currentChatId}`);
+    };
+  }, [currentChatId]);
 
   // console.log("chats---------", chats);
   return (

@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SingleNotification from "../../../Components/Notification/SingleNotification";
 import {Pagination } from "antd";
+import baseAxios from "../../../../Config";
 
 const Notification = () => {
+const [notificationData, setNotificationDat] = useState([]);
+
+
+useEffect(() => {
+  baseAxios.get(`/api/contents/notification`).then((res) => {
+    setNotificationDat(res.data.data.attributes);
+  }).then((err) => {
+    console.log(err);
+  })
+}, [])
+
+console.log(notificationData)
+
+
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl">
       <div className="p-[40px]">
