@@ -86,15 +86,15 @@ const Dashboard = () => {
           </li>,
           "4"
         ),
-        getItem(
-          <li
-            onClick={(e) => navigate("/uploadRequest")}
-            className="text-[22px] leading-normal"
-          >
-            Upload Request
-          </li>,
-          "5"
-        ),
+        // getItem(
+        //   <li
+        //     onClick={(e) => navigate("/uploadRequest")}
+        //     className="text-[22px] leading-normal"
+        //   >
+        //     Upload Request
+        //   </li>,
+        //   "5"
+        // ),
       ]
     ),
     getItem(

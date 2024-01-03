@@ -44,7 +44,7 @@ function App() {
             <Route path="/index" element={<Inbox />} />
             <Route path="/allUsers" element={<AllUsers />} />
             <Route path="/creatorRequest" element={<CreatorRequest />} />
-            <Route path="/uploadRequest" element={<UploadRequest />} />
+            {/* <Route path="/uploadRequest" element={<UploadRequest />} /> */}
             <Route path="/daily-income" element={<Daily />} />
             <Route path="/weekly-income" element={<Weekly />} />
             <Route path="/monthly-income" element={<Monthly />} />

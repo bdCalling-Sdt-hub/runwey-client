@@ -13,7 +13,7 @@ const DashboardHome = () => {
         <TransactionTable />
       </div>
       <div className="mr-5">
-        <PendingRequests />
+        {/* <PendingRequests /> */}
         <GenderRatio />
         <Earnings />
       </div>
