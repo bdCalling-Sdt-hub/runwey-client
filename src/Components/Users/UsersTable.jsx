@@ -193,35 +193,52 @@ const UsersTable = ({ allUser }) => {
                   alt=""
                 />
               </div>
-              <div className="mt-2">
-                <p className="text-md font-normal font-['Montserrat']">
-                  Name:{" "}
-                  <span className="font-semibold">{modalUser?.fullName}</span>
-                </p>
-                <p className="text-md font-normal font-['Montserrat']">
-                  Email:{" "}
-                  <span className="font-semibold">{modalUser?.email}</span>
-                </p>
-                <p className="text-md font-normal font-['Montserrat']">
-                  Phone:{" "}
-                  <span className="font-semibold">
-                    {modalUser?.phoneNumber}
-                  </span>
-                </p>
-                <p className="text-md font-normal font-['Montserrat']">
-                  Gender:{" "}
-                  <span className="font-semibold">{modalUser?.gender}</span>
-                </p>
-                <p className="text-md font-normal font-['Montserrat']">
-                  Date of birth:{" "}
-                  <span className="font-semibold">
-                    {modalUser?.dateOfBirth}
-                  </span>
-                </p>
-                <p className="text-md font-normal font-['Montserrat']">
-                  Address:{" "}
-                  <span className="font-semibold">{modalUser?.address}</span>
-                </p>
+              <div className="mt-2 flex gap-[50px]">
+                <div>
+                  {" "}
+                  <p className="text-md font-normal font-['Montserrat']">
+                    Name
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    Email
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    Phone
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    Gender
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    Date of birth
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    Address
+                  </p>
+                </div>
+                <div>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    <span className="font-semibold">{modalUser?.fullName}</span>
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    <span className="font-semibold">{modalUser?.email}</span>
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    <span className="font-semibold">
+                      {modalUser?.phoneNumber}
+                    </span>
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    <span className="font-semibold">{modalUser?.gender}</span>
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    <span className="font-semibold">
+                      {modalUser?.dateOfBirth}
+                    </span>
+                  </p>
+                  <p className="text-md font-normal font-['Montserrat']">
+                    <span className="font-semibold">{modalUser?.address}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
