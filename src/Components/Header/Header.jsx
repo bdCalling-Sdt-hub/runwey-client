@@ -1,7 +1,8 @@
 import { Badge } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
+import baseAxios from "../../../Config";
 
 const Header = () => {
   const date = new Date(); // Assuming the input date is in ISO 8601 format (YYYY-MM-DD)
@@ -9,9 +10,20 @@ const Header = () => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = date.toLocaleDateString("en-US", options);
   const userData = JSON.parse(localStorage.getItem("yourInfo"));
+  const [count, setCount] = useState(0)
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    baseAxios.get("api/notification/view-counts").then((res) => {
+      setCount(res.data.data.attributes.notViewed)
+    }).then((err) => {
+      console.log(err)
+    })
+  },[count])
+
+  console.log('-------',count)
   return (
     <div className="flex  mt-9">
       <div>
@@ -62,7 +74,7 @@ const Header = () => {
           />
           <span
             className={`${
-              location.pathname === "/notification" ? "hidden" : " absolute"
+             count === 0 ? "hidden" : " absolute"
             }  top-0 right-0 flex h-3 w-3}`}
           >
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>

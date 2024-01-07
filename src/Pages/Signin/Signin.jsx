@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { UserData } from "../../ReduxSlices/SigninSlice";
+import { Button, Checkbox, Form, Input } from 'antd';
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ const Signin = () => {
 
     //dispatch(reset());
   }, [isLoading, isError, isSuccess, dispatch, navigate]);
+
+  console.log(email, password);
 
   const handleLogin = () => {
     dispatch(UserData({ email: email, password: password }));
@@ -80,14 +83,15 @@ const Signin = () => {
               <label htmlFor="password" className="block text-gray-600">
                 Password
               </label>
-              <input
+              < Input.Password  onChange={(e) => setPassword(e.target.value)} className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" />
+              {/* <input
                 type="password"
                 id="password"
                 name="password"
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                 autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
-              />
+              /> */}
             </div>
 
             {/* <!-- Forgot Password Link --> */}
