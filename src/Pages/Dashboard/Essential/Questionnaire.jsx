@@ -66,6 +66,28 @@ const Questionnaire = () => {
       });
   };
 
+  const handleQuestionDelete = (id) => {
+    console.log(id);
+    baseAxios
+      .delete(`/api/question/${id}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Question deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setReload(reload + 1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const handleQuestionEdit = (id) => {
+    console.log(id);
+  }
+
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
       <div className="p-[30px]">
@@ -92,6 +114,7 @@ const Questionnaire = () => {
                 id={item._id}
                 reload={reload}
                 setReload={setReload}
+                handleQuestionDelete={handleQuestionDelete}
               />
             );
           })}
