@@ -33,7 +33,6 @@ const NewPassword = () => {
           icon: "success",
           title: response.data.message,
         });
-    
       })
       .catch((error) => {
         console.log(error);
@@ -81,7 +80,7 @@ const NewPassword = () => {
           </h1>
           <form>
             <div className="mb-4 mt-[50px] flex flex-col gap-5">
-              <input
+              {/* <input
                 type="password"
                 id="password"
                 name="password"
@@ -89,9 +88,19 @@ const NewPassword = () => {
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                 autoComplete="on"
                 onChange={(e) => setPassword(e.target.value)}
-              />
+              /> */}
 
-              <input
+              <Input.Password
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="New Password"
+                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              />
+              <Input.Password
+               placeholder="Confirm Password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              />
+              {/* <input
                 type="password"
                 id=" confirmPassword"
                 name=" confirmPassword"
@@ -99,7 +108,7 @@ const NewPassword = () => {
                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                 autoComplete="on"
                 onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              /> */}
             </div>
             <button
               onClick={handleChangePassword}
