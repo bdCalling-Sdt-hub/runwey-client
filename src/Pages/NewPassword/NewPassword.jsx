@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import baseAxios from "../../../Config";
+import {  Input } from 'antd';
 
 const NewPassword = () => {
   let { email } = useParams();

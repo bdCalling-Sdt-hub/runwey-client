@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import baseAxios from "../../../../Config";
 import Swal from "sweetalert2";
+import { Input } from "antd";
 
 const ChangePasswordPage = () => {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
@@ -13,41 +14,16 @@ const ChangePasswordPage = () => {
 
   const handleForgetPassword = () => {
     baseAxios
-    .post("/api/users/forget-password", { email: UserData.email })
-    .then((response) => {
-      console.log(response);
-      console.log(response.data.message);
-      Swal.fire({
-        icon: "success",
-        title: "OTP Sent Successfully",
-        text: "Please Check Your Email!",
-      });
-      navigate("/settings/verify-otp");
-    })
-    .catch((error) => {
-      console.log(error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.response.data.message,
-      });
-    });
-    
-  };
-
-
-  const handleChangePassword = () => {
-    if(newPassword === confirmPassword){
-      baseAxios
-      .post("/api/users/change-password", { oldPassword, newPassword })
+      .post("/api/users/forget-password", { email: UserData.email })
       .then((response) => {
         console.log(response);
         console.log(response.data.message);
         Swal.fire({
           icon: "success",
-          title: response.data.message,
+          title: "OTP Sent Successfully",
+          text: "Please Check Your Email!",
         });
-        navigate("/settings");
+        navigate("/settings/verify-otp");
       })
       .catch((error) => {
         console.log(error);
@@ -57,14 +33,37 @@ const ChangePasswordPage = () => {
           text: error.response.data.message,
         });
       });
-    }else{
+  };
+
+  const handleChangePassword = () => {
+    if (newPassword === confirmPassword) {
+      baseAxios
+        .post("/api/users/change-password", { oldPassword, newPassword })
+        .then((response) => {
+          console.log(response);
+          console.log(response.data.message);
+          Swal.fire({
+            icon: "success",
+            title: response.data.message,
+          });
+          navigate("/settings");
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.response.data.message,
+          });
+        });
+    } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Password and Confirm Password does not match",
       });
     }
-  }
+  };
 
   return (
     <div className="p-5">
@@ -72,33 +71,49 @@ const ChangePasswordPage = () => {
         <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
           Current Password
         </p>
-        <input
+        {/* <input
           className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Enter your current password"
           onChange={(e) => setOldPassword(e.target.value)}
+        /> */}
+        <Input.Password
+          placeholder="Enter your current password"
+          onChange={(e) => setOldPassword(e.target.value)}
+          className="border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
         />
       </div>
       <div className="mb-4 w-[750px]">
         <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
           New Password
         </p>
-        <input
+        {/* <input
           className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Enter your new password"
           onChange={(e) => setNewPassword(e.target.value)}
+        /> */}
+        <Input.Password
+          placeholder="Enter your new password"
+          onChange={(e) => setNewPassword(e.target.value)}
+          className="border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
         />
       </div>
       <div className="mb-4 w-[750px]">
         <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
           Confirm New Password
         </p>
-        <input
+        {/* <input
           className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
           type="password"
           placeholder="Confirm your new password"
           onChange={(e) => setConfirmPassword(e.target.value)}
+        /> */}
+
+        <Input.Password
+          placeholder="Confirm your new password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          className="border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
         />
       </div>
       <p
