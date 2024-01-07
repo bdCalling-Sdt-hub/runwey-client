@@ -115,16 +115,16 @@ const Banner = () => {
         </div>
         <div className="">
           <div className="border-[1px] border-primary border-x-0 border-t-0 flex justify-evenly py-3">
-            <p className="text-lg w-[220px] font-semibold font-['Montserrat'] text-primary">
+            <p className="text-lg w-[200px] font-semibold font-['Montserrat'] text-primary">
               Banner Photo
             </p>
-            <p className="text-lg font-semibold font-['Montserrat'] text-primary">
+            <p className="text-lg w-[200px]  font-semibold font-['Montserrat'] text-primary">
               Banner Name
             </p>
-            <p className="text-lg font-semibold font-['Montserrat'] text-primary">
+            <p className="text-lg w-[300px] font-semibold font-['Montserrat'] text-primary">
               Upload Date & Time
             </p>
-            <p className="text-lg pr-5 font-semibold font-['Montserrat'] text-primary">
+            <p className="text-lg pr-5 font-semibold font-['Montserrat'] w-[120px] text-primary">
               Action
             </p>
           </div>

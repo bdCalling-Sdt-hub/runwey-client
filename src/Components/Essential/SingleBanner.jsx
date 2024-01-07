@@ -48,13 +48,13 @@ const SingleBanner = ({ item, setReload, reload }) => {
           alt=""
         />
       </div>
-      <div className="text-zinc-800 text-left  text-lg font-semibold font-['Montserrat']">
+      <div className="text-zinc-800  text-left w-[200px]  text-lg font-semibold font-['Montserrat']">
         {item.bannerName}
       </div>
-      <div className="text-zinc-800 text-lg font-semibold font-['Montserrat']">
+      <div className="text-zinc-800 w-[300px] text-lg font-semibold font-['Montserrat']">
         {formatted}
       </div>
-      <div className="pr-10 ">
+      <div className="pr-10  w-[120px]">
         <svg
         onClick={deleteBanner}
           className="cursor-pointer"
