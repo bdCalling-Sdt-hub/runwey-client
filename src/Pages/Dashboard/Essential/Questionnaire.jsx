@@ -12,16 +12,25 @@ const Questionnaire = () => {
     (state) => state.QuestionnaireData.QuestionnaireList
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const [quid, setQuid] = useState("");
 
   let token = localStorage.getItem("token");
   const [reload, setReload] = useState(1);
   const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+  const showModal2 = (id, question) => {
+    setQuid(id);
+    setQuestion(question);
+    setIsModalOpen2(true);
+  };
+  const handleCancel2 = () => {
+    setIsModalOpen2(false);
   };
 
   useEffect(() => {
@@ -30,7 +39,6 @@ const Questionnaire = () => {
     };
     dispatch(QuestionnaireData(data));
   }, [reload]);
-  
 
   const handleAddQuestion = () => {
     // api/question this endpoint post
@@ -38,7 +46,7 @@ const Questionnaire = () => {
       .post(
         "/api/question",
         {
-          question: question
+          question: question,
         },
         {
           headers: {
@@ -82,11 +90,29 @@ const Questionnaire = () => {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
-  const handleQuestionEdit = (id) => {
-    console.log(id);
-  }
+  const handleQuestionEdit = () => {
+    // patch
+    baseAxios
+      .patch(`/api/question/${quid}`, {
+        question: question,
+      })
+      .then((res) => {
+        console.log(res);
+        Swal.fire({
+          icon: "success",
+          title: "Question Update successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setIsModalOpen2(false);
+        setReload(reload + 1);
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">
@@ -115,6 +141,7 @@ const Questionnaire = () => {
                 reload={reload}
                 setReload={setReload}
                 handleQuestionDelete={handleQuestionDelete}
+                showModal2={showModal2}
               />
             );
           })}
@@ -162,6 +189,41 @@ const Questionnaire = () => {
             <div className="w-full h-10 p-2.5 bg-violet-700 rounded-lg justify-center items-center gap-2.5 inline-flex">
               <div className="text-white text-lg font-semibold font-['Montserrat']">
                 Save
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        open={isModalOpen2}
+        title={
+          <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
+            <span>Update Question</span>
+          </div>
+        }
+        onCancel={handleCancel2}
+        centered
+        footer={[]}
+        width={1000}
+      >
+        <div className="flex flex-col">
+          <div className="mb-4 w-full">
+            <p className="text-zinc-800 pb-2 font-semibold font-['Montserrat']">
+              Question
+            </p>
+            <input
+              className=" border rounded-[10px] w-full py-3 px-3 text-gray-700  focus:outline-none focus:shadow-outline"
+              type="text"
+              defaultValue={question}
+              placeholder="Write your question"
+              onChange={(e) => setQuestion(e.target.value)}
+            />
+          </div>
+
+          <div onClick={handleQuestionEdit} className="cursor-pointer">
+            <div className="w-full h-10 p-2.5 bg-violet-700 rounded-lg justify-center items-center gap-2.5 inline-flex">
+              <div className="text-white text-lg font-semibold font-['Montserrat']">
+                Update
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignleQuestions = ({ answer, question,handleQuestionDelete,id }) => {
+const SignleQuestions = ({ answer, question,handleQuestionDelete,id,showModal2 }) => {
   return (
     <div className="my-5 border-b-[1px] border-secondary">
       <div className="flex justify-between">
@@ -25,7 +25,7 @@ const SignleQuestions = ({ answer, question,handleQuestionDelete,id }) => {
           </h1>
         </div>
         <div className="flex gap-3"> 
-          <button className="text-white bg-primary m-2 text-[12px] px-3 p-2 rounded">Edit</button>
+          <button className="text-white bg-primary m-2 text-[12px] px-3 p-2 rounded"onClick={() => showModal2(id, question)} >Edit</button>
           <button className="text-white bg-primary m-2 text-[12px] px-3 p-2 rounded" onClick={() => handleQuestionDelete(id)} >Delete</button>
         </div>
       </div>
