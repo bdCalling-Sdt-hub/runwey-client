@@ -136,7 +136,7 @@ const AllUsers = () => {
         </Row>
 
         <div style={{ display: "flex" }}>
-          <UsersTable allUser={allUser} />
+          <UsersTable allUser={allUser}  onPageChange={onPageChange}/>
 
           <div
             className="w-[350px]"

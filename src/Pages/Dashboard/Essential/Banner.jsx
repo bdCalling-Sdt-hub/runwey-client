@@ -139,7 +139,7 @@ const Banner = () => {
               />
             ))}
           </div>
-          <div className="">
+          {/* <div className="">
             <div className="flex border-t-[1px] pt-5 border-primary justify-between">
               <div>
                 <p className="text-primary text-lg font-medium font-['Montserrat']">
@@ -156,7 +156,7 @@ const Banner = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <Modal

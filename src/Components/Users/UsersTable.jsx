@@ -1,9 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Button, Modal, Table } from "antd";
-import testVideo from "./../../../public/tikvideo.mp4";
-import UploadedVideos from "./UploadedVideos";
 import baseAxios from "../../../Config";
-const UsersTable = ({ allUser }) => {
+const UsersTable = ({ allUser,onPageChange }) => {
   const token = localStorage.getItem("token");
   const videoRef = useRef(null);
   let users = allUser?.users;
@@ -14,7 +12,11 @@ const UsersTable = ({ allUser }) => {
   const [singleVideo, setSingleVideo] = useState();
   const [modalUser, setModalUser] = useState();
 
+  let pageSize = 10
+
   console.log(singleVideo);
+
+  console.log(pagination)
 
   const handleVideoDelete = (id) => {
     console.log(id);
@@ -158,6 +160,13 @@ const UsersTable = ({ allUser }) => {
         className="= p-5 bg-white rounded-2xl border-[1px] border-secondary"
         columns={columns}
         dataSource={users}
+        pagination={{
+          pageSize,
+          showSizeChanger:false,
+          total: pagination?.totalDocuments,
+          current: pagination?.currentPage,
+          onChange: onPageChange,
+        }}
         scroll={{
           y: 480,
         }}

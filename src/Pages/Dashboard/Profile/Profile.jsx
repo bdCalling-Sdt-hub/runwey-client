@@ -62,7 +62,7 @@ const Profile = () => {
     console.log("form data", formData);
 
     baseAxios
-      .put(`/api/users`, formData, {
+      .put(`/api/users/update`, formData, {
         headers: {
           // Do not set Content-Type here; Axios will set it automatically for FormData
           "Content-Type": "multipart/form-data",
