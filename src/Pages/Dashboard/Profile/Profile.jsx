@@ -53,6 +53,8 @@ const Profile = () => {
     formData.append("phoneNumber", phoneNumber);
     formData.append("dateOfBirth", dateOfBirth);
     formData.append("address", address);
+    formData.append("gender", "Male");
+    formData.append("countryCode", "+880");
 
     // Append the image file if you have it (assuming 'image' is a File object)
     if (image) {
