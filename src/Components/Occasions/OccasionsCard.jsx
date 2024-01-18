@@ -21,6 +21,10 @@ const OccasionsCard = ({ occasion, handleDelete }) => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   };
   const handleCancel = () => {

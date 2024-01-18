@@ -7,7 +7,6 @@ const MonthlyIncomeTable = () => {
   const [data, setData] = useState([]);
   const [singleData, setSingleData] = useState();
 
-
   const showModal = (data) => {
     setIsModalOpen(true);
     setSingleData(data);
@@ -24,6 +23,10 @@ const MonthlyIncomeTable = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   }, []);
 
@@ -84,7 +87,7 @@ const MonthlyIncomeTable = () => {
             />
           </svg>
           <svg
-             onClick={(e) => showModal(record)}
+            onClick={(e) => showModal(record)}
             className="ml-[16px] cursor-pointer"
             width="22"
             height="22"
@@ -127,7 +130,9 @@ const MonthlyIncomeTable = () => {
         open={isModalOpen}
         title={
           <div className="text-2xl py-2 border-b-2 border-primary font-semibold font-['Montserrat'] text-primary">
-            <span>{singleData?.month}, {singleData?.year}</span>
+            <span>
+              {singleData?.month}, {singleData?.year}
+            </span>
           </div>
         }
         onCancel={handleCancel}

@@ -80,7 +80,13 @@ const Profile = () => {
         );
         setProfileEdit(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
+        console.log(err);
+      });
   };
 
   return (

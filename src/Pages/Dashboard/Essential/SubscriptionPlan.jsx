@@ -36,17 +36,16 @@ const SubscriptionPlan = () => {
   };
   const handleAddCancel = () => {
     setIsAddModalOpen(false);
-  
   };
-
 
   const handleDelete = (id) => {
     console.log(id);
-    baseAxios.delete(`/api/subscribe/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    baseAxios
+      .delete(`/api/subscribe/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         console.log(res);
         setReload(reload + 1);
@@ -54,11 +53,14 @@ const SubscriptionPlan = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
-  }
+  };
 
   console.log(data);
-
 
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">

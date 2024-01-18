@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Button, Modal, Table } from "antd";
 import baseAxios from "../../../Config";
-const UsersTable = ({ allUser,onPageChange }) => {
+const UsersTable = ({ allUser, onPageChange }) => {
   const token = localStorage.getItem("token");
   const videoRef = useRef(null);
   let users = allUser?.users;
@@ -12,11 +12,11 @@ const UsersTable = ({ allUser,onPageChange }) => {
   const [singleVideo, setSingleVideo] = useState();
   const [modalUser, setModalUser] = useState();
 
-  let pageSize = 10
+  let pageSize = 10;
 
   console.log(singleVideo);
 
-  console.log(pagination)
+  console.log(pagination);
 
   const handleVideoDelete = (id) => {
     console.log(id);
@@ -33,6 +33,10 @@ const UsersTable = ({ allUser,onPageChange }) => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   };
 
@@ -47,6 +51,10 @@ const UsersTable = ({ allUser,onPageChange }) => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   };
   const handleCancel = () => {
@@ -162,7 +170,7 @@ const UsersTable = ({ allUser,onPageChange }) => {
         dataSource={users}
         pagination={{
           pageSize,
-          showSizeChanger:false,
+          showSizeChanger: false,
           total: pagination?.totalDocuments,
           current: pagination?.currentPage,
           onChange: onPageChange,

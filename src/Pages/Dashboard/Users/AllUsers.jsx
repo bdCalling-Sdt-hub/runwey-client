@@ -44,6 +44,11 @@ const AllUsers = () => {
     })
     .catch((err) => {
       console.log(err);
+
+      if(err.response.data.message === "Invalid token"){
+        localStorage.removeItem("token");
+        localStorage.removeItem("yourInfo");
+      }
     });
 
     console.log("radio checked", e.target.value);
@@ -84,6 +89,11 @@ const AllUsers = () => {
       })
       .catch((err) => {
         console.log(err);
+
+        if(err.response.data.message === "Invalid token"){
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   }, []);
 
@@ -100,6 +110,11 @@ const AllUsers = () => {
       })
       .catch((err) => {
         console.log(err);
+
+        if(err.response.data.message === "Invalid token"){
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   }, []);
 

@@ -66,6 +66,10 @@ console.log(data);
         setIsModalOpen(false);
       })
       .catch((err) => {
+        if(err.response.data.message === "Invalid token"){
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
         console.log(err);
       });
   };

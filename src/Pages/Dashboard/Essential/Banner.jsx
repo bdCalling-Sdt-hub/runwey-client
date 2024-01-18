@@ -77,6 +77,10 @@ const Banner = () => {
           setBannerImage(null);
         })
         .catch((err) => {
+          if (err.response.data.message === "Invalid token") {
+            localStorage.removeItem("token");
+            localStorage.removeItem("yourInfo");
+          }
           console.log(err);
           Swal.fire({
             icon: "error",
@@ -95,7 +99,6 @@ const Banner = () => {
       });
     }
   };
-
 
   return (
     <div className="mt-[24px] border-secondary border-[1px] h-[780px] rounded-2xl ">

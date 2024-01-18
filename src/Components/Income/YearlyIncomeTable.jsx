@@ -7,12 +7,10 @@ const YearlyIncomeTable = () => {
   const [data, setData] = useState([]);
   const [singleData, setSingleData] = useState();
 
-
   const showModal = (data) => {
     setIsModalOpen(true);
     setSingleData(data);
   };
-
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -26,6 +24,10 @@ const YearlyIncomeTable = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   }, []);
 
@@ -84,7 +86,7 @@ const YearlyIncomeTable = () => {
             />
           </svg>
           <svg
-           onClick={(e) => showModal(record)}
+            onClick={(e) => showModal(record)}
             className="ml-[16px] cursor-pointer"
             width="22"
             height="22"
@@ -150,7 +152,9 @@ const YearlyIncomeTable = () => {
                 </p>
               </div>
               <div>
-                <p className="text-lg font-semibold font-['Montserrat']">{singleData?.usersWithPackageCount}</p>
+                <p className="text-lg font-semibold font-['Montserrat']">
+                  {singleData?.usersWithPackageCount}
+                </p>
                 <p className="text-lg font-semibold font-['Montserrat']">
                   $ {singleData?.totalAmount}
                 </p>

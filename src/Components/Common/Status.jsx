@@ -2,7 +2,7 @@ import React from "react";
 import baseAxios from "../../../Config";
 
 const Status = () => {
-  const [data, setData] = React.useState()
+  const [data, setData] = React.useState();
   const token = localStorage.getItem("token");
 
   React.useEffect(() => {
@@ -18,6 +18,10 @@ const Status = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   }, []);
 

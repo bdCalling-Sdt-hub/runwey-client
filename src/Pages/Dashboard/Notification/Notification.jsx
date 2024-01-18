@@ -17,6 +17,10 @@ const Notification = () => {
       })
       .then((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   }, [page]);
 
@@ -45,7 +49,7 @@ const Notification = () => {
           <div className="flex justify-between">
             <div lg={{ span: 12 }}>
               <p className="text-lg font-normal font-['Montserrat'] text-primary ">
-              <ShowingPegination pagination={notificationData?.pagination} />
+                <ShowingPegination pagination={notificationData?.pagination} />
               </p>
             </div>
             <div style={{ textAlign: "right" }}>

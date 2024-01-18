@@ -11,7 +11,7 @@ const ChatInboxLayout = () => {
   const [currentChatId, setCurrentChatId] = useState(null);
   const [currentChatPersonName, setCurrentChatPersonName] = useState(null);
 
-  console.log("name",currentChatPersonName)
+  console.log("name", currentChatPersonName);
 
   useEffect(() => {
     baseAxios
@@ -22,6 +22,10 @@ const ChatInboxLayout = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   }, []);
 
@@ -37,14 +41,29 @@ const ChatInboxLayout = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
-  }
+  };
 
   return (
     <div className="flex gap-5">
-      <MessageList chatList={chatList} setCurrentChatPersonName={setCurrentChatPersonName} handleChat={handleChat} />
-      {currentChatPersonName ? <SinglePersonChatDetails chat={chat} currentChatId={currentChatId} currentChatPersonName={currentChatPersonName} /> :<NoChatOpen/> }
-      
+      <MessageList
+        chatList={chatList}
+        setCurrentChatPersonName={setCurrentChatPersonName}
+        handleChat={handleChat}
+      />
+      {currentChatPersonName ? (
+        <SinglePersonChatDetails
+          chat={chat}
+          currentChatId={currentChatId}
+          currentChatPersonName={currentChatPersonName}
+        />
+      ) : (
+        <NoChatOpen />
+      )}
     </div>
   );
 };

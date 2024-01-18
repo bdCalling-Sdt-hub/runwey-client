@@ -39,10 +39,13 @@ const Earnings = () => {
         console.log(res.data.data);
       })
       .catch((err) => {
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
         console.log(err);
       });
   }, []);
-
 
   return (
     <>

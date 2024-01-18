@@ -23,11 +23,7 @@ export const SubscriptionData = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      if (
-        "You are not authorised to sign in now" ===
-          error.response.data.message ||
-        "Error authorization" === error.response.data.message
-      ) {
+      if (error.response.data.message === "Invalid token") {
         localStorage.removeItem("token");
         localStorage.removeItem("yourInfo");
       }

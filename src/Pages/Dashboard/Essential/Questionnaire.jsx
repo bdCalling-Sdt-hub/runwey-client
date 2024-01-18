@@ -66,6 +66,10 @@ const Questionnaire = () => {
         setReload(reload + 1);
       })
       .catch((err) => {
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -89,6 +93,10 @@ const Questionnaire = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   };
 
@@ -111,6 +119,10 @@ const Questionnaire = () => {
       })
       .then((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
   };
 

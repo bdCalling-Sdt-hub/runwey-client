@@ -16,17 +16,13 @@ const Occasions = () => {
   const token = localStorage.getItem("token");
   const [reload, setReload] = useState(1);
 
-
-
-
-
   useEffect(() => {
     let data = {
       page: 1,
     };
     dispatch(OccasionsData(data));
   }, [reload]);
-  
+
   console.log(data);
 
   const showModal = () => {
@@ -65,6 +61,10 @@ const Occasions = () => {
         setIsModalOpen(false);
       })
       .catch((err) => {
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
         console.log(err);
       });
   };
@@ -83,8 +83,12 @@ const Occasions = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
       });
-  }
+  };
 
   return (
     <div className="mt-[24px] h-[780px] ">
@@ -103,11 +107,9 @@ const Occasions = () => {
           </div>
         </div>
         <div className="grid grid-cols-6">
-          {
-            data.map((occasion) => (
-              <OccasionsCard occasion={occasion} handleDelete={handleDelete} />
-            ))
-          }
+          {data.map((occasion) => (
+            <OccasionsCard occasion={occasion} handleDelete={handleDelete} />
+          ))}
         </div>
       </div>
       <Modal

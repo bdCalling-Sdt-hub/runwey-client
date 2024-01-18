@@ -10,20 +10,29 @@ const Header = () => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = date.toLocaleDateString("en-US", options);
   const userData = JSON.parse(localStorage.getItem("yourInfo"));
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    baseAxios.get("api/notification/view-counts").then((res) => {
-      setCount(res.data.data.attributes.notViewed)
-    }).then((err) => {
-      console.log(err)
-    })
-  },[count])
+    baseAxios
+      .get("api/notification/view-counts")
+      .then((res) => {
+        setCount(res.data.data.attributes.notViewed);
+      })
+      .then((err) => {
+        console.log(err);
+      })
+      .catch((err) => {
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
+      });
+  }, [count]);
 
-  console.log('-------',count)
+  console.log("-------", count);
   return (
     <div className="flex  mt-9">
       <div>
@@ -74,7 +83,7 @@ const Header = () => {
           />
           <span
             className={`${
-             count === 0 ? "hidden" : " absolute"
+              count === 0 ? "hidden" : " absolute"
             }  top-0 right-0 flex h-3 w-3}`}
           >
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
