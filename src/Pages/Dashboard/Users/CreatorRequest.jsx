@@ -341,7 +341,7 @@ const CreatorRequest = () => {
           </div>
         </div>
       </Modal>
-      <div className="flex border-t-[1px] pt-5 border-primary justify-between">
+      {/* <div className="flex border-t-[1px] pt-5 border-primary justify-between">
         <div>
           <p className="text-primary text-lg font-medium font-['Montserrat']">
             Showing 1-10 OF 250
@@ -356,7 +356,7 @@ const CreatorRequest = () => {
             showSizeChanger={false}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
