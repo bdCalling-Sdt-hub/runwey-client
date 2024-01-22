@@ -203,7 +203,7 @@ const Dashboard = () => {
       <div className=" m-8 rounded-xl bg-primary relative">
         <>
           <h1 className=" text-center text-white">
-            <img onClick={e => navigate('/')} className="w-[220px] cursor-pointer mx-auto p-5" src={logo} alt="" />
+            <img onClick={e => navigate('/')} className="w-[220px] cursor-pointer mx-auto p-5" src='https://i.ibb.co/zPCWqwZ/Group-26803.png' alt="" />
           </h1>
           <Menu
             style={{ overflowY: "auto", height: "80vh" }}
