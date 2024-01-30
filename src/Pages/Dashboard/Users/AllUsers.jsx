@@ -9,7 +9,6 @@ import baseAxios from "../../../../Config";
 import { SubscriptionData } from "../../../ReduxSlices/SubscriptionSlice";
 import { AllUserData } from "../../../ReduxSlices/AllUserSlice";
 
-
 const style = {
   padding: "8px 20px",
   color: "white",
@@ -17,64 +16,63 @@ const style = {
   lineHeight: "35px",
 };
 
-
 const AllUsers = () => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const packageCategories = useSelector(
     (state) => state.SubscriptionData.SubscriptionList
   );
-  
+
   const [allUserStatus, setAllUserStatus] = useState();
   const [allUser, setAllUser] = useState();
   console.log(allUser);
 
-  const [value, setValue] = useState('all');
+  const [value, setValue] = useState("all");
   const [page, setPage] = useState(1);
   const onChange = (e) => {
     baseAxios
-    .get(`api/users/sort?search=${e.target.value}&page=${page}`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => {
-      setAllUser(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
+      .get(`api/users/sort?search=${e.target.value}&page=${page}`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setAllUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
 
-      if(err.response.data.message === "Invalid token"){
-        localStorage.removeItem("token");
-        localStorage.removeItem("yourInfo");
-      }
-    });
+        if (err.response.data.message === "Invalid token") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("yourInfo");
+        }
+      });
 
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
 
   useEffect(() => {
-    AllUserData
-  },[])
+    AllUserData;
+  }, []);
 
   const onPageChange = (page) => {
     setPage(page);
     baseAxios
-    .get(`api/users/sort?search=${value}&page=${page}`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-    })
-    .then((res) => {
-      setAllUser(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .get(`api/users/sort?search=${value}&page=${page}`, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setAllUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     baseAxios
@@ -90,7 +88,7 @@ const AllUsers = () => {
       .catch((err) => {
         console.log(err);
 
-        if(err.response.data.message === "Invalid token"){
+        if (err.response.data.message === "Invalid token") {
           localStorage.removeItem("token");
           localStorage.removeItem("yourInfo");
         }
@@ -111,7 +109,7 @@ const AllUsers = () => {
       .catch((err) => {
         console.log(err);
 
-        if(err.response.data.message === "Invalid token"){
+        if (err.response.data.message === "Invalid token") {
           localStorage.removeItem("token");
           localStorage.removeItem("yourInfo");
         }
@@ -125,9 +123,7 @@ const AllUsers = () => {
     dispatch(SubscriptionData(data));
   }, []);
 
-  console.log(packageCategories)
-
-
+  console.log(packageCategories);
 
   return (
     <>
@@ -151,7 +147,7 @@ const AllUsers = () => {
         </Row>
 
         <div style={{ display: "flex" }}>
-          <UsersTable allUser={allUser}  onPageChange={onPageChange}/>
+          <UsersTable allUser={allUser} onPageChange={onPageChange} />
 
           <div
             className="w-[350px]"
@@ -188,6 +184,7 @@ const AllUsers = () => {
                 <Radio value={"all"} className="custom-radio">
                   All
                 </Radio>
+
                 {packageCategories?.map((data, index) => (
                   <Radio
                     key={data?.package?._id}
@@ -197,6 +194,10 @@ const AllUsers = () => {
                     {data?.package?.name}
                   </Radio>
                 ))}
+
+                <Radio value={"creator"} className="custom-radio">
+                  Creator
+                </Radio>
                 {/* <Radio value={"sfkld"} className="custom-radio">
                   Standard
                 </Radio>
