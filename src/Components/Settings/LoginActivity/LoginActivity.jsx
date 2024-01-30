@@ -121,16 +121,7 @@ const LoginActivity = () => {
     },
   ];
 
-  const data = [];
-  for (let i = 0; i < 10; i++) {
-    data.push({
-      key: i,
-      browser: `Safari`,
-      device: `Mac OS X 10.14.5`,
-      timeAndDate: "11:21 AM, 30/09/23",
-      action: "View",
-    });
-  }
+
 
   return (
     <div className="w-[1350px]">
