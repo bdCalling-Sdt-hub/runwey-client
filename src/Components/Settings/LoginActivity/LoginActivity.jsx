@@ -133,7 +133,7 @@ const LoginActivity = () => {
   }
 
   return (
-    <div>
+    <div className="w-[1350px]">
       <Table
         headerBg="red"
         className="mt-[32px] bg-white rounded-2xl"
