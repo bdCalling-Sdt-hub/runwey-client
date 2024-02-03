@@ -78,13 +78,10 @@ const CreatorRequest = () => {
         {}
       );
 
-      // Handle the response if needed
       setReload(reload + 1);
       setIsModalOpen(false);
-      // Additional actions upon successful cancellation
     } catch (error) {
       console.error(error);
-      // Handle errors if the cancellation request fails
     }
   };
 
