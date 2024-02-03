@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const PendingRequests = () => {
-  const navigate = useNavigate();
+
   return (
     <>
       <div className="w-[410px]  relative bg-white rounded-[30px] border ml-4 ">
