@@ -10,6 +10,7 @@ const ChatInboxLayout = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [currentChatId, setCurrentChatId] = useState(null);
   const [currentChatPersonName, setCurrentChatPersonName] = useState(null);
+  const [senderId, setSenderId] = useState(null);
 
   console.log("name", currentChatPersonName);
 
@@ -31,7 +32,10 @@ const ChatInboxLayout = () => {
 
   const handleChat = (data) => {
     setCurrentChatId(data?.chat._id);
+    console.log(data)
     setCurrentChatPersonName(data?.chat.userId.fullName);
+    console.log(data?.chat.userId._id);
+    setSenderId(data?.chat.userId._id)
 
     baseAxios
       .get(`api/messages/${data?.chat._id}`)
@@ -60,6 +64,7 @@ const ChatInboxLayout = () => {
           chat={chat}
           currentChatId={currentChatId}
           currentChatPersonName={currentChatPersonName}
+          senderId={senderId}
         />
       ) : (
         <NoChatOpen />

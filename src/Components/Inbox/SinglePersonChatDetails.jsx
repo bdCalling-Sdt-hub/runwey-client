@@ -5,6 +5,7 @@ const SinglePersonChatDetails = ({
   chat,
   currentChatId,
   currentChatPersonName,
+  senderId
 }) => {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   const chatContainerRef = useRef(null);
@@ -47,6 +48,8 @@ const SinglePersonChatDetails = ({
     }
   }
 
+  console.log("fsdddddddddddddddddddddddd"+senderId)
+
   // here message send and send then this set in
   const handleMessageSend = () => {
     if (messages) {
@@ -55,7 +58,10 @@ const SinglePersonChatDetails = ({
         sender: UserData?._id,
         receiver: "user",
         message: messages,
+        receiverId: senderId
       };
+
+      console.log(dataToSend);
 
       socket.emit("add-new-message", dataToSend, (callbackResponse) => {
         setMessages("");
