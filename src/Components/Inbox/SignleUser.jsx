@@ -1,4 +1,5 @@
 import React from "react";
+import { imageUrl } from "../../lib/constant";
 
 const SignleUser = ({ status, item, handleChat }) => {
 
@@ -16,7 +17,7 @@ const SignleUser = ({ status, item, handleChat }) => {
       <div>
         <img
           className="w-[60px] h-[60px] rounded-full"
-          src={item?.chat?.userId?.image?.publicFileUrl}
+          src={imageUrl + item?.chat?.userId?.image?.publicFileUrl}
           alt=""
         />
       </div>

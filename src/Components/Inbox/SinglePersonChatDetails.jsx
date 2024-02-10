@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
+import { imageUrl } from "../../lib/constant";
 
 const SinglePersonChatDetails = ({
   chat,
@@ -10,7 +11,7 @@ const SinglePersonChatDetails = ({
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   const chatContainerRef = useRef(null);
   const [messages, setMessages] = useState();
-  const socket = io("ws://103.145.138.77:3002");
+  const socket = io("ws://167.99.89.66:3002");
   const [reload, setReload] = useState(1);
   const [chats, setChats] = useState();
 
@@ -108,7 +109,7 @@ const SinglePersonChatDetails = ({
                 <div className="flex flex-row-reverse gap-5  mt-[32px] mr-5 mb-5">
                   <img
                     className="w-[60px] h-[60px] rounded-full"
-                    src={c?.sender?.image?.publicFileUrl}
+                    src={imageUrl + c?.sender?.image?.publicFileUrl}
                     alt=""
                   />
                   <div className="flex flex-row-reverse gap-5 ">
@@ -124,7 +125,7 @@ const SinglePersonChatDetails = ({
                 <div className="flex gap-5 mt-[32px] ml-5 mb-5">
                   <img
                     className="w-[60px] h-[60px] rounded-full"
-                    src={c?.sender?.image?.publicFileUrl}
+                    src={imageUrl + c?.sender?.image?.publicFileUrl}
                     alt=""
                   />
                   <div className="flex  gap-5 ">

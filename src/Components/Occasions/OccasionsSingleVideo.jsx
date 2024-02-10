@@ -1,5 +1,6 @@
 import React from "react";
 import testVideo from "./../../../public/tikvideo.mp4";
+import { imageUrl } from "../../lib/constant";
 
 const OccasionsSingleVideo = ({ video }) => {
   function formatDuration(duration) {
@@ -14,7 +15,7 @@ const OccasionsSingleVideo = ({ video }) => {
         <video
           width={171}
           className=" h-[150px]   bg-zinc-800 rounded-tl-xl rounded-tr-xl"
-          src={video?.videoPath}
+          src={imageUrl + video?.videoPath}
           // controls
           muted
         ></video>

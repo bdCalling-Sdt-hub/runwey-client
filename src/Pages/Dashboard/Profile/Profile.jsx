@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import React, { useState } from "react";
 import { LiaEditSolid } from "react-icons/lia";
 import baseAxios from "../../../../Config";
+import { imageUrl } from "../../../lib/constant";
 
 const Profile = () => {
   const userFromLocalStorage = JSON.parse(localStorage.getItem("yourInfo"));
@@ -105,7 +106,7 @@ const Profile = () => {
                   width={150}
                   height={150}
                   style={{ borderRadius: "6px" }}
-                  src={userFromLocalStorage.image?.publicFileUrl}
+                  src={imageUrl + userFromLocalStorage.image?.publicFileUrl}
                 />
                 <div style={{ width: "400px" }}>
                   <h2>{userFromLocalStorage?.fullName}</h2>

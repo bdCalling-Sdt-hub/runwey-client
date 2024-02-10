@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 import Swal from "sweetalert2";
 import baseAxios from "../../../Config";
+import { imageUrl } from "../../lib/constant";
 
 const SingleBanner = ({ item, setReload, reload }) => {
   function formatDate(originalDateString) {
@@ -44,7 +45,7 @@ const SingleBanner = ({ item, setReload, reload }) => {
       <div>
         <img
           className="w-[200px] rounded-[10px] items-center  h-[100px] object-cover"
-          src={item?.bannerImage}
+          src={imageUrl +item?.bannerImage}
           alt=""
         />
       </div>

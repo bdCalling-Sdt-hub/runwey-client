@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
 import baseAxios from "../../../Config";
+import { imageUrl } from "../../lib/constant";
 
 const Header = () => {
   const date = new Date(); // Assuming the input date is in ISO 8601 format (YYYY-MM-DD)
@@ -94,7 +95,7 @@ const Header = () => {
       <div onClick={(e) => navigate("/profile")} className="cursor-pointer">
         <img
           className="w-[50px] h-[45px] ml-3 rounded-lg"
-          src={userData?.image?.publicFileUrl}
+          src={imageUrl + userData?.image?.publicFileUrl}
           alt=""
         />
       </div>

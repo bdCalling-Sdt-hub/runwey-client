@@ -4,6 +4,7 @@ import testVideo from "./../../../public/tikvideo.mp4";
 import OccasionsSingleVideo from "./OccasionsSingleVideo";
 import baseAxios from "../../../Config";
 import NoVideo from "./NoVideo";
+import { imageUrl } from "../../lib/constant";
 
 const OccasionsCard = ({ occasion, handleDelete }) => {
   const [isVideoDelete, setIsVideoDelete] = useState(false);
@@ -39,7 +40,7 @@ const OccasionsCard = ({ occasion, handleDelete }) => {
         <div className="relative flex justify-center  items-center mx-auto  ">
           <img
             className="rounded-xl h-[150px] w-[200px]  opacity-70"
-            src={occasion?.categoryImage}
+            src={imageUrl + occasion?.categoryImage}
             alt=""
           />
           <p className="text-white absolute text-lg font-medium font-['Montserrat'] z-10">
@@ -64,7 +65,7 @@ const OccasionsCard = ({ occasion, handleDelete }) => {
             <div>
               <img
                 className="w-[212px] h-[212px]"
-                src={occasion?.categoryImage}
+                src={imageUrl + occasion?.categoryImage}
                 alt=""
               />
             </div>

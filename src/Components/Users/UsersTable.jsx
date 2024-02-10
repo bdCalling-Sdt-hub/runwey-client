@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Button, Modal, Table } from "antd";
 import baseAxios from "../../../Config";
+import { imageUrl } from "../../lib/constant";
 const UsersTable = ({ allUser, onPageChange }) => {
   const token = localStorage.getItem("token");
   const videoRef = useRef(null);
@@ -206,7 +207,7 @@ const UsersTable = ({ allUser, onPageChange }) => {
                 <img
                   style={{ borderRadius: "10px" }}
                   className="w-[180px] h-[150px]"
-                  src={modalUser?.image?.publicFileUrl}
+                  src={imageUrl + modalUser?.image?.publicFileUrl}
                   alt=""
                 />
               </div>
@@ -291,7 +292,7 @@ const UsersTable = ({ allUser, onPageChange }) => {
                   >
                     <img
                       className="w-[50px] h-[50px] rounded-lg"
-                      src={video?.thumbnailPath}
+                      src={imageUrl + video?.thumbnailPath}
                       alt=""
                     />
                     <svg
@@ -441,7 +442,7 @@ const UsersTable = ({ allUser, onPageChange }) => {
             controls
             muted
             className=" h-[400px]   bg-zinc-800 rounded-lg "
-            src={singleVideo}
+            src={imageUrl + singleVideo}
           ></video>
         </div>
       </Modal>

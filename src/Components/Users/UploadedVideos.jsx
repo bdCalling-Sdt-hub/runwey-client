@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import baseAxios from "../../../Config";
 import { Button, Modal, Table } from "antd";
+import { imageUrl } from "../../lib/constant";
 
 function UploadedVideos({record}) {
     console.log(record?._id)
@@ -24,7 +25,7 @@ function UploadedVideos({record}) {
         <video
           width={50}
           className=" h-[50px]   bg-zinc-800 rounded-lg "
-          src={data[0]?.videoPath}
+          src={imageUrl + data[0]?.videoPath}
           onClick={() => showVideo()}
         ></video>
         <h4>Sheath Weeding gown</h4>

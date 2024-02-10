@@ -4,6 +4,7 @@ import { Pagination } from "antd";
 import baseAxios from "../../../../Config";
 import { useDispatch, useSelector } from "react-redux";
 import { CreatorRequestData } from "../../../ReduxSlices/CreatorRequestSlice";
+import { imageUrl } from "../../../lib/constant";
 const style = {
   background: "#fff",
   padding: "20px 10px",
@@ -141,7 +142,7 @@ const CreatorRequest = () => {
                     //   width: "60px",
                     //   borderRadius: "100%",
                     // }}
-                    src={user?.image?.publicFileUrl}
+                    src={imageUrl + user?.image?.publicFileUrl}
                   />
                 </div>
                 <div>
@@ -217,7 +218,7 @@ const CreatorRequest = () => {
                 <img
                   style={{ borderRadius: "10px" }}
                   className="w-[180px] h-[150px]"
-                  src={modalData?.userId?.image?.publicFileUrl}
+                  src={imageUrl + modalData?.userId?.image?.publicFileUrl}
                   alt=""
                 />
               </div>
