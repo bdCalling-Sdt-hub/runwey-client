@@ -5,7 +5,7 @@ const PrivateRoute = ({ children }) => {
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
 
 
-  if (UserData?.role == "admin" || UserData?.oneTimeCode === "verified") {
+  if (UserData?.role == "admin" && UserData?.oneTimeCode === "verified") {
     return children;
   } else {
     return <Navigate to="/signin" />;

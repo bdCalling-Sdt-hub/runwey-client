@@ -288,11 +288,11 @@ const UsersTable = ({ allUser, onPageChange }) => {
                   ></video> */}
                   <div
                     className="relative cursor-pointer"
-                    onClick={() => showVideo(video?.videoPath)}
+                    onClick={() => showVideo(video?.video)}
                   >
                     <img
                       className="w-[50px] h-[50px] rounded-lg"
-                      src={imageUrl + video?.thumbnailPath}
+                      src={imageUrl + video?.thumbnail}
                       alt=""
                     />
                     <svg

@@ -25,7 +25,7 @@ function UploadedVideos({record}) {
         <video
           width={50}
           className=" h-[50px]   bg-zinc-800 rounded-lg "
-          src={imageUrl + data[0]?.videoPath}
+          src={imageUrl + data[0]?.video}
           onClick={() => showVideo()}
         ></video>
         <h4>Sheath Weeding gown</h4>

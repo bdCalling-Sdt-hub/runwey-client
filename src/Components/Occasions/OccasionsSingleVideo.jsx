@@ -15,7 +15,7 @@ const OccasionsSingleVideo = ({ video }) => {
         <video
           width={171}
           className=" h-[150px]   bg-zinc-800 rounded-tl-xl rounded-tr-xl"
-          src={imageUrl + video?.videoPath}
+          src={imageUrl + video?.video}
           // controls
           muted
         ></video>
