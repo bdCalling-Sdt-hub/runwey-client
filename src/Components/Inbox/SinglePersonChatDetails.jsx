@@ -11,7 +11,7 @@ const SinglePersonChatDetails = ({
   const UserData = JSON.parse(localStorage.getItem("yourInfo"));
   const chatContainerRef = useRef(null);
   const [messages, setMessages] = useState();
-  const socket = io("ws://103.145.138.77:3002");
+  const socket = io("ws://runweymailer.com");
   const [reload, setReload] = useState(1);
   const [chats, setChats] = useState();
 
