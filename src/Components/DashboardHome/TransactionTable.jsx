@@ -72,7 +72,11 @@ const TransactionTable = () => {
       dataIndex: "paymentMethod",
       width: 150,
       render: (_, record) => (
-        <div>{record?.paymentData?.payment_method_details?.type}</div>
+        <div>
+          <div>
+          {/* {record?.paymentData?.payment_method_details?.type} */}
+          </div>
+        </div>
       ),
     },
     {
@@ -94,7 +98,7 @@ const TransactionTable = () => {
           </div> */}
           <div className="w-[71px] h-[22px] px-3 py-1 bg-emerald-50 rounded justify-center items-center gap-2.5 inline-flex">
             <div className="text-green-600 text-[13px] font-normal font-['Poppins'] leading-[14px]">
-            {record?.paymentData?.description.replace(/^Purchase product\s*/, "")}
+             None
             </div>
           </div>
         </div>
